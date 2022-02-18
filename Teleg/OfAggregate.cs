@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Teleg
+{
+    class OfAggregate : Query
+    {
+        public OfAggregate(TelegConnect telegram) : base(telegram)
+        {
+            questionForUser = telegram.Question.Allergy;
+            buttons = new Dictionary<string, Method>()
+            {
+                [telegram.Button.AgregateLiquid] = () => _telegram.sqlMes.Add("Aggregation LIKE '%жидкий%'"),
+                [telegram.Button.AgregateHard] = () => _telegram.sqlMes.Add("Aggregation LIKE '%твердый%'"),
+            };
+
+            multipleCall = false;
+            CreateButtonResullt();
+
+            BaseRealizing();
+        }
+    }
+}

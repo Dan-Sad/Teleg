@@ -7,20 +7,19 @@ namespace Teleg
     class OfRole : Query
     {
         int i = 0;
-        public OfRole(TelegConnect telegram, Query callerQuery, int countCalledButtons) : base(telegram, callerQuery, countCalledButtons)
+        public OfRole(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Role;
             buttons = new Dictionary<string, Method>()
             {
-                [telegram.Button.RoleForCouples] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.RoleForDouble] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.RoleForSecret] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.RoleForSelf] = () => Console.WriteLine($"ToDo {questionForUser}"),
+                [telegram.Button.RoleForCouples] = () => _telegram.sqlMes.Add("(Role LIKE '%пара%' OR Controle LIKE '%app%')"),//
+                [telegram.Button.RoleForDistant] = () => _telegram.sqlMes.Add("Controle LIKE '%app%'"),
+                [telegram.Button.RoleForSecret] = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'"),
+                [telegram.Button.RoleForSelf] = () => _telegram.sqlMes.Add("Role LIKE '%'"),
             };
-            _nextQuery = () => PushQuery(new OfTypeSimulation(telegram, new OfRole(telegram, callerQuery, countCalledButtons), _countCalledButtons));
 
             multipleCall = true;
-            SpecificRealizing();
+            CreateButtonResullt();
 
             BaseRealizing();
         }

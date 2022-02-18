@@ -6,27 +6,18 @@ namespace Teleg
 {
     class OfTypeSimulation : Query
     {
-        public OfTypeSimulation(TelegConnect telegram, Query callerQuery, int countCalledButtons) : base(telegram, callerQuery, countCalledButtons)
+        public OfTypeSimulation(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Stimulation;
             buttons = new Dictionary<string, Method>()
             {
-                [telegram.Button.RoleForCouples] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.RoleForDouble] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.RoleForSecret] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.RoleForSelf] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.StimulationVacuum] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.StimulationWave] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.StimulationVagina] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.StimulationClitor] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.StimulationMechanical] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.StimulationRotation] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.StimulationAnus] = () => Console.WriteLine($"ToDo {questionForUser}"),
+                [telegram.Button.StimulationVacuum] = () => _telegram.sqlMes.Add("Vibration LIKE '%пульсация%'"),
+                [telegram.Button.StimulationWave] = () => _telegram.sqlMes.Add("Vibration LIKE '%волнообразный%'"),
+                [telegram.Button.StimulationRotation] = () => _telegram.sqlMes.Add("Vibration LIKE '%ротация%'"),
             };
-            _nextQuery = () => PushQuery(new OfTypeSimulation(telegram, new OfTypeSimulation(telegram, callerQuery, countCalledButtons), _countCalledButtons));
 
             multipleCall = true;
-            SpecificRealizing();
+            CreateButtonResullt();
 
             BaseRealizing();
         }

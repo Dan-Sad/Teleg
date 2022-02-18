@@ -16,24 +16,44 @@ namespace Teleg
             string token = "5161443212:AAH07mKLSet-JG_7z7cpdOtvoTMe-vhEbgs";
             bot = new TelegramBotClient(token);
             bot.OnMessage += Bot_OnMessage;
+            bot.OnCallbackQuery += Bot_OnCallbackQuery;
             bot.StartReceiving();
 
             Console.Read();
         }
 
-        private async static void Bot_OnMessage(object sender, MessageEventArgs eventArg)
+        private static async void Bot_OnCallbackQuery(object sender, CallbackQueryEventArgs callbackEvent)
         {
-            long curUserID = eventArg.Message.From.Id;
+            long curUserID = callbackEvent.CallbackQuery.From.Id;
             foreach (var user in users)
             {
                 if (curUserID == user.Key)
                 {
-                    user.Value.PushDate(eventArg.Message.Chat.Id, eventArg);
+                    user.Value.PushData(callbackEvent);
+                    user.Value.haveNewCallback = true;
+
+                    user.Value.CallQuery();
+
+                    return;
+                }
+            }
+        }
+
+        private async static void Bot_OnMessage(object sender, MessageEventArgs mesEvent)
+        {
+            long curUserID = mesEvent.Message.From.Id;
+
+            foreach (var user in users)
+            {
+                if (curUserID == user.Key)
+                {
+                    user.Value.PushData(mesEvent.Message.Chat.Id, mesEvent);
                     user.Value.haveNewMessage = true;
                     return;
                 }
             }
-            TelegConnect telegramConnect = new TelegConnect(eventArg.Message.Chat.Id, eventArg);
+
+            TelegConnect telegramConnect = new TelegConnect(mesEvent.Message.Chat.Id, mesEvent);
             users.Add(curUserID, telegramConnect);
         }
     }

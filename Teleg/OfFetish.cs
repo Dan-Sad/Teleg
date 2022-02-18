@@ -6,30 +6,26 @@ namespace Teleg
 {
     class OfFetish : Query
     {
-        public OfFetish(TelegConnect telegram, Query callerQuery, int countCalledButtons) : base(telegram, callerQuery, countCalledButtons)
+        public OfFetish(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Fetish;
             buttons = new Dictionary<string, Method>()
             {
-                
-                [telegram.Button.FetishAnalSex] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishBDSM] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishBukaki] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishCuni] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishDoublePenetration] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishFeelPlenum] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishFillPlace] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishGameWithPartner] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishPetGame] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishPublicPlace] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishRealistic] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishSecretGame] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.FetishIntel] = () => Console.WriteLine($"ToDo {questionForUser}"),
+                [telegram.Button.FetishAnalSex] = () => _telegram.sqlMes.Add("Role LIKE '%анал%'"),
+                [telegram.Button.FetishBukaki] = () => _telegram.sqlMes.Add("signs LIKE '%семяизвержение%'"),
+                [telegram.Button.FetishCuni] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%кунилингус%'"),
+                [telegram.Button.FetishDoublePenetration] = () => _telegram.sqlMes.Add("(Role LIKE '%пара%' AND [Type of stimulation] LIKE '%анус%')"),
+                [telegram.Button.FetishFeelPlenum] = () => _telegram.sqlMes.Add("Role LIKE '%анал%'"),
+                [telegram.Button.FetishFillPlace] = () => _telegram.sqlMes.Add("Intelligent Mode LIKE '%да%'"),
+                [telegram.Button.FetishPetGame] = () => _telegram.sqlMes.Add("signs LIKE '%PetGame%'"),
+                [telegram.Button.FetishPublicPlace] = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'"),
+                [telegram.Button.FetishRealistic] = () => _telegram.sqlMes.Add("signs LIKE '%UR3%'"),
+                [telegram.Button.FetishSecretGame] = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'"),
+                [telegram.Button.FetishIntel] = () => _telegram.sqlMes.Add("[Intelligent Mode] LIKE '%да%'"),
             };
-            _nextQuery = () => PushQuery(new OfRole(telegram, new OfFetish(telegram, callerQuery, countCalledButtons), _countCalledButtons));
 
             multipleCall = true;
-            SpecificRealizing();
+            CreateButtonResullt();
 
             BaseRealizing();
         }

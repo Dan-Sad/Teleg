@@ -7,20 +7,21 @@ namespace Teleg
     class QuestionRUS : ILanguageQuestion
     {
         public string ChooseMore { get; } = "Ты можешь выбрать больше или жми 'Далее'";
-        public string Allergy { get; } = "Аллергия?";
-        public string Lubricant { get; } = "Какой лубрикант изберете?";
+        public string Allergy { get; } = "Аллергия?";// 
+        public string Lubricant { get; } = "Какой лубрикант используем?";//частично
         public string StateNeedOfLubricant { get; } = "Советую прочесть статью о необходимости лубриканта";
         public string StateWichOfLubricant { get; } = "Здесь можешь выбрать какой больше подойдет";
-        public string Role { get; } = "Кем пожелаете быть вашей игрушке";
-        public string Agregate { get; } = "Что же Вас прельщает?";
+        public string Role { get; } = "Кем пожелаете быть вашей игрушке";//
+        public string Agregate { get; } = "Что Вас прельщает из этого?";
         public string Where { get; } = "Небезызвестно о 80% девушек жаждующих клиторальную стимуляцию для полного наслаждения. Что полюбилось Вам?";
-        public string Fetish { get; } = "Свои хотения желаем претворить?";
+        public string Fetish { get; } = "Можем реализовать несколько желаний?";
         public string Location { get; } = "На каких просторах будет происходить забава?";
         public string Controle { get; } = "Натягиваем шапочку из фольги и выбираем управление";
         public string Reusability { get; } = "Иногда ты понимаешь что нашла ту самую...";
         public string StealthView { get; } = "Мы так и будем скрывать эту забаву ото всех?";
         public string SizeOfHand { get; } = "Руку всё же не получится положить в ящик, но выпал шанс договриться (речь не о размере страпона, а о месте за которое будет держаться рука)";
         public string Sensation { get; } = "Какие чувствования выбираем?// ощущения холод бархат";
+        public string Couple { get; } = "Какие чувствования выбираем?// ощущения холод бархат";
         public string Stimulation { get; } = "Три два один ..думаем гениталиями (или чем излюбится)//тип вибрации";
         public string TechniqueOfFap { get; } = "Освежи тот самый день или создай новый. Какая мастурбация? ";
         public string Language { get; } = "Некоторые соприкосновения языками самые важные. Какой язык выберем?";
@@ -47,7 +48,7 @@ namespace Teleg
         public string RoleForSelf { get; } = "Только моей!";
         public string RoleForCouples { get; } = "Можно попробовать и в паре";
         public string RoleForSecret { get; } = "У каждого должен быть секрет";
-        public string RoleForDouble { get; } = "Предпочитаю секс на расстоянии";
+        public string RoleForDistant { get; } = "Предпочитаю секс на расстоянии";
         public string AgregateLiquid { get; } = "Жидкий вибратор";
         public string AgregateHard { get; } = "Твердой консистенции игрушка";
         public string LocationBed { get; } = "Кровать";
@@ -55,6 +56,7 @@ namespace Teleg
         public string LocationShower { get; } = "Душ";
         public string LocationSea { get; } = "Хочу на море, ну или хотя бы в речечке";
         public string LocationPool { get; } = "Окей, подойдет и бассейн";
+        public string LocationPublic { get; } = "Публичное место";//
         public string FetishPublicPlace { get; } = "Как насчет публичных мест";
         public string FetishDoublePenetration { get; } = "Может тройничек?";
         public string FetishGameWithPartner { get; } = "Стоит довериться партнеру";
@@ -80,6 +82,12 @@ namespace Teleg
         public string ControleButton { get; } = "Кнопки на игрушке";
         public string ControleApp { get; } = "Хочу через приложение";
         public string ControleConsole { get; } = "Хочу игрушку на пульте управления";
+        public string CoupleStopPenis { get; } = "Регуляция размера пениса";
+        public string CoupleLongSex { get; } = "Продлить секс";
+        public string CoupleClitor { get; } = "Стимуляции клитора";
+        public string CoupleVagina { get; } = "Стимуляции вагины";
+        public string CoupleAnus { get; } = "Стимуляции ануса";
+        public string CoupleOtherZone { get; } = "Стимуляции чувствительных зон";
         public string ReusabilityLot { get; } = "Пусть останется со мной надолго";
         public string ReusabilityOne { get; } = "Мне эту забаву на одну ночь";
         public string StealthViewNoMatters { get; } = "Мне это не важно";
@@ -94,6 +102,7 @@ namespace Teleg
         public string SensationSmoothness { get; } = "Гладкий, скользкий, может глянец?";
         public string SensationVelvety { get; } = "Бархатистость, вельвет, нежнее нежного";
         public string SensationRealistic { get; } = "Реальность..рельефные вены, естественное набухание";
+        public string SensationRelief { get; } = "рельеф";//
         public string WhereClitor { get; } = "Клитор";
         public string WhereVagina { get; } = "Вагина";
         public string WhereAnus { get; } = "Анус";

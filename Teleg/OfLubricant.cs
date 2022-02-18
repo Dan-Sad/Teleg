@@ -6,22 +6,21 @@ namespace Teleg
 {
     class OfLubricant : Query
     {
-        public OfLubricant(TelegConnect telegram, Query callerQuery, int countCalledButtons) : base(telegram, callerQuery, countCalledButtons)
+        public OfLubricant(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Lubricant;
             buttons = new Dictionary<string, Method>()
             {
-                [telegram.Button.LibricantWater] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.LibricantSilicon] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.LibricantOily] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.LibricantWaterOily] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.LibricantWaterSilicon] = () => Console.WriteLine($"ToDo {questionForUser}"),
-                [telegram.Button.LibricantNoMatters] = () => Console.WriteLine($"ToDo {questionForUser}"),
+                [telegram.Button.LibricantWater] = () => _telegram.sqlMes.Add("Lubricant LIKE '%водная%'"),
+                [telegram.Button.LibricantSilicon] = () => _telegram.sqlMes.Add("Lubricant LIKE '%сликоновая%'"),
+                [telegram.Button.LibricantOily] = () => _telegram.sqlMes.Add("Lubricant LIKE '%масляная%' AND Lubricant LIKE '%водно-масляная%'"),
+                [telegram.Button.LibricantWaterOily] = () => _telegram.sqlMes.Add("Lubricant LIKE '%масляная%' AND Lubricant LIKE '%водно-масляная%'"),
+                [telegram.Button.LibricantWaterSilicon] = () => _telegram.sqlMes.Add("Lubricant LIKE '%водно-силиконовая%'"),
+                [telegram.Button.LibricantNoMatters] = () => _telegram.sqlMes.Add("Lubricant LIKE '%'"),
             };
-            _nextQuery = () => PushQuery(new OfFetish(telegram, new OfLubricant(telegram, callerQuery, countCalledButtons), _countCalledButtons));
 
             multipleCall = true;
-            SpecificRealizing();
+            CreateButtonResullt();
 
             BaseRealizing();
         }

@@ -9,47 +9,63 @@ namespace Teleg
 {
     class TelegConnect
     {
-        private long _chatID;
-        private MessageEventArgs _eventArg;
-        private Message _lastMessage;
+        private ChatId _chatID;
+        public Query currentQuery { get; set; }
+        private MessageEventArgs _messageEvent;
+        private CallbackQueryEventArgs _callbackEvent;
+        private int _lastMesId;
         public bool haveNewMessage { get; set; } = false;
+        public bool haveNewCallback { get; set; } = false;
+
         public List<string> sqlMes = new List<string>();
+        private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         public ILanguageQuestion Question = new QuestionENG();
         public ILanguageButton Button = new ButtonENG();
-        private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
         public TelegConnect(long chatID, MessageEventArgs eventArg)
         {
             _chatID = chatID;
-            _eventArg = eventArg;
-            sqlMes.Add("SELECT name FROM VibroItems");/*SELECT name FROM VibroItems*/
+            _messageEvent = eventArg;
+            sqlMes.Add("SELECT name FROM VibroItems");
 
-            var language = new OfLanguage(this);
-            language.PushQuery(language);
+            var currentQuery = new OfLanguage(this); // CALL MENU
+            currentQuery.SendQuery(currentQuery);
         }
 
-        public void DelLastSentMes()
-            => Teleg.bot.DeleteMessageAsync(_eventArg.Message.Chat.Id, _lastMessage.MessageId);
-
-        public void PushDate(long chatID, MessageEventArgs eventArg)
+        public void PushData(long chatID, MessageEventArgs messageEvent)
         {
             _chatID = chatID;
-            _eventArg = eventArg;
+            _messageEvent = messageEvent;
+        }
+
+        public void PushData(CallbackQueryEventArgs callbackEvent)
+        {
+            _callbackEvent = callbackEvent;
         }
 
         public string GetMes()
         {
             haveNewMessage = false;
-            return _eventArg.Message.Text;
+            return _messageEvent.Message.Text;
+        }
+
+        public string GetCallback()
+        {
+            haveNewCallback = false;
+            return _callbackEvent.CallbackQuery.Data;
         }
 
         public void SendMes(string textForSend)
-            => _lastMessage = Teleg.bot.SendTextMessageAsync(_chatID, textForSend).Result;
+            => Teleg.bot.SendTextMessageAsync(_chatID, textForSend);
+        public void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
+            => _lastMesId = Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard).Result.MessageId;
 
+        public void SendQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
+            => Teleg.bot.EditMessageTextAsync(_chatID, _lastMesId, textForSend, replyMarkup: keyboard);
 
-        public void SendMes(string textForSend, ReplyKeyboardMarkup keyboard)
-            => _lastMessage = Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard).Result;
-
+        public void DelLastSentMes()
+            => Teleg.bot.DeleteMessageAsync(_chatID, _lastMesId);
 
         public List<string> CreateCommandSQL(string sqlExpression)
         {
@@ -72,6 +88,15 @@ namespace Teleg
                 }
             }
             return resultData;
+        }
+
+        public void CallQuery()
+        {
+            haveNewCallback = false; 
+
+            currentQuery.buttons[_callbackEvent.CallbackQuery.Data]();
+            SendQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
+
         }
     }
 }

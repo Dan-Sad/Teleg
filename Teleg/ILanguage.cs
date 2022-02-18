@@ -9,6 +9,7 @@ namespace Teleg
         public string Agregate { get; }
         public string Allergy { get; }
         public string Controle { get; }
+        public string Couple { get; }
         public string Fetish { get; }
         public string Language { get; }
         public string Location { get; }
@@ -17,7 +18,7 @@ namespace Teleg
         public string Role { get; }
         public string Sensation { get; }
         public string SizeOfHand { get; }
-        public string StateNeedOfLubricant { get; } 
+        public string StateNeedOfLubricant { get; }
         public string StateWichOfLubricant { get; }
         public string StealthView { get; }
         public string Stimulation { get; }
@@ -36,7 +37,7 @@ namespace Teleg
         public string NoMatters { get; }
         public string ChoseOfRecomennd { get; }
         public string Result { get; }
-        
+
 
         //Agregate
         public string AgregateLiquid { get; }
@@ -56,10 +57,17 @@ namespace Teleg
         public string ControleApp { get; }
         public string ControleConsole { get; }
 
+        //Couple
+        public string CoupleStopPenis { get; }
+        public string CoupleLongSex { get; }
+        public string CoupleClitor { get; }
+        public string CoupleVagina { get; }
+        public string CoupleAnus { get; }
+        public string CoupleOtherZone { get; }
+
         //Fetish
         public string FetishPublicPlace { get; }
         public string FetishDoublePenetration { get; }
-        public string FetishGameWithPartner { get; }
         public string FetishDistantPartner { get; }
         public string FetishPetGame { get; }
         public string FetishAnalSex { get; }
@@ -67,7 +75,6 @@ namespace Teleg
         public string FetishSecretGame { get; }
         public string FetishRealistic { get; }
         public string FetishBukaki { get; }
-        public string FetishBDSM { get; }
         public string FetishIntel { get; }
         public string FetishCuni { get; }
         public string FetishFillPlace { get; }
@@ -82,6 +89,7 @@ namespace Teleg
         public string LocationShower { get; }
         public string LocationSea { get; }
         public string LocationPool { get; }
+        public string LocationPublic { get; }
 
         //Lubricant
         public string LibricantWater { get; }
@@ -96,10 +104,10 @@ namespace Teleg
         public string ReusabilityOne { get; }
 
         //Role
-        public string RoleForSelf { get; } 
-        public string RoleForCouples { get; } 
-        public string RoleForSecret { get; } 
-        public string RoleForDouble { get; }
+        public string RoleForSelf { get; }
+        public string RoleForCouples { get; }
+        public string RoleForSecret { get; }
+        public string RoleForDistant { get; }
 
         //Sensation
         public string SensationSoft { get; }
@@ -109,6 +117,7 @@ namespace Teleg
         public string SensationSmoothness { get; }
         public string SensationVelvety { get; }
         public string SensationRealistic { get; }
+        public string SensationRelief { get; }
 
         //StealthView
         public string StealthViewNoMatters { get; }
@@ -120,13 +129,9 @@ namespace Teleg
         public string L { get; }
 
         //Stimulation
-        public string StimulationVacuum { get; } 
-        public string StimulationWave { get; } 
-        public string StimulationVagina { get; } 
-        public string StimulationClitor { get; } 
-        public string StimulationMechanical { get; } 
-        public string StimulationRotation { get; } 
-        public string StimulationAnus { get; }
+        public string StimulationVacuum { get; }
+        public string StimulationWave { get; }
+        public string StimulationRotation { get; }
 
         //TechniqueOfFap
         public string TechniqueOfFapMost { get; }
@@ -139,10 +144,9 @@ namespace Teleg
         public string TechniqueOfFapRoundVulva { get; }
 
         //Where
-        public string WhereClitor { get; } 
-        public string WhereVagina { get; } 
-        public string WhereAnus { get; } 
-        public string WhereClitorVagina { get; } 
-        public string WhereOtherPoint { get; }
+        public string WhereClitor { get; }
+        public string WhereVagina { get; }
+        public string WhereAnus { get; }
+        public string WhereClitorVagina { get; }
     }
 }

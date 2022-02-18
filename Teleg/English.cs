@@ -25,9 +25,10 @@ namespace Teleg
         public string Stimulation { get; }
         public string TechniqueOfFap { get; }
 
+        public string Couple => throw new NotImplementedException();
     }
 
-    class ButtonENG :ILanguageButton
+    class ButtonENG : ILanguageButton
     {
         public string Result { get; } = "Result";
         public string LanguageRUS { get; } = "RUS";
@@ -111,5 +112,23 @@ namespace Teleg
         public string TechniqueOfFapTemp { get; }
         public string TechniqueOfFapHlopClitor { get; }
         public string TechniqueOfFapRoundVulva { get; }
+
+        public string CoupleStopPenis => throw new NotImplementedException();
+
+        public string CoupleLongSex => throw new NotImplementedException();
+
+        public string CoupleClitor => throw new NotImplementedException();
+
+        public string CoupleVagina => throw new NotImplementedException();
+
+        public string CoupleAnus => throw new NotImplementedException();
+
+        public string CoupleOtherZone => throw new NotImplementedException();
+
+        public string LocationPublic => throw new NotImplementedException();
+
+        public string RoleForDistant => throw new NotImplementedException();
+
+        public string SensationRelief => throw new NotImplementedException();
     }
 }

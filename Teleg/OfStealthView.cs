@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Teleg
+{
+    class OfStealthView : Query
+    {
+        public OfStealthView(TelegConnect telegram) : base(telegram)
+        {
+            questionForUser = telegram.Question.Allergy;
+            buttons = new Dictionary<string, Method>()
+            {
+                [telegram.Button.StealthViewNoMatters] = () => _telegram.sqlMes.Add("[stealth view] LIKE '%нет%'"),
+                [telegram.Button.StealthViewMatters] = () => _telegram.sqlMes.Add("[stealth view] LIKE '%да%'"),
+            };
+
+            multipleCall = false;
+            CreateButtonResullt();
+
+            BaseRealizing();
+        }
+    }
+}
