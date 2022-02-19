@@ -6,8 +6,11 @@ namespace Teleg
 {
     class OfSensation : Query
     {
+        MenuFeeling menuFeeling;
         public OfSensation(TelegConnect telegram) : base(telegram)
         {
+            menuFeeling = new MenuFeeling(telegram);
+
             questionForUser = telegram.Question.Sensation;
             buttons = new Dictionary<string, Method>()
             {
@@ -19,6 +22,7 @@ namespace Teleg
                 [telegram.Button.SensationVelvety] = () => _telegram.sqlMes.Add("Sensations LIKE '%бархат%'"),
                 [telegram.Button.SensationRealistic] = () => _telegram.sqlMes.Add("signs LIKE '%UR3%'"),
                 [telegram.Button.SensationRelief] = () => _telegram.sqlMes.Add("Relief LIKE '%да%'"),
+                [telegram.Button.Ready] = () => _telegram.currentQuery = menuFeeling,
             };
 
             multipleCall = true;

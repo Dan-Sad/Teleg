@@ -5,8 +5,11 @@ namespace Teleg
 {
     class OfAllergy : Query
     {
+        MenuCharacteristic menuCharacteristic;
         public OfAllergy(TelegConnect telegram) : base(telegram)
         {
+            menuCharacteristic = new MenuCharacteristic(telegram);
+
             questionForUser = telegram.Question.Allergy;
             buttons = new Dictionary<string, Method>()
             {
@@ -15,8 +18,7 @@ namespace Teleg
                 [telegram.Button.AllergyBioSkin] = () => _telegram.sqlMes.Add("Material NOT LIKE '%Bioskin%'"),
                 [telegram.Button.AllergyTPR] = () => _telegram.sqlMes.Add("Material NOT LIKE '%TPR%'"),
                 [telegram.Button.AllergyABS_plastic] = () => _telegram.sqlMes.Add("Material NOT LIKE '%ABS%'"),
-                [telegram.Button.NotClue] = () => _telegram.currentQuery = _telegram.ofMenu,
-                ["Menu"] = () => _telegram.currentQuery = _telegram.ofMenu,
+                [telegram.Button.Ready] = () => _telegram.currentQuery = menuCharacteristic,
             };
 
             multipleCall = true;

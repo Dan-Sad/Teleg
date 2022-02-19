@@ -6,8 +6,11 @@ namespace Teleg
 {
     class OfFetish : Query
     {
+        MenuWishes menuWishes;
         public OfFetish(TelegConnect telegram) : base(telegram)
         {
+           menuWishes = new MenuWishes(telegram);
+            
             questionForUser = telegram.Question.Fetish;
             buttons = new Dictionary<string, Method>()
             {
@@ -22,6 +25,7 @@ namespace Teleg
                 [telegram.Button.FetishRealistic] = () => _telegram.sqlMes.Add("signs LIKE '%UR3%'"),
                 [telegram.Button.FetishSecretGame] = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'"),
                 [telegram.Button.FetishIntel] = () => _telegram.sqlMes.Add("[Intelligent Mode] LIKE '%да%'"),
+                [telegram.Button.Ready] = () => _telegram.currentQuery = menuWishes,
             };
 
             multipleCall = true;

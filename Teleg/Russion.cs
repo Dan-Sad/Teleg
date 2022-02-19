@@ -37,6 +37,8 @@ namespace Teleg
 
     class ButtonRUS : ILanguageButton
     {
+        public string Apply { get; } = "Применить";
+        public string Ready { get; } = "Готово";
         public string Result { get; } = "Результат";
         public string Return { get; } = "Назад (перевыбор)";
         public string NotClue { get; } = "Без понятия";

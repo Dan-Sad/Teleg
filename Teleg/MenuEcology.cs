@@ -6,13 +6,18 @@ namespace Teleg
 {
     internal class MenuEcology : Query
     {
-        int i = 0;
+        OfReusability ofReusability;
+        OfMenu ofMenu;
         public MenuEcology(TelegConnect telegram) : base(telegram)
         {
+            ofReusability = new OfReusability(telegram);
+            ofMenu = new OfMenu(telegram);  
+
             questionForUser = telegram.Question.Ecology;
             buttons = new Dictionary<string, Method>()
             {
-                [telegram.Button.Reusability] = () => _telegram.sqlMes.Add("()"),//
+                [telegram.Button.Reusability] = () => _telegram.currentQuery = ofReusability,
+                [telegram.Button.Apply] = () => _telegram.currentQuery = ofMenu,
 
             };
 

@@ -6,16 +6,19 @@ namespace Teleg
 {
     class OfAggregate : Query
     {
+        MenuCharacteristic menuCharacteristic;
         public OfAggregate(TelegConnect telegram) : base(telegram)
         {
+            menuCharacteristic = new MenuCharacteristic(telegram);
+
             questionForUser = telegram.Question.Agregate;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.AgregateLiquid] = () => _telegram.sqlMes.Add("Aggregation LIKE '%жидкий%'"),
                 [telegram.Button.AgregateHard] = () => _telegram.sqlMes.Add("Aggregation LIKE '%твердый%'"),
+                [telegram.Button.Ready] = () => _telegram.currentQuery = menuCharacteristic,
             };
 
-            multipleCall = false;
             CreateButtonResullt();
 
             BaseRealizing();
