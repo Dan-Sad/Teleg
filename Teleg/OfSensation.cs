@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfSensation(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.Sensation;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.SensationSoft] = () => _telegram.sqlMes.Add("Sensations LIKE '%Мягкость%'"),

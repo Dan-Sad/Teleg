@@ -8,7 +8,6 @@ namespace Teleg
     {
         public string Agregate { get; }
         public string Allergy { get; }
-        public string Controle { get; }
         public string Couple { get; }
         public string Fetish { get; }
         public string Language { get; }
@@ -24,6 +23,14 @@ namespace Teleg
         public string Stimulation { get; }
         public string TechniqueOfFap { get; }
         public string Where { get; }
+        //For menu
+        public string Menu { get; }
+        public string Characteristic { get; }
+        public string Ecology { get; }
+        public string Stels { get; }
+        public string Feeling { get; }
+        public string Wishes { get; }
+        public string States { get; }
 
         //For system
         public string ChooseMore { get; }
@@ -37,6 +44,32 @@ namespace Teleg
         public string NoMatters { get; }
         public string ChoseOfRecomennd { get; }
         public string Result { get; }
+
+        //For Menu
+        public string Characteristic { get; }
+        public string Ecology { get; }
+        public string Stels { get; }
+        public string Feeling { get; }
+        public string Wishes { get; }
+        public string States { get; }
+
+        //Questions
+        public string Agregate { get; } 
+        public string Allergy { get; } 
+        public string Couple { get; }
+        public string Fetish { get; }
+        public string Location { get; }
+        public string Lubricant { get; } 
+        public string Reusability { get; }
+        public string Role { get; }
+        public string Sensation { get; }
+        public string SizeOfHand { get; }
+        public string StateNeedOfLubricant { get; }// // // // // //
+        public string StateWichOfLubricant { get; }// // // // // //
+        public string StealthView { get; }
+        public string Stimulation { get; }
+        public string TechniqueOfFap { get; }
+        public string Where { get; }
 
 
         //Agregate

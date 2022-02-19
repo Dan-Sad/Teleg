@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfLocation(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.Location;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.LocationBed] = () => _telegram.sqlMes.Add("Waterproof LIKE '%'"),

@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfAggregate(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.Agregate;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.AgregateLiquid] = () => _telegram.sqlMes.Add("Aggregation LIKE '%жидкий%'"),

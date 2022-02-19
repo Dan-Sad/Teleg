@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfTechniqueOfFap(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.TechniqueOfFap;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.TechniqueOfFapMost] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%мост%'"),
