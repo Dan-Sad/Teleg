@@ -68,8 +68,8 @@ namespace Teleg
             return _callbackEvent.CallbackQuery.Data;
         }
 
-        public void SendMes(string textForSend)
-            => Teleg.bot.SendTextMessageAsync(_chatID, textForSend);
+        public async void SendMes(string textForSend)
+            => await Teleg.bot.SendTextMessageAsync(_chatID, textForSend);
         public void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
             => _lastMesId = Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard).Result.MessageId;
 

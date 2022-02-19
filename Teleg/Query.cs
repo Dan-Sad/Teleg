@@ -11,7 +11,7 @@ namespace Teleg
     {
         public TelegConnect _telegram;
         public string questionForUser { get; set; }
-        public Dictionary<string, Method> buttons;
+        public Dictionary<string, Button> buttons;
         public InlineKeyboardMarkup keyboard;
         public bool multipleCall { get; set; } = false;
 
@@ -19,32 +19,39 @@ namespace Teleg
 
         public void CreateButtonResullt()
         {
-            buttons.Add(_telegram.Button.Result, () => {
-
-                string sqlMessange;
-
-                if (_telegram.sqlMes.Count > 2)
+            Button button = new Button() { ActionMethod = () => Console.WriteLine("") };
+            buttons.Add(questionForUser, new Button() { ActionMethod = () => Console.WriteLine("") });
+            buttons.Add(_telegram.Button.Result, new Button()
+            {
+                ActionMethod = () =>
                 {
-                    sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
-                    sqlMessange += " AND " + String.Join(" AND ", _telegram.sqlMes.ToArray(), 2, _telegram.sqlMes.Count - 2);
-                }else if (_telegram.sqlMes.Count > 1)
-                {
-                    sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
+
+                    string sqlMessange;
+
+                    if (_telegram.sqlMes.Count > 2)
+                    {
+                        sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
+                        sqlMessange += " AND " + String.Join(" AND ", _telegram.sqlMes.ToArray(), 2, _telegram.sqlMes.Count - 2);
+                    }
+                    else if (_telegram.sqlMes.Count > 1)
+                    {
+                        sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
+                    }
+                    else
+                    {
+                        sqlMessange = String.Join("", _telegram.sqlMes.ToArray());
+                    }
+
+                    List<string> resultData = _telegram.CreateCommandSQL(sqlMessange);
+
+                    foreach (string currentData in resultData)
+                    {
+                        _telegram.SendMes(currentData);
+                    }
+
+                    Thread.Sleep(3000);
+                    _telegram.TelegConnectRestart();
                 }
-                else
-                {
-                    sqlMessange = String.Join("",_telegram.sqlMes.ToArray());
-                }
-
-                List<string> resultData = _telegram.CreateCommandSQL(sqlMessange);
-
-                foreach (string currentData in resultData)
-                {
-                    _telegram.SendMes(currentData);
-                }
-
-                Thread.Sleep(3000);
-                _telegram.TelegConnectRestart();
             });
         }
 
