@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Teleg
 {
-    internal class MenuEcology
+    internal class MenuEcology : Query
     {
         int i = 0;
         public MenuEcology(TelegConnect telegram) : base(telegram)
