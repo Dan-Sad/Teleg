@@ -20,7 +20,6 @@ namespace Teleg
         public void CreateButtonResullt()
         {
             buttons.Add(_telegram.Button.Result, () => {
-                _telegram.currentQuery = new OfLanguage(_telegram);
 
                 string sqlMessange;
 
@@ -44,9 +43,8 @@ namespace Teleg
                     _telegram.SendMes(currentData);
                 }
 
-                Thread.Sleep(2000);
-                _telegram.DelLastSentMes();
-                _telegram.currentQuery.SendQuery(_telegram.currentQuery);
+                Thread.Sleep(3000);
+                _telegram.TelegConnectRestart();
             });
         }
 
