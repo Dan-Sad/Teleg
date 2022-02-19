@@ -30,8 +30,7 @@ namespace Teleg
             _messageEvent = eventArg;
             sqlMes.Add("SELECT name FROM VibroItems");
 
-            ofMenu = new OfMenu(this);
-            currentQuery = ofMenu; // CALL MENU
+            currentQuery = new OfLanguage(this);
             currentQuery.SendQuery(currentQuery);
         }
 
@@ -68,8 +67,8 @@ namespace Teleg
             return _callbackEvent.CallbackQuery.Data;
         }
 
-        public void SendMes(string textForSend)
-            => Teleg.bot.SendTextMessageAsync(_chatID, textForSend);
+        public  void SendMes(string textForSend)
+            =>  Teleg.bot.SendTextMessageAsync(_chatID, textForSend);
         public void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
             => _lastMesId = Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard).Result.MessageId;
 
@@ -104,11 +103,17 @@ namespace Teleg
 
         public void CallQuery()
         {
-            haveNewCallback = false; 
+            haveNewCallback = false;
 
-            currentQuery.buttons[_callbackEvent.CallbackQuery.Data]();
-            SendQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
-
+            foreach (var buttonName in currentQuery.buttons.Keys)
+            {
+                if (_callbackEvent.CallbackQuery.Data == buttonName)
+                {
+                    currentQuery.buttons[_callbackEvent.CallbackQuery.Data]();
+                    SendQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
+                    return;
+                }
+            }
         }
     }
 }

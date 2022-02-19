@@ -24,7 +24,7 @@ namespace Teleg
             _telegram.Button  = new ButtonENG();
             RegisterButton();
             BaseRealizing();
-            _telegram.currentQuery = new OfAllergy(_telegram);
+            _telegram.currentQuery = _telegram.ofMenu = new OfMenu(_telegram);
         }
         private void SetLanguageRUS()
         {
@@ -32,7 +32,7 @@ namespace Teleg
             _telegram.Button = new ButtonRUS();
             RegisterButton();
             BaseRealizing();
-            _telegram.currentQuery = new OfAllergy(_telegram);
+            _telegram.currentQuery = _telegram.ofMenu = new OfMenu(_telegram);
         }
     }
 }

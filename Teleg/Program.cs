@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Args;
@@ -13,6 +14,8 @@ namespace Teleg
         static Dictionary<long, TelegConnect> users = new Dictionary<long, TelegConnect>();
         static void Main(string[] args)
         {
+            //TelegConnect teleg = new TelegConnect(11, new MessageEventArgs(new Telegram.Bot.Types.Message()));
+            //OfMenu ofMenu = new OfMenu(teleg);
             string token = "5161443212:AAEv9OdF14ysgm4C1dAkM8cN0pwBuSdo6IE";
             bot = new TelegramBotClient(token);
             bot.OnMessage += Bot_OnMessage;

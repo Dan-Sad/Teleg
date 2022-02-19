@@ -83,7 +83,7 @@ namespace Teleg
         public string FetishFillPlace { get; } = "Слейся с местностью//вибратор под музыку, окружающую среду";
         public string StimulationVacuum { get; } = "Воссоздаю события кунилингуса";
         public string StimulationWave { get; } = "Волнообразные, мягкие движения у клитора";
-        public string StimulationVagina { get; } = "Заполненность вагины ";
+        public string StimulationVagina { get; } = "Заполненность вагины";
         public string StimulationClitor { get; } = "Пульсация, похлопывания клитора";
         public string StimulationMechanical { get; } = "Без вибраций, я руками";
         public string StimulationRotation { get; } = "Окатывание воздухом, охлаждение клитора";

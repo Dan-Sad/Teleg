@@ -41,9 +41,10 @@ namespace Teleg
                 foreach (string currentData in resultData)
                 {
                     _telegram.SendMes(currentData);
+                    Thread.Sleep(100);
                 }
 
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
                 _telegram.TelegConnectRestart();
             });
         }
@@ -58,22 +59,18 @@ namespace Teleg
         {
             var rows = new List<InlineKeyboardButton[]>();
             var cols = new List<InlineKeyboardButton>();
-            int countGeneratedButtons = 0, countButtonsOnRows = 0;
+            int countButtonsOnRows = 0;
 
-            foreach (var nameButton in buttons.Keys)
+            foreach (string nameButton in buttons.Keys)
             {
+                //string nameButton = nameButtoN;
+                //if (nameButton.Length > 63)
+                //{
+                //    nameButton = nameButton.Substring(63, nameButton.Length - 63); 
+                //}
+
                 cols.Add(new InlineKeyboardButton() { CallbackData = nameButton, Text = nameButton });
                 countButtonsOnRows++;
-
-                if (buttons.Count - ++countGeneratedButtons <= 3)
-                {
-                    if (buttons.Count - countGeneratedButtons == 3)
-                    {
-                        rows.Add(cols.ToArray());
-                        cols = new List<InlineKeyboardButton>();
-                    }
-                    continue;
-                }
 
                 //Средняя длина тектса кнопки
                 if (nameButton.Length > 9 && nameButton.Length <= 16) 
@@ -118,7 +115,7 @@ namespace Teleg
 
             _telegram.SendMes(OfQuestion.questionForUser, OfQuestion.keyboard);
 
-            await Task.Run(() => { while (!_telegram.haveNewCallback) Thread.Sleep(10); });
+            await Task.Run(() => { while (!_telegram.haveNewCallback) Thread.Sleep(100); });
 
             OfQuestion.buttons[_telegram.GetCallback()]();
         } 

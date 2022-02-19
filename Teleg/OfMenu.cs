@@ -6,12 +6,12 @@ namespace Teleg
 {
     class OfMenu : Query
     {
-        MenuCharacteristic menuCharacteristic; 
-        MenuWishes menuWishes;
-        MenuFeeling menuFeeling;
-        MenuEcology menuEcology;
-        MenuStels menuStels;
-        MenuSates menuSates;
+        public MenuCharacteristic menuCharacteristic;
+        public MenuWishes menuWishes;
+        public MenuFeeling menuFeeling;
+        public MenuEcology menuEcology;
+        public MenuStels menuStels;
+        public MenuSates menuSates;
         public OfMenu(TelegConnect telegram) : base(telegram)
         {
             menuCharacteristic = new MenuCharacteristic(telegram);
