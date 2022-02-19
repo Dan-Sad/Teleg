@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Teleg
 {
-    internal class MenuCharacteristic
+    internal class MenuCharacteristic : Query
     {
         int i = 0;
         public MenuCharacteristic(TelegConnect telegram) : base(telegram)

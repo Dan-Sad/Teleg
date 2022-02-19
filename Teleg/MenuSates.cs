@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Teleg
 {
-    internal class MenuSates
+    internal class MenuSates : Query
     {
 
         public MenuSates(TelegConnect telegram) : base(telegram)
