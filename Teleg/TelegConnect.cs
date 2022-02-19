@@ -14,14 +14,15 @@ namespace Teleg
         private MessageEventArgs _messageEvent;
         private CallbackQueryEventArgs _callbackEvent;
         private int _lastMesId;
+        public OfMenu ofMenu;
         public bool haveNewMessage { get; set; } = false;
         public bool haveNewCallback { get; set; } = false;
 
         public List<string> sqlMes = new List<string>();
         private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        public ILanguageQuestion Question = new QuestionENG();
-        public ILanguageButton Button = new ButtonENG();
+        public ILanguageQuestion Question = new QuestionRUS();
+        public ILanguageButton Button = new ButtonRUS();
 
         public TelegConnect(long chatID, MessageEventArgs eventArg)
         {
@@ -29,7 +30,18 @@ namespace Teleg
             _messageEvent = eventArg;
             sqlMes.Add("SELECT name FROM VibroItems");
 
-            var currentQuery = new OfLanguage(this); // CALL MENU
+            ofMenu = new OfMenu(this);
+            currentQuery = ofMenu; // CALL MENU
+            currentQuery.SendQuery(currentQuery);
+        }
+
+        public void TelegConnectRestart()
+        {
+            DelLastSentMes();
+            sqlMes = new List<string>() { "SELECT name FROM VibroItems" };
+
+            ofMenu = new OfMenu(this);
+            currentQuery = ofMenu; // CALL MENU
             currentQuery.SendQuery(currentQuery);
         }
 

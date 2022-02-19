@@ -13,7 +13,7 @@ namespace Teleg
         static Dictionary<long, TelegConnect> users = new Dictionary<long, TelegConnect>();
         static void Main(string[] args)
         {
-            string token = "5161443212:AAH07mKLSet-JG_7z7cpdOtvoTMe-vhEbgs";
+            string token = "5161443212:AAEv9OdF14ysgm4C1dAkM8cN0pwBuSdo6IE";
             bot = new TelegramBotClient(token);
             bot.OnMessage += Bot_OnMessage;
             bot.OnCallbackQuery += Bot_OnCallbackQuery;

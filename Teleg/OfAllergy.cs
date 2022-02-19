@@ -15,7 +15,8 @@ namespace Teleg
                 [telegram.Button.AllergyBioSkin] = () => _telegram.sqlMes.Add("Material NOT LIKE '%Bioskin%'"),
                 [telegram.Button.AllergyTPR] = () => _telegram.sqlMes.Add("Material NOT LIKE '%TPR%'"),
                 [telegram.Button.AllergyABS_plastic] = () => _telegram.sqlMes.Add("Material NOT LIKE '%ABS%'"),
-                [telegram.Button.NotClue] = () => Console.WriteLine(questionForUser),
+                [telegram.Button.NotClue] = () => _telegram.currentQuery = _telegram.ofMenu,
+                ["Menu"] = () => _telegram.currentQuery = _telegram.ofMenu,
             };
 
             multipleCall = true;
