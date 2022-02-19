@@ -6,8 +6,11 @@ namespace Teleg
 {
     class OfCouple : Query
     {
+        OfRole ofRole;
         public OfCouple(TelegConnect telegram) : base(telegram)
         {
+            ofRole = new OfRole(telegram);
+
             questionForUser = telegram.Question.Couple;
             buttons = new Dictionary<string, Method>()
             {
@@ -17,6 +20,7 @@ namespace Teleg
                 [telegram.Button.CoupleVagina] = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%вагина%'"),
                 [telegram.Button.CoupleAnus] = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%анус%'"),
                 [telegram.Button.CoupleOtherZone] = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%'"),
+                [telegram.Button.Ready] = () => _telegram.currentQuery = ofRole,
             };
 
             multipleCall = true;

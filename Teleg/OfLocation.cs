@@ -6,8 +6,11 @@ namespace Teleg
 {
     class OfLocation : Query
     {
+        MenuWishes menuWishes;
         public OfLocation(TelegConnect telegram) : base(telegram)
         {
+            menuWishes = new MenuWishes(telegram);
+
             questionForUser = telegram.Question.Location;
             buttons = new Dictionary<string, Method>()
             {
@@ -17,6 +20,7 @@ namespace Teleg
                 [telegram.Button.LocationSea] = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'"),
                 [telegram.Button.LocationPool] = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'"),
                 [telegram.Button.LocationPublic] = () => _telegram.sqlMes.Add("Waterproof LIKE '%'"),
+                [telegram.Button.Ready] = () => _telegram.currentQuery = menuWishes,
             };
 
             multipleCall = true;

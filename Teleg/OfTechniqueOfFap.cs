@@ -6,8 +6,11 @@ namespace Teleg
 {
     class OfTechniqueOfFap : Query
     {
+        MenuWishes menuWishes;
         public OfTechniqueOfFap(TelegConnect telegram) : base(telegram)
         {
+            menuWishes = new MenuWishes(telegram);
+
             questionForUser = telegram.Question.TechniqueOfFap;
             buttons = new Dictionary<string, Method>()
             {
@@ -19,6 +22,7 @@ namespace Teleg
                 [telegram.Button.TechniqueOfFapTemp] = () => _telegram.sqlMes.Add("[Heat] LIKE '%да%'"),
                 [telegram.Button.TechniqueOfFapHlopClitor] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%похлопывания%'"),
                 [telegram.Button.TechniqueOfFapRoundVulva] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%круговая%'"),
+                [telegram.Button.Ready] = () => _telegram.currentQuery = menuWishes,
             };
 
             multipleCall = true;

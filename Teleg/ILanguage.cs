@@ -44,6 +44,9 @@ namespace Teleg
         public string NoMatters { get; }
         public string ChoseOfRecomennd { get; }
         public string Result { get; }
+        public string Apply { get; }
+        public string Ready { get; }
+
 
         //For Menu
         public string Characteristic { get; }
