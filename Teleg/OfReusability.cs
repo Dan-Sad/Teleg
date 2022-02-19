@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfReusability(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.Reusability;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.ReusabilityLot] = () => _telegram.sqlMes.Add("Reusability LIKE '%да%'"),

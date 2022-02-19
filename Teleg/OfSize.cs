@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfSize(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.SizeOfHand;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.S] = () => _telegram.sqlMes.Add("([Size of hand] < 7 )"),

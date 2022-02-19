@@ -6,6 +6,7 @@ namespace Teleg
 {
     class QuestionRUS : ILanguageQuestion
     {
+        public string Menu { get; } = "Привет. Выбирай";
         public string ChooseMore { get; } = "Ты можешь выбрать больше или жми 'Далее'";
         public string Allergy { get; } = "Аллергия?";// 
         public string Lubricant { get; } = "Какой лубрикант используем?";//частично
@@ -25,6 +26,13 @@ namespace Teleg
         public string Stimulation { get; } = "Три два один ..думаем гениталиями (или чем излюбится)//тип вибрации";
         public string TechniqueOfFap { get; } = "Освежи тот самый день или создай новый. Какая мастурбация? ";
         public string Language { get; } = "Некоторые соприкосновения языками самые важные. Какой язык выберем?";
+        //For Menu
+        public string Characteristic { get; } = "Настрой базовые характеристики";
+        public string Ecology { get; } = "Сведения об экологичности";
+        public string Stels { get; } = "Важно сохранить в секрете";
+        public string Feeling { get; } = "Какие ощущения хочешь испытать";
+        public string Wishes { get; } = "Можем осуществить несколько желаний";
+        public string States { get; } = "Здесь найдешь полезные статьи";
     }
 
     class ButtonRUS : ILanguageButton
@@ -119,5 +127,30 @@ namespace Teleg
         public string ChoseOfRecomennd { get; } = "Используй кнопки";
         public string LanguageRUS { get; } = "RUS";
         public string LanguageENG { get; } = "ENG";
+        //For Question (Menu)
+        public string Agregate { get; } = "Вид игрушки";
+        public string Allergy { get; } = "Аллергии";
+        public string Couple { get; } = "Для чего парная игрушка";
+        public string Fetish { get; } = "Желания";
+        public string Location { get; } = "Место";
+        public string Lubricant { get; } = "Лубрикант";
+        public string Reusability { get; } = "Многоразовость";
+        public string Role { get; } = "Роль";
+        public string Sensation { get; } = "Ощущения";
+        public string SizeOfHand { get; } = "Размер";
+        public string StateNeedOfLubricant { get; } = "Зачем нужен лубрикант?";
+        public string StateWichOfLubricant { get; } = "Какой мне взять лубрикант?";
+        public string StealthView { get; } = "Внешний вид";
+        public string Stimulation { get; } = "Тип стимуляции";
+        public string TechniqueOfFap { get; } = "Тип мастурбации";
+        public string Where { get; } = "Зоны использования";
+
+        //For menu
+        public string Characteristic { get; } = "Характеристики";
+        public string Ecology { get; } = "Экологичность";
+        public string Stels { get; } = "Маскировка";
+        public string Feeling { get; } = "Чувствование";
+        public string Wishes { get; } = "Желания";
+        public string States { get; } = "Статьи";
     }
 }

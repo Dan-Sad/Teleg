@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfWhere(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.Where;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.WhereClitor] = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%клитор%'"),

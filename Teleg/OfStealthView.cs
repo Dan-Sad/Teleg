@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfStealthView(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.StealthView;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.StealthViewNoMatters] = () => _telegram.sqlMes.Add("[stealth view] LIKE '%нет%'"),

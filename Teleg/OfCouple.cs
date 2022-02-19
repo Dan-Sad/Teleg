@@ -8,7 +8,7 @@ namespace Teleg
     {
         public OfCouple(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            questionForUser = telegram.Question.Couple;
             buttons = new Dictionary<string, Method>()
             {
                 [telegram.Button.CoupleStopPenis] = () => _telegram.sqlMes.Add("Role LIKE '%кольцо%'"),
