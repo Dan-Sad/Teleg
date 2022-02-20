@@ -11,7 +11,7 @@ namespace Teleg
     class Teleg
     {
         public static TelegramBotClient bot;
-        static Dictionary<long, TelegConnect> users = new Dictionary<long, TelegConnect>();
+        static Dictionary<long, TelegConnect> chats = new Dictionary<long, TelegConnect>();
         static void Main(string[] args)
         {
             //TelegConnect teleg = new TelegConnect(11, new MessageEventArgs(new Telegram.Bot.Types.Message()));
@@ -27,15 +27,17 @@ namespace Teleg
 
         private static async void Bot_OnCallbackQuery(object sender, CallbackQueryEventArgs callbackEvent)
         {
-            long curUserID = callbackEvent.CallbackQuery.From.Id;
-            foreach (var user in users)
+            long curChatID = callbackEvent.CallbackQuery.Message.Chat.Id;
+            foreach (var chat in chats)
             {
-                if (curUserID == user.Key)
+                if (curChatID == chat.Key)
                 {
-                    user.Value.PushData(callbackEvent);
-                    user.Value.haveNewCallback = true;
+                    chat.Value.PushData(callbackEvent);
+                    chat.Value.haveNewCallback = true;
 
-                    user.Value.CallQuery();
+                    chat.Value.CallQuery();
+
+                    bot.AnswerCallbackQueryAsync(callbackEvent.CallbackQuery.Id);
 
                     return;
                 }
@@ -44,20 +46,21 @@ namespace Teleg
 
         private async static void Bot_OnMessage(object sender, MessageEventArgs mesEvent)
         {
-            long curUserID = mesEvent.Message.From.Id;
+            long curChatID = mesEvent.Message.Chat.Id;
 
-            foreach (var user in users)
+            foreach (var chat in chats)
             {
-                if (curUserID == user.Key)
+                if (curChatID == chat.Key)
                 {
-                    user.Value.PushData(mesEvent.Message.Chat.Id, mesEvent);
-                    user.Value.haveNewMessage = true;
+                    chat.Value.PushData(mesEvent.Message.Chat.Id, mesEvent);
+                    chat.Value.haveNewMessage = true;
+                    chat.Value.SendQuery();
                     return;
                 }
             }
 
             TelegConnect telegramConnect = new TelegConnect(mesEvent.Message.Chat.Id, mesEvent);
-            users.Add(curUserID, telegramConnect);
+            chats.Add(curChatID, telegramConnect);
         }
     }
 }

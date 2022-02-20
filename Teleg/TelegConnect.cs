@@ -28,7 +28,6 @@ namespace Teleg
         {
             _chatID = chatID;
             _messageEvent = eventArg;
-            sqlMes.Add("SELECT name FROM VibroItems");
 
             currentQuery = new OfLanguage(this);
             currentQuery.SendQuery(currentQuery);
@@ -37,11 +36,10 @@ namespace Teleg
         public void TelegConnectRestart()
         {
             DelLastSentMes();
-            sqlMes = new List<string>() { "SELECT name FROM VibroItems" };
+            sqlMes = new List<string>();
 
             ofMenu = new OfMenu(this);
             currentQuery = ofMenu; // CALL MENU
-            currentQuery.SendQuery(currentQuery);
         }
 
         public void PushData(long chatID, MessageEventArgs messageEvent)
@@ -68,19 +66,20 @@ namespace Teleg
         }
 
         public  void SendMes(string textForSend)
-            =>  Teleg.bot.SendTextMessageAsync(_chatID, textForSend);
+            =>  Teleg.bot.SendTextMessageAsync(_chatID, textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
         public void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
             => _lastMesId = Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard).Result.MessageId;
 
-        public void SendQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
+        public void EditQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
             => Teleg.bot.EditMessageTextAsync(_chatID, _lastMesId, textForSend, replyMarkup: keyboard);
 
         public void DelLastSentMes()
             => Teleg.bot.DeleteMessageAsync(_chatID, _lastMesId);
 
-        public List<string> CreateCommandSQL(string sqlExpression)
+        public List<string> GetDataOfSQL(string sqlExpression)
         {
             List<string> resultData = new List<string>();
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
@@ -101,6 +100,19 @@ namespace Teleg
             return resultData;
         }
 
+        public int GetCountDataSQL(string sqlExpression)
+        {
+            int resultCount;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.Connection.Open();
+                resultCount = (int)command.ExecuteScalar();
+            }
+            return resultCount;
+        }
+
         public void CallQuery()
         {
             haveNewCallback = false;
@@ -111,16 +123,22 @@ namespace Teleg
                 {
                     var button = currentQuery.buttons[_callbackEvent.CallbackQuery.Data];
 
-                    if (button.ActionButton == null)
+                    if (button.sqlRequest != null)
                         button.SqlPushOrDell(this);
                     else
                         button.ActionButton();
 
                     currentQuery.keyboard = currentQuery.GenKeyboardButtons();
-                    SendQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
+                    EditQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
                     return;
                 }
             }
+        }
+
+        public void SendQuery()
+        {
+            DelLastSentMes();
+            SendMes(currentQuery.questionForUser, currentQuery.keyboard);
         }
     }
 }
