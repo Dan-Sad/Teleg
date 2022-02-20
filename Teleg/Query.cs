@@ -22,27 +22,11 @@ namespace Teleg
             {
                 ActionButton = () =>
                 {
-                    string sqlMessange;
-
-                    if (_telegram.sqlMes.Count > 2)
-                    {
-                        sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
-                        sqlMessange += " AND " + String.Join(" AND ", _telegram.sqlMes.ToArray(), 2, _telegram.sqlMes.Count - 2);
-                    }
-                    else if (_telegram.sqlMes.Count > 1)
-                    {
-                        sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
-                    }
-                    else
-                    {
-                        sqlMessange = String.Join("", _telegram.sqlMes.ToArray());
-                    }
-
-                    List<string> resultData = _telegram.CreateCommandSQL(sqlMessange);
+                    List<string> resultData = _telegram.GetDataOfSQL(GenerateSqlMessange(forCount: false));
 
                     foreach (string currentData in resultData)
                     {
-                        _telegram.SendMes(currentData);
+                        _telegram.SendMes("*" + currentData + "*");
                         Thread.Sleep(100);
                     }
 
@@ -52,9 +36,32 @@ namespace Teleg
             });
         }
 
+        private string GenerateSqlMessange(bool forCount)
+        {
+            string sqlMessange;
+
+            if (forCount)
+                sqlMessange = "SELECT COUNT(name)";
+            else
+                sqlMessange = "SELECT name";
+
+            sqlMessange += " FROM VibroItems";
+
+            if (_telegram.sqlMes.Count > 1)
+            {
+                sqlMessange += " WHERE " + String.Join("", _telegram.sqlMes.ToArray(), 0, 1);
+                sqlMessange += " AND " + String.Join(" AND ", _telegram.sqlMes.ToArray(), 1, _telegram.sqlMes.Count - 1);
+            }
+            else if (_telegram.sqlMes.Count > 0)
+            {
+                sqlMessange += " WHERE " + String.Join("", _telegram.sqlMes.ToArray(), 0, 1);
+            }
+
+            return sqlMessange;
+        }
+
         public void BaseRealizing()
         {
-
             keyboard = GenKeyboardButtons();
         }
 
@@ -71,11 +78,16 @@ namespace Teleg
                 string dataButton = button.Key;
 
                 if (choosen)
-                    textButton = textButton.Insert(0, char.ConvertFromUtf32(0x1F601));
+                    textButton = textButton.Insert(0, char.ConvertFromUtf32(0x2714));
 
-                countButtonsOnRows++;
+                if (dataButton == _telegram.Button.Result)
+                {
+                    textButton += " (" + _telegram.GetCountDataSQL(GenerateSqlMessange(forCount: true)) + ")";
+                }
 
                 cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
+                
+                countButtonsOnRows++;
 
                 //Средняя длина тектса кнопки
                 if (textButton.Length > 9 && textButton.Length <= 16) 
@@ -124,7 +136,7 @@ namespace Teleg
 
             var button = OfQuestion.buttons[_telegram.GetCallback()];
 
-            if (button.ActionButton == null)
+            if (button.sqlRequest != null)
                 button.SqlPushOrDell(_telegram);
             else
                 button.ActionButton();
