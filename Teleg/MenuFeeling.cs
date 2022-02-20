@@ -17,12 +17,12 @@ namespace Teleg
 
             questionForUser = telegram.Question.Feeling;
 
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.Where] = () => _telegram.currentQuery = ofWhere,
-                [telegram.Button.Stimulation] = () => _telegram.currentQuery = ofTypeSimulation,
-                [telegram.Button.Sensation] = () => _telegram.currentQuery = ofSensation,
-                [telegram.Button.Apply] = () => _telegram.currentQuery = _telegram.ofMenu,
+                [telegram.Button.Where] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofWhere},
+                [telegram.Button.Stimulation] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofTypeSimulation},
+                [telegram.Button.Sensation] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofSensation},
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu},
             };
 
             CreateButtonResullt();

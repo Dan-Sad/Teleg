@@ -13,10 +13,10 @@ namespace Teleg
             ofStealthView = new OfStealthView(telegram); 
 
             questionForUser = telegram.Question.Stels;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.StealthView] = () => _telegram.currentQuery = ofStealthView,
-                [telegram.Button.Apply] = () => _telegram.currentQuery = _telegram.ofMenu,
+                [telegram.Button.StealthView] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofStealthView },
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu },
             };
 
             CreateButtonResullt();

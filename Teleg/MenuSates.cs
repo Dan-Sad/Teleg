@@ -9,14 +9,13 @@ namespace Teleg
         public MenuSates(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.States;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.StateNeedOfLubricant] = () => Console.WriteLine(questionForUser),
-                [telegram.Button.StateWichOfLubricant] = () => Console.WriteLine(questionForUser),
-                [telegram.Button.Apply] = () => _telegram.currentQuery = _telegram.ofMenu,
+                [telegram.Button.StateNeedOfLubricant] = new ComandChoose() { ActionButton = () => Console.WriteLine(questionForUser) },
+                [telegram.Button.StateWichOfLubricant] = new ComandChoose() { ActionButton = () => Console.WriteLine(questionForUser) },
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu },
             };
 
-            multipleCall = false;
             CreateButtonResullt();
 
             BaseRealizing();

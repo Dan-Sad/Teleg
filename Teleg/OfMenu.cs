@@ -23,14 +23,14 @@ namespace Teleg
 
             questionForUser = telegram.Question.Menu;
 
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.Characteristic] = () => _telegram.currentQuery = menuCharacteristic,
-                [telegram.Button.Wishes] = () => _telegram.currentQuery = menuWishes,
-                [telegram.Button.Feeling] = () => _telegram.currentQuery = menuFeeling,
-                [telegram.Button.Ecology] = () => _telegram.currentQuery = menuEcology,
-                [telegram.Button.Stels] = () => _telegram.currentQuery = menuStels,
-                [telegram.Button.States] = () => _telegram.currentQuery = menuSates,
+                [telegram.Button.Characteristic] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuCharacteristic},
+                [telegram.Button.Wishes] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuWishes},
+                [telegram.Button.Feeling] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuFeeling},
+                [telegram.Button.Ecology] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuEcology},
+                [telegram.Button.Stels] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuStels},
+                [telegram.Button.States] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuSates},
             };
 
             CreateButtonResullt();  

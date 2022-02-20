@@ -10,11 +10,11 @@ namespace Teleg
         {
 
             questionForUser = telegram.Question.Agregate;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.AgregateLiquid] = () => _telegram.sqlMes.Add("Aggregation LIKE '%жидкий%'"),
-                [telegram.Button.AgregateHard] = () => _telegram.sqlMes.Add("Aggregation LIKE '%твердый%'"),
-                [telegram.Button.Ready] = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic,
+                [telegram.Button.AgregateLiquid] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Aggregation LIKE '%жидкий%'") },
+                [telegram.Button.AgregateHard] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Aggregation LIKE '%твердый%'") },
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic },
             };
 
             CreateButtonResullt();

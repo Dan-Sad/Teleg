@@ -10,15 +10,14 @@ namespace Teleg
         {
 
             questionForUser = telegram.Question.SizeOfHand;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.S] = () => _telegram.sqlMes.Add("([Size of hand] < 7 )"),
-                [telegram.Button.M] = () => _telegram.sqlMes.Add("([Size of hand] >= 7 AND [Size of hand] <= 12)"),
-                [telegram.Button.L] = () => _telegram.sqlMes.Add("([Size of hand] >= 13)"),
-                [telegram.Button.Ready] = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic,
+                [telegram.Button.S] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("([Size of hand] < 7 )")},
+                [telegram.Button.M] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("([Size of hand] >= 7 AND [Size of hand] <= 12)")},
+                [telegram.Button.L] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("([Size of hand] >= 13)")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic},
             };
 
-            multipleCall = true;
             CreateButtonResullt();
 
             BaseRealizing();

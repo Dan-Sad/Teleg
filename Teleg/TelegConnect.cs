@@ -109,7 +109,14 @@ namespace Teleg
             {
                 if (_callbackEvent.CallbackQuery.Data == buttonName)
                 {
-                    currentQuery.buttons[_callbackEvent.CallbackQuery.Data]();
+                    var button = currentQuery.buttons[_callbackEvent.CallbackQuery.Data];
+
+                    if (button.ActionButton == null)
+                        button.SqlPushOrDell(this);
+                    else
+                        button.ActionButton();
+
+                    currentQuery.keyboard = currentQuery.GenKeyboardButtons();
                     SendQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
                     return;
                 }

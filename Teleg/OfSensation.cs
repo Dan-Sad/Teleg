@@ -10,20 +10,19 @@ namespace Teleg
         {
 
             questionForUser = telegram.Question.Sensation;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.SensationSoft] = () => _telegram.sqlMes.Add("Sensations LIKE '%Мягкость%'"),
-                [telegram.Button.SensationHard] = () => _telegram.sqlMes.Add("Sensations LIKE '%Твердость%'"),
-                [telegram.Button.SensationCold] = () => _telegram.sqlMes.Add("Sensations LIKE '%холод%'"),
-                [telegram.Button.SensationMyTemperature] = () => _telegram.sqlMes.Add("Heat LIKE '%да%'"),
-                [telegram.Button.SensationSmoothness] = () => _telegram.sqlMes.Add("Sensations LIKE '%гладкость%'"),
-                [telegram.Button.SensationVelvety] = () => _telegram.sqlMes.Add("Sensations LIKE '%бархат%'"),
-                [telegram.Button.SensationRealistic] = () => _telegram.sqlMes.Add("signs LIKE '%UR3%'"),
-                [telegram.Button.SensationRelief] = () => _telegram.sqlMes.Add("Relief LIKE '%да%'"),
-                [telegram.Button.Ready] = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling,
+                [telegram.Button.SensationSoft] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Sensations LIKE '%Мягкость%'")},
+                [telegram.Button.SensationHard] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Sensations LIKE '%Твердость%'")},
+                [telegram.Button.SensationCold] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Sensations LIKE '%холод%'")},
+                [telegram.Button.SensationMyTemperature] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Heat LIKE '%да%'")},
+                [telegram.Button.SensationSmoothness] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Sensations LIKE '%гладкость%'")},
+                [telegram.Button.SensationVelvety] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Sensations LIKE '%бархат%'")},
+                [telegram.Button.SensationRealistic] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("signs LIKE '%UR3%'")},
+                [telegram.Button.SensationRelief] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Relief LIKE '%да%'")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling},
             };
 
-            multipleCall = true;
             CreateButtonResullt();
 
             BaseRealizing();

@@ -12,16 +12,15 @@ namespace Teleg
             ofCouple = new OfCouple(telegram);  
 
             questionForUser = telegram.Question.Role;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.RoleForCouples] = () => _telegram.currentQuery = ofCouple,
-                [telegram.Button.RoleForDistant] = () => _telegram.sqlMes.Add("Control LIKE '%app%'"),
-                [telegram.Button.RoleForSecret] = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'"),
-                [telegram.Button.RoleForSelf] = () => _telegram.sqlMes.Add("Role LIKE '%'"),
-                [telegram.Button.Ready] = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes,
+                [telegram.Button.RoleForCouples] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofCouple},
+                [telegram.Button.RoleForDistant] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Control LIKE '%app%'")},
+                [telegram.Button.RoleForSecret] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'")},
+                [telegram.Button.RoleForSelf] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Role LIKE '%'")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
             };
 
-            multipleCall = true;
             CreateButtonResullt();
 
             BaseRealizing();

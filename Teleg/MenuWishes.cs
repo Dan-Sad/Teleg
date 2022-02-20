@@ -19,13 +19,13 @@ namespace Teleg
 
             questionForUser = telegram.Question.Wishes;
 
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.Role] = () => _telegram.currentQuery = ofRole,
-                [telegram.Button.Location] = () => _telegram.currentQuery = ofLocation,
-                [telegram.Button.Fetish] = () => _telegram.currentQuery = ofFetish,
-                [telegram.Button.TechniqueOfFap] = () => _telegram.currentQuery = ofTechniqueOfFap,
-                [telegram.Button.Apply] = () => _telegram.currentQuery = _telegram.ofMenu,
+                [telegram.Button.Role] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofRole},
+                [telegram.Button.Location] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofLocation},
+                [telegram.Button.Fetish] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofFetish},
+                [telegram.Button.TechniqueOfFap] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofTechniqueOfFap},
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu},
             };
 
             CreateButtonResullt();
