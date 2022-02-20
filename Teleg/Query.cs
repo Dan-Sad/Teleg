@@ -11,40 +11,44 @@ namespace Teleg
     {
         public TelegConnect _telegram;
         public string questionForUser { get; set; }
-        public Dictionary<string, Method> buttons;
+        public Dictionary<string, ComandChoose> buttons;
         public InlineKeyboardMarkup keyboard;
-        public bool multipleCall { get; set; } = false;
 
         public Query(TelegConnect telegram) => _telegram = telegram;
 
         public void CreateButtonResullt()
         {
-            buttons.Add(_telegram.Button.Result, () => {
-
-                string sqlMessange;
-
-                if (_telegram.sqlMes.Count > 2)
+            buttons.Add(_telegram.Button.Result, new ComandChoose()
+            {
+                ActionButton = () =>
                 {
-                    sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
-                    sqlMessange += " AND " + String.Join(" AND ", _telegram.sqlMes.ToArray(), 2, _telegram.sqlMes.Count - 2);
-                }else if (_telegram.sqlMes.Count > 1)
-                {
-                    sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
+                    string sqlMessange;
+
+                    if (_telegram.sqlMes.Count > 2)
+                    {
+                        sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
+                        sqlMessange += " AND " + String.Join(" AND ", _telegram.sqlMes.ToArray(), 2, _telegram.sqlMes.Count - 2);
+                    }
+                    else if (_telegram.sqlMes.Count > 1)
+                    {
+                        sqlMessange = String.Join(" WHERE ", _telegram.sqlMes.ToArray(), 0, 2);
+                    }
+                    else
+                    {
+                        sqlMessange = String.Join("", _telegram.sqlMes.ToArray());
+                    }
+
+                    List<string> resultData = _telegram.CreateCommandSQL(sqlMessange);
+
+                    foreach (string currentData in resultData)
+                    {
+                        _telegram.SendMes(currentData);
+                        Thread.Sleep(100);
+                    }
+
+                    Thread.Sleep(1000);
+                    _telegram.TelegConnectRestart();
                 }
-                else
-                {
-                    sqlMessange = String.Join("",_telegram.sqlMes.ToArray());
-                }
-
-                List<string> resultData = _telegram.CreateCommandSQL(sqlMessange);
-
-                foreach (string currentData in resultData)
-                {
-                    _telegram.SendMes(currentData);
-                }
-
-                Thread.Sleep(3000);
-                _telegram.TelegConnectRestart();
             });
         }
 
@@ -58,25 +62,23 @@ namespace Teleg
         {
             var rows = new List<InlineKeyboardButton[]>();
             var cols = new List<InlineKeyboardButton>();
-            int countGeneratedButtons = 0, countButtonsOnRows = 0;
+            int countButtonsOnRows = 0;
 
-            foreach (var nameButton in buttons.Keys)
+            foreach (KeyValuePair<string, ComandChoose> button in buttons)
             {
-                cols.Add(new InlineKeyboardButton() { CallbackData = nameButton, Text = nameButton });
+                bool choosen = button.Value.Chosen;
+                string textButton = button.Key;
+                string dataButton = button.Key;
+
+                if (choosen)
+                    textButton = textButton.Insert(0, char.ConvertFromUtf32(0x1F601));
+
                 countButtonsOnRows++;
 
-                if (buttons.Count - ++countGeneratedButtons <= 3)
-                {
-                    if (buttons.Count - countGeneratedButtons == 3)
-                    {
-                        rows.Add(cols.ToArray());
-                        cols = new List<InlineKeyboardButton>();
-                    }
-                    continue;
-                }
+                cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
 
                 //Средняя длина тектса кнопки
-                if (nameButton.Length > 9 && nameButton.Length <= 16) 
+                if (textButton.Length > 9 && textButton.Length <= 16) 
                 {
                     countButtonsOnRows = 0;
                     if (countButtonsOnRows % 2 == 0)
@@ -86,13 +88,13 @@ namespace Teleg
                     }else if(countButtonsOnRows % 3 == 0)
                     {
                         cols = new List<InlineKeyboardButton>();
-                        cols.Add(new InlineKeyboardButton() { CallbackData = nameButton, Text = nameButton });
+                        cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
                         rows.Add(cols.ToArray());
                     }
                 }
 
                 //Длинный текст кнопки
-                if (nameButton.Length > 16) 
+                if (textButton.Length > 16) 
                 {
                     countButtonsOnRows = 0;
                     rows.Add(cols.ToArray());
@@ -118,9 +120,14 @@ namespace Teleg
 
             _telegram.SendMes(OfQuestion.questionForUser, OfQuestion.keyboard);
 
-            await Task.Run(() => { while (!_telegram.haveNewCallback) Thread.Sleep(10); });
+            await Task.Run(() => { while (!_telegram.haveNewCallback) Thread.Sleep(100); });
 
-            OfQuestion.buttons[_telegram.GetCallback()]();
+            var button = OfQuestion.buttons[_telegram.GetCallback()];
+
+            if (button.ActionButton == null)
+                button.SqlPushOrDell(_telegram);
+            else
+                button.ActionButton();
         } 
     }
 }

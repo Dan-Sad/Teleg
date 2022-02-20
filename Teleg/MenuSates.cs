@@ -4,20 +4,18 @@ using System.Text;
 
 namespace Teleg
 {
-    internal class MenuSates : Query
+    class MenuSates : Query
     {
-
         public MenuSates(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.States;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.StateNeedOfLubricant] = () => _telegram.sqlMes.Add(""),
-                [telegram.Button.StateWichOfLubricant] = () => _telegram.sqlMes.Add(""),
-
+                [telegram.Button.StateNeedOfLubricant] = new ComandChoose() { ActionButton = () => Console.WriteLine(questionForUser) },
+                [telegram.Button.StateWichOfLubricant] = new ComandChoose() { ActionButton = () => Console.WriteLine(questionForUser) },
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu },
             };
 
-            multipleCall = false;
             CreateButtonResullt();
 
             BaseRealizing();

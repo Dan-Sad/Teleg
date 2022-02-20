@@ -8,14 +8,15 @@ namespace Teleg
     {
         public OfReusability(TelegConnect telegram) : base(telegram)
         {
+
             questionForUser = telegram.Question.Reusability;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.ReusabilityLot] = () => _telegram.sqlMes.Add("Reusability LIKE '%да%'"),
-                [telegram.Button.ReusabilityOne] = () => _telegram.sqlMes.Add("Reusability LIKE '%нет%'"),
+                [telegram.Button.ReusabilityLot] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Reusability LIKE '%да%'")},
+                [telegram.Button.ReusabilityOne] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Reusability LIKE '%нет%'")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuEcology},
             };
 
-            multipleCall = false;
             CreateButtonResullt();
 
             BaseRealizing();

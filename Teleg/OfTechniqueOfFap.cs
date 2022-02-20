@@ -9,19 +9,20 @@ namespace Teleg
         public OfTechniqueOfFap(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.TechniqueOfFap;
-            buttons = new Dictionary<string, Method>()
+
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.TechniqueOfFapMost] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%мост%'"),
-                [telegram.Button.TechniqueOfFapRabbimg] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%раббинг%'"),
-                [telegram.Button.TechniqueOfFapClitoris] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%клиторальная%'"),
-                [telegram.Button.TechniqueOfFapAnus] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%анальная%'"),
-                [telegram.Button.TechniqueOfFapVagPenet] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%вагинальная%'"),
-                [telegram.Button.TechniqueOfFapTemp] = () => _telegram.sqlMes.Add("[Heat] LIKE '%да%'"),
-                [telegram.Button.TechniqueOfFapHlopClitor] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%похлопывания%'"),
-                [telegram.Button.TechniqueOfFapRoundVulva] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%круговая%'"),
+                [telegram.Button.TechniqueOfFapMost] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%мост%'")},
+                [telegram.Button.TechniqueOfFapRabbimg] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%раббинг%'")},
+                [telegram.Button.TechniqueOfFapClitoris] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%клиторальная%'")},
+                [telegram.Button.TechniqueOfFapAnus] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%анальная%'")},
+                [telegram.Button.TechniqueOfFapVagPenet] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%вагинальная%'")},
+                [telegram.Button.TechniqueOfFapTemp] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Heat] LIKE '%да%'")},
+                [telegram.Button.TechniqueOfFapHlopClitor] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%похлопывания%'")},
+                [telegram.Button.TechniqueOfFapRoundVulva] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%круговая%'")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
             };
 
-            multipleCall = true;
             CreateButtonResullt();
 
             BaseRealizing();

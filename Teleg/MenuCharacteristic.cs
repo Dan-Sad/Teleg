@@ -6,20 +6,28 @@ namespace Teleg
 {
     internal class MenuCharacteristic : Query
     {
-        int i = 0;
+        OfAllergy ofAllergy;
+        OfLubricant ofLubricant;
+        OfAggregate ofAggregate;
+        OfSize ofSize;
         public MenuCharacteristic(TelegConnect telegram) : base(telegram)
         {
+            ofAllergy = new OfAllergy(telegram);
+            ofLubricant = new OfLubricant(telegram);
+            ofAggregate = new OfAggregate(telegram);  
+            ofSize = new OfSize(telegram); 
+
             questionForUser = telegram.Question.Characteristic;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.Allergy] = () => _telegram.sqlMes.Add("()"),//
-                [telegram.Button.Lubricant] = () => _telegram.sqlMes.Add("()"),//
-                [telegram.Button.Agregate] = () => _telegram.sqlMes.Add("()"),//
-                [telegram.Button.SizeOfHand] = () => _telegram.sqlMes.Add("()"),//
+                [telegram.Button.Allergy] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofAllergy },
+                [telegram.Button.Lubricant] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofLubricant },
+                [telegram.Button.Agregate] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofAggregate },
+                [telegram.Button.SizeOfHand] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofSize },
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu },
 
             };
 
-            multipleCall = false;
             CreateButtonResullt();
 
             BaseRealizing();

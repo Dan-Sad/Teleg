@@ -6,25 +6,37 @@ namespace Teleg
 {
     class OfFetish : Query
     {
+        ComandChoose FetishAnalSex = new ComandChoose() { sqlRequest = "Role LIKE '%анал%'" };
+        ComandChoose FetishBukaki = new ComandChoose() { sqlRequest = "signs LIKE '%семяизвержение%'" };
+        ComandChoose FetishCuni = new ComandChoose() { sqlRequest = "[Masturbation technique] LIKE '%кунилингус%'" };
+        ComandChoose FetishDoublePenetration = new ComandChoose() { sqlRequest = "(Role LIKE '%пара%' AND [Type of stimulation LIKE '%анус%')" };
+        ComandChoose FetishFeelPlenum = new ComandChoose() { sqlRequest = "Role LIKE '%анал%'" };
+        ComandChoose FetishFillPlace = new ComandChoose() { sqlRequest = "Intelligent Mode LIKE '%да%'" };
+        ComandChoose FetishPetGame = new ComandChoose() { sqlRequest = "signs LIKE '%PetGame%'" };
+        ComandChoose FetishPublicPlace = new ComandChoose() { sqlRequest = "Role LIKE '%секрет%'" };
+        ComandChoose FetishRealistic = new ComandChoose() { sqlRequest = "signs LIKE '%UR3%'" };
+        ComandChoose FetishSecretGame = new ComandChoose() { sqlRequest = "Role LIKE '%секрет%'" };
+        ComandChoose FetishIntel = new ComandChoose() { sqlRequest = "[Intelligent Mode] LIKE '%да%'" };
         public OfFetish(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Fetish;
-            buttons = new Dictionary<string, Method>()
+
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.FetishAnalSex] = () => _telegram.sqlMes.Add("Role LIKE '%анал%'"),
-                [telegram.Button.FetishBukaki] = () => _telegram.sqlMes.Add("signs LIKE '%семяизвержение%'"),
-                [telegram.Button.FetishCuni] = () => _telegram.sqlMes.Add("[Masturbation technique] LIKE '%кунилингус%'"),
-                [telegram.Button.FetishDoublePenetration] = () => _telegram.sqlMes.Add("(Role LIKE '%пара%' AND [Type of stimulation] LIKE '%анус%')"),
-                [telegram.Button.FetishFeelPlenum] = () => _telegram.sqlMes.Add("Role LIKE '%анал%'"),
-                [telegram.Button.FetishFillPlace] = () => _telegram.sqlMes.Add("Intelligent Mode LIKE '%да%'"),
-                [telegram.Button.FetishPetGame] = () => _telegram.sqlMes.Add("signs LIKE '%PetGame%'"),
-                [telegram.Button.FetishPublicPlace] = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'"),
-                [telegram.Button.FetishRealistic] = () => _telegram.sqlMes.Add("signs LIKE '%UR3%'"),
-                [telegram.Button.FetishSecretGame] = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'"),
-                [telegram.Button.FetishIntel] = () => _telegram.sqlMes.Add("[Intelligent Mode] LIKE '%да%'"),
+                [telegram.Button.FetishAnalSex] = FetishAnalSex,
+                [telegram.Button.FetishBukaki] = FetishBukaki,
+                [telegram.Button.FetishCuni] = FetishCuni,
+                [telegram.Button.FetishDoublePenetration] = FetishDoublePenetration,
+                [telegram.Button.FetishFeelPlenum] = FetishFeelPlenum,
+                [telegram.Button.FetishFillPlace] = FetishFillPlace,
+                [telegram.Button.FetishPetGame] = FetishPetGame,
+                [telegram.Button.FetishPublicPlace] = FetishPublicPlace,
+                [telegram.Button.FetishRealistic] = FetishRealistic,
+                [telegram.Button.FetishSecretGame] = FetishSecretGame,
+                [telegram.Button.FetishIntel] = FetishIntel,
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
             };
 
-            multipleCall = true;
             CreateButtonResullt();
 
             BaseRealizing();

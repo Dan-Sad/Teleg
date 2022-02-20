@@ -9,14 +9,15 @@ namespace Teleg
         public OfTypeSimulation(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Stimulation;
-            buttons = new Dictionary<string, Method>()
+
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.StimulationVacuum] = () => _telegram.sqlMes.Add("Vibration LIKE '%пульсация%'"),
-                [telegram.Button.StimulationWave] = () => _telegram.sqlMes.Add("Vibration LIKE '%волнообразный%'"),
-                [telegram.Button.StimulationRotation] = () => _telegram.sqlMes.Add("Vibration LIKE '%ротация%'"),
+                [telegram.Button.StimulationVacuum] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Vibration LIKE '%пульсация%'")},
+                [telegram.Button.StimulationWave] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Vibration LIKE '%волнообразный%'")},
+                [telegram.Button.StimulationRotation] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Vibration LIKE '%ротация%'")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling},
             };
 
-            multipleCall = true;
             CreateButtonResullt();
 
             BaseRealizing();

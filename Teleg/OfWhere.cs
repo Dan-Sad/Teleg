@@ -8,17 +8,18 @@ namespace Teleg
     {
         public OfWhere(TelegConnect telegram) : base(telegram)
         {
+
             questionForUser = telegram.Question.Where;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.WhereClitor] = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%клитор%'"),
-                [telegram.Button.WhereVagina] = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%вагина%'"),
-                [telegram.Button.WhereAnus] = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%анус%'"),
-                [telegram.Button.WhereClitorVagina] = () => _telegram.sqlMes.Add("([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] LIKE '%вагина%')"),
+                [telegram.Button.WhereClitor] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%клитор%'")},
+                [telegram.Button.WhereVagina] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%вагина%'")},
+                [telegram.Button.WhereAnus] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%анус%'")},
+                [telegram.Button.WhereClitorVagina] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] LIKE '%вагина%')")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling},
             };
 
-            multipleCall = false;
-            CreateButtonResullt();
+             CreateButtonResullt();
 
             BaseRealizing();
         }

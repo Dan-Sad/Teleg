@@ -9,13 +9,13 @@ namespace Teleg
         public OfStealthView(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.StealthView;
-            buttons = new Dictionary<string, Method>()
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.StealthViewNoMatters] = () => _telegram.sqlMes.Add("[stealth view] LIKE '%нет%'"),
-                [telegram.Button.StealthViewMatters] = () => _telegram.sqlMes.Add("[stealth view] LIKE '%да%'"),
+                [telegram.Button.StealthViewNoMatters] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[stealth view] LIKE '%нет%'")},
+                [telegram.Button.StealthViewMatters] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[stealth view] LIKE '%да%'")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuStels},
             };
 
-            multipleCall = false;
             CreateButtonResullt();
 
             BaseRealizing();

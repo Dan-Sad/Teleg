@@ -9,17 +9,18 @@ namespace Teleg
         public OfLocation(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Location;
-            buttons = new Dictionary<string, Method>()
+
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.LocationBed] = () => _telegram.sqlMes.Add("Waterproof LIKE '%'"),
-                [telegram.Button.LocationBath] = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'"),
-                [telegram.Button.LocationShower] = () => _telegram.sqlMes.Add("(Waterproof LIKE '%IPX7%' OR Waterproof LIKE '%IPX6%')"),
-                [telegram.Button.LocationSea] = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'"),
-                [telegram.Button.LocationPool] = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'"),
-                [telegram.Button.LocationPublic] = () => _telegram.sqlMes.Add("Waterproof LIKE '%'"),
+                [telegram.Button.LocationBed] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Waterproof LIKE '%'")},
+                [telegram.Button.LocationBath] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'")},
+                [telegram.Button.LocationShower] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("(Waterproof LIKE '%IPX7%' OR Waterproof LIKE '%IPX6%')")},
+                [telegram.Button.LocationSea] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'")},
+                [telegram.Button.LocationPool] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Waterproof LIKE '%IPX7%'")},
+                [telegram.Button.LocationPublic] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Waterproof LIKE '%'")},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
             };
 
-            multipleCall = true;
             CreateButtonResullt();
 
             BaseRealizing();

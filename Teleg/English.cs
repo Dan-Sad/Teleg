@@ -39,6 +39,8 @@ namespace Teleg
 
     class ButtonENG : ILanguageButton
     {
+        public string Apply { get; } = "Apply";
+        public string Ready { get; } = "Ready";
         public string Result { get; } = "Result";
         public string LanguageRUS { get; } = "RUS";
         public string LanguageENG { get; } = "ENG";

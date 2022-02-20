@@ -6,25 +6,34 @@ namespace Teleg
 {
     class OfMenu : Query
     {
-        OfAggregate ofAggregate;
-        OfAllergy ofAllergy;
+        public MenuCharacteristic menuCharacteristic;
+        public MenuWishes menuWishes;
+        public MenuFeeling menuFeeling;
+        public MenuEcology menuEcology;
+        public MenuStels menuStels;
+        public MenuSates menuSates;
         public OfMenu(TelegConnect telegram) : base(telegram)
         {
-            ofAggregate = new OfAggregate(_telegram);
-            ofAllergy = new OfAllergy(_telegram);
+            menuCharacteristic = new MenuCharacteristic(telegram);
+            menuWishes = new MenuWishes(telegram);
+            menuFeeling = new MenuFeeling(telegram);
+            menuEcology = new MenuEcology(telegram);
+            menuStels = new MenuStels(telegram);
+            menuSates = new MenuSates(telegram);
+
             questionForUser = telegram.Question.Menu;
-            buttons = new Dictionary<string, Method>()
+
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.Characteristic] = () => _telegram.currentQuery = ofAllergy,
-                [telegram.Button.Wishes] = () => _telegram.currentQuery = new OfAllergy(_telegram),
-                [telegram.Button.Feeling] = () => _telegram.currentQuery = new OfAllergy(_telegram),
-                [telegram.Button.Ecology] = () => _telegram.currentQuery = new OfAllergy(_telegram),
-                [telegram.Button.Stels] = () => _telegram.currentQuery = new OfAllergy(_telegram),
-                [telegram.Button.States] = () => _telegram.currentQuery = new OfAllergy(_telegram),
+                [telegram.Button.Characteristic] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuCharacteristic},
+                [telegram.Button.Wishes] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuWishes},
+                [telegram.Button.Feeling] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuFeeling},
+                [telegram.Button.Ecology] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuEcology},
+                [telegram.Button.Stels] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuStels},
+                [telegram.Button.States] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = menuSates},
             };
 
-            multipleCall = false;
-            CreateButtonResullt();
+            CreateButtonResullt();  
 
             BaseRealizing();
         }

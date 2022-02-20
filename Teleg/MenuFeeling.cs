@@ -4,20 +4,27 @@ using System.Text;
 
 namespace Teleg
 {
-    internal class MenuFeeling : Query
+    class MenuFeeling : Query
     {
-
+        OfWhere ofWhere;
+        OfTypeSimulation ofTypeSimulation;
+        OfSensation ofSensation;
         public MenuFeeling(TelegConnect telegram) : base(telegram)
         {
+            ofWhere = new OfWhere(telegram);    
+            ofTypeSimulation = new OfTypeSimulation(telegram);
+            ofSensation = new OfSensation(telegram);  
+
             questionForUser = telegram.Question.Feeling;
-            buttons = new Dictionary<string, Method>()
+
+            buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.Where] = () => _telegram.sqlMes.Add("Sensations LIKE '%Мягкость%'"),
-                [telegram.Button.Stimulation] = () => _telegram.sqlMes.Add("Sensations LIKE '%Твердость%'"),
-                [telegram.Button.Sensation] = () => _telegram.sqlMes.Add("Sensations LIKE '%холод%'"),
+                [telegram.Button.Where] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofWhere},
+                [telegram.Button.Stimulation] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofTypeSimulation},
+                [telegram.Button.Sensation] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofSensation},
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu},
             };
 
-            multipleCall = false;
             CreateButtonResullt();
 
             BaseRealizing();
