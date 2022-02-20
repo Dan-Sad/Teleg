@@ -6,18 +6,24 @@ namespace Teleg
 {
     class OfCouple : Query
     {
+        ComandChoose CoupleStopPenis = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
+        ComandChoose CoupleLongSex = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
+        ComandChoose CoupleClitor = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] NOT LIKE '%вагина%' AND [Type of stimulation] NOT LIKE '%анус%')" };
+        ComandChoose CoupleVagina = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
+        ComandChoose CoupleAnus = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
+        ComandChoose CoupleOtherZone = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%'" };
         public OfCouple(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Couple;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.CoupleStopPenis] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Role LIKE '%кольцо%'")},
-                [telegram.Button.CoupleLongSex] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Role LIKE '%кольцо%'")},
-                [telegram.Button.CoupleClitor] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] NOT LIKE '%вагина%' AND [Type of stimulation] NOT LIKE '%анус%')")},
-                [telegram.Button.CoupleVagina] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%вагина%'")},
-                [telegram.Button.CoupleAnus] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%анус%'")},
-                [telegram.Button.CoupleOtherZone] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("[Type of stimulation] LIKE '%'")},
+                [telegram.Button.CoupleStopPenis] = CoupleStopPenis,
+                [telegram.Button.CoupleLongSex] = CoupleLongSex,
+                [telegram.Button.CoupleClitor] = CoupleClitor,
+                [telegram.Button.CoupleVagina] = CoupleVagina,
+                [telegram.Button.CoupleAnus] = CoupleAnus,
+                [telegram.Button.CoupleOtherZone] = CoupleOtherZone,
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes.ofRole},
             };
 

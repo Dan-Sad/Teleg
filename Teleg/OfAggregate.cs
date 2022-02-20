@@ -6,14 +6,16 @@ namespace Teleg
 {
     class OfAggregate : Query
     {
+        ComandChoose AgregateLiquid = new ComandChoose() { sqlRequest = "Aggregation LIKE '%жидкий%'" };
+        ComandChoose AgregateHard = new ComandChoose() { sqlRequest = "Aggregation LIKE '%твердый%'" };
         public OfAggregate(TelegConnect telegram) : base(telegram)
         {
 
             questionForUser = telegram.Question.Agregate;
             buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.AgregateLiquid] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Aggregation LIKE '%жидкий%'") },
-                [telegram.Button.AgregateHard] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Aggregation LIKE '%твердый%'") },
+                [telegram.Button.AgregateLiquid] = AgregateLiquid,
+                [telegram.Button.AgregateHard] = AgregateHard,
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic },
             };
 

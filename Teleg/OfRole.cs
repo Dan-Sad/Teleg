@@ -6,6 +6,10 @@ namespace Teleg
 {
     class OfRole : Query
     {
+        ComandChoose RoleForDistant = new ComandChoose() { sqlRequest = "Control LIKE '%app%'" };
+        ComandChoose RoleForSecret = new ComandChoose() { sqlRequest = "Role LIKE '%секрет%'" };
+        ComandChoose RoleForSelf = new ComandChoose() { sqlRequest = "Role LIKE '%'" };
+
         OfCouple ofCouple;
         public OfRole(TelegConnect telegram) : base(telegram)
         {
@@ -15,9 +19,9 @@ namespace Teleg
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.RoleForCouples] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofCouple},
-                [telegram.Button.RoleForDistant] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Control LIKE '%app%'")},
-                [telegram.Button.RoleForSecret] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Role LIKE '%секрет%'")},
-                [telegram.Button.RoleForSelf] = new ComandChoose() { ActionButton = () => _telegram.sqlMes.Add("Role LIKE '%'")},
+                [telegram.Button.RoleForDistant] = RoleForDistant,
+                [telegram.Button.RoleForSecret] = RoleForSecret,
+                [telegram.Button.RoleForSelf] = RoleForSelf,
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
             };
 
