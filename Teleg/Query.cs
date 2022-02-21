@@ -15,6 +15,9 @@ namespace Teleg
         public Dictionary<string, string> buttonsURL;
         public InlineKeyboardMarkup keyboard;
 
+        public List<string> sqlString = new List<string>();
+        public string sqlSeparator = " AND ";
+
         public Query(TelegConnect telegram) => _telegram = telegram;
 
         public void CreateButtonResullt()
@@ -48,14 +51,23 @@ namespace Teleg
 
             sqlMessange += " FROM VibroItems";
 
-            if (_telegram.sqlMes.Count > 1)
+            bool noConditions = true;
+
+            foreach (Query query in _telegram.queries.Values)
             {
-                sqlMessange += " WHERE " + String.Join("", _telegram.sqlMes.ToArray(), 0, 1);
-                sqlMessange += " AND " + String.Join(" AND ", _telegram.sqlMes.ToArray(), 1, _telegram.sqlMes.Count - 1);
-            }
-            else if (_telegram.sqlMes.Count > 0)
-            {
-                sqlMessange += " WHERE " + String.Join("", _telegram.sqlMes.ToArray(), 0, 1);
+                List<string> sqlString = query.sqlString;
+
+                if (sqlString.Count > 0)
+                {
+                    if (noConditions)
+                    {
+                        noConditions = false;
+                        sqlMessange += " WHERE " + "(" + String.Join(query.sqlSeparator, sqlString) + ")";
+                        continue;
+                    }
+
+                    sqlMessange += " AND " + "(" + String.Join(query.sqlSeparator, sqlString) + ")";
+                }
             }
 
             return sqlMessange;
@@ -72,7 +84,6 @@ namespace Teleg
                 keyboard = new InlineKeyboardMarkup(inlineKeyboardButtons.ToArray());
             }
         }
-
 
         public virtual List<InlineKeyboardButton[]> GenKeyboardButtons()
         {
@@ -192,7 +203,7 @@ namespace Teleg
             var button = OfQuestion.buttons[_telegram.GetCallback()];
 
             if (button.sqlRequest != null)
-                button.SqlPushOrDell(_telegram);
+                button.SqlPushOrDell(OfQuestion.sqlString);
             else
                 button.ActionButton();
         } 

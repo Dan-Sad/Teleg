@@ -6,11 +6,13 @@ namespace Teleg
 {
     class OfTypeSimulation : Query
     {
-        ComandChoose StimulationVacuum = new ComandChoose() { sqlRequest = "Vibration LIKE '%пульсация%'" };
-        ComandChoose StimulationWave = new ComandChoose() { sqlRequest = "Vibration LIKE '%волнообразный%'" };
-        ComandChoose StimulationRotation = new ComandChoose() { sqlRequest = "Vibration LIKE '%ротация%'" };
+        ComandChoose StimulationVacuum = new ComandChoose() { sqlRequest = "[Vibration type] LIKE '%пульсация%'" };
+        ComandChoose StimulationWave = new ComandChoose() { sqlRequest = "[Vibration type] LIKE '%волнообразный%'" };
+        ComandChoose StimulationRotation = new ComandChoose() { sqlRequest = "[Vibration type] LIKE '%ротация%'" };
         public OfTypeSimulation(TelegConnect telegram) : base(telegram)
         {
+            sqlSeparator = " OR ";
+
             questionForUser = telegram.Question.Stimulation;
 
             buttons = new Dictionary<string, ComandChoose>()
@@ -18,12 +20,10 @@ namespace Teleg
                 [telegram.Button.StimulationVacuum] = StimulationVacuum,
                 [telegram.Button.StimulationWave] = StimulationWave,
                 [telegram.Button.StimulationRotation] = StimulationRotation,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuFeeling},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

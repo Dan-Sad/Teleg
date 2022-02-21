@@ -20,12 +20,10 @@ namespace Teleg
                 [telegram.Button.WhereVagina] = WhereVagina,
                 [telegram.Button.WhereAnus] = WhereAnus,
                 [telegram.Button.WhereClitorVagina] = WhereClitorVagina,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuFeeling},
             };
 
              CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

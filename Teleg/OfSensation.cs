@@ -8,16 +8,18 @@ namespace Teleg
     {
         ComandChoose SensationSoft = new ComandChoose() { sqlRequest = "Sensations LIKE '%Мягкость%'" };
         ComandChoose SensationHard = new ComandChoose() { sqlRequest = "Sensations LIKE '%Твердость%'" };
-        ComandChoose SensationCold = new ComandChoose() { sqlRequest = "Sensations LIKE '%холод%'" };
+        ComandChoose SensationCold = new ComandChoose() { sqlRequest = "(Sensations LIKE '%Холод%' OR Sensations LIKE '%Согревание%')" };
         ComandChoose SensationMyTemperature = new ComandChoose() { sqlRequest = "Heat LIKE '%да%'" };
-        ComandChoose SensationSmoothness = new ComandChoose() { sqlRequest = "Sensations LIKE '%гладкость%'" };
-        ComandChoose SensationVelvety = new ComandChoose() { sqlRequest = "Sensations LIKE '%бархат%'" };
+        ComandChoose SensationSmoothness = new ComandChoose() { sqlRequest = "Sensations LIKE '%Гладкость%'" };
+        ComandChoose SensationVelvety = new ComandChoose() { sqlRequest = "Sensations LIKE '%Бархат%'" };
         ComandChoose SensationRealistic = new ComandChoose() { sqlRequest = "signs LIKE '%UR3%'" };
         ComandChoose SensationRelief = new ComandChoose() { sqlRequest = "Relief LIKE '%да%'" };
         public OfSensation(TelegConnect telegram) : base(telegram)
         {
+            sqlSeparator = " OR ";
 
             questionForUser = telegram.Question.Sensation;
+
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.SensationSoft] = SensationSoft,
@@ -28,12 +30,10 @@ namespace Teleg
                 [telegram.Button.SensationVelvety] = SensationVelvety,
                 [telegram.Button.SensationRealistic] = SensationRealistic,
                 [telegram.Button.SensationRelief] = SensationRelief,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuFeeling},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

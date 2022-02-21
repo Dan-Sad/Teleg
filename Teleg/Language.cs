@@ -2,9 +2,9 @@
 
 namespace Teleg
 {
-    class OfLanguage : Query
+    class Language : Query
     {
-        public OfLanguage(TelegConnect telegram) : base(telegram)
+        public Language(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Language;
             RegisterButton();
@@ -24,7 +24,7 @@ namespace Teleg
             _telegram.Button  = new ButtonENG();
             RegisterButton();
             GenButtons();
-            _telegram.currentQuery = _telegram.ofMenu = new OfMenu(_telegram);
+            _telegram.currentQuery = _telegram.Menu = new Menu(_telegram);
         }
         private void SetLanguageRUS()
         {
@@ -32,7 +32,7 @@ namespace Teleg
             _telegram.Button = new ButtonRUS();
             RegisterButton();
             GenButtons();
-            _telegram.currentQuery = _telegram.ofMenu = new OfMenu(_telegram);
+            _telegram.currentQuery = _telegram.Menu = new Menu(_telegram);
         }
     }
 }

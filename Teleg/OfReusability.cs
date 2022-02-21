@@ -16,12 +16,10 @@ namespace Teleg
             {
                 [telegram.Button.ReusabilityLot] = ReusabilityLot,
                 [telegram.Button.ReusabilityOne] = ReusabilityOne,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuEcology},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuEcology},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

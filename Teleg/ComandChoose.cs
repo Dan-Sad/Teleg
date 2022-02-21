@@ -15,15 +15,15 @@ namespace Teleg
             Chosen = false;
         }
         public void ReChoose() => Chosen = !Chosen;
-        public void SqlPushOrDell(TelegConnect teleg)
+        public void SqlPushOrDell(List<string> sqlSting)
         {
             if (Chosen)
             {
-                teleg.sqlMes.Remove(sqlRequest);
+                sqlSting.Remove(sqlRequest);
             }
             else
             {
-                teleg.sqlMes.Add(sqlRequest);
+                sqlSting.Add(sqlRequest);
             }
             ReChoose();
         }

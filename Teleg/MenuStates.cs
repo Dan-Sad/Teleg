@@ -9,9 +9,10 @@ namespace Teleg
         public MenuStates(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.States;
+
             buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu },
+                [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu },
             };
 
             buttonsURL = new Dictionary<string, string>()

@@ -13,7 +13,7 @@ namespace Teleg
             buttons = new Dictionary<string, ComandChoose>()
             {
                 
-                [telegram.Button.Return] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic.ofLubricant },
+                [telegram.Button.Return] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.queries[_telegram.Question.Lubricant] },
             };
 
             buttonsURL = new Dictionary<string, string>()

@@ -16,6 +16,8 @@ namespace Teleg
         ComandChoose LubricantWaterSilicon = new ComandChoose() { sqlRequest = "Lubricant LIKE '%водно-силиконовая%'" };
         public OfLubricant(TelegConnect telegram) : base(telegram)
         {
+            sqlSeparator = " OR ";
+
             stateNeedOfLubricant = new StateNeedOfLubricant(_telegram);
             stateWichOfLubricant = new StateWichOfLubricant(_telegram);
 
@@ -30,12 +32,10 @@ namespace Teleg
                 [telegram.Button.LubricantWaterSilicon] = LubricantWaterSilicon,
                 [telegram.Button.LubricantNoMatters] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = stateNeedOfLubricant },
                 [telegram.Button.NotClue] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = stateWichOfLubricant },
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuCharacteristic},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

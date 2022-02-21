@@ -21,12 +21,10 @@ namespace Teleg
                 [telegram.Button.AllergyBioSkin] = AllergyBioSkin,
                 [telegram.Button.AllergyTPR] = AllergyTPR,
                 [telegram.Button.AllergyABS_plastic] = AllergyABS_plastic,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic },
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuCharacteristic },
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }
