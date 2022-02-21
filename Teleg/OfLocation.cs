@@ -7,11 +7,11 @@ namespace Teleg
     class OfLocation : Query
     {
         ComandChoose LocationBed = new ComandChoose() { sqlRequest = "Waterproof LIKE '%'" };
-        ComandChoose LocationBath = new ComandChoose() { sqlRequest = "Waterproof LIKE '%IPX7%'" };
-        ComandChoose LocationShower = new ComandChoose() { sqlRequest = "(Waterproof LIKE '%IPX7%' OR Waterproof LIKE '%IPX6%')" };
-        ComandChoose LocationSea = new ComandChoose() { sqlRequest = "Waterproof LIKE '%IPX7%'" };
-        ComandChoose LocationPool = new ComandChoose() { sqlRequest = "Waterproof LIKE '%IPX7%'" };
-        ComandChoose LocationPublic = new ComandChoose() { sqlRequest = "Waterproof LIKE '%'" };
+        ComandChoose LocationBath = new ComandChoose() { sqlRequest = "([Waterproof] > 6 )" };
+        ComandChoose LocationShower = new ComandChoose() { sqlRequest = "([Waterproof] >= 6 )" };
+        ComandChoose LocationSea = new ComandChoose() { sqlRequest = "([Waterproof] > 6 )" };
+        ComandChoose LocationPool = new ComandChoose() { sqlRequest = "([Waterproof] > 6 )" };
+        ComandChoose LocationPublic = new ComandChoose() { sqlRequest = "(Waterproof LIKE '%' AND [Role] LIKE '%секрет%')"  };
         public OfLocation(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Location;
