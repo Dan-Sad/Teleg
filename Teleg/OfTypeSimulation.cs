@@ -6,9 +6,9 @@ namespace Teleg
 {
     class OfTypeSimulation : Query
     {
-        ComandChoose StimulationVacuum = new ComandChoose() { sqlRequest = "Vibration LIKE '%пульсация%'" };
-        ComandChoose StimulationWave = new ComandChoose() { sqlRequest = "Vibration LIKE '%волнообразный%'" };
-        ComandChoose StimulationRotation = new ComandChoose() { sqlRequest = "Vibration LIKE '%ротация%'" };
+        ComandChoose StimulationVacuum = new ComandChoose() { sqlRequest = "[Vibration type] LIKE '%пульсация%'" };
+        ComandChoose StimulationWave = new ComandChoose() { sqlRequest = "[Vibration type] LIKE '%волнообразный%'" };
+        ComandChoose StimulationRotation = new ComandChoose() { sqlRequest = "[Vibration type] LIKE '%ротация%'" };
         public OfTypeSimulation(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Stimulation;
