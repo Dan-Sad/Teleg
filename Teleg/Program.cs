@@ -22,7 +22,9 @@ namespace Teleg
             bot.OnCallbackQuery += Bot_OnCallbackQuery;
             bot.StartReceiving();
 
-            Console.Read();
+            Task task = new Task(() => { while (true) Thread.Sleep(10000); });
+            task.Start();
+            task.Wait();
         }
 
         private static async void Bot_OnCallbackQuery(object sender, CallbackQueryEventArgs callbackEvent)
