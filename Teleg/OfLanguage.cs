@@ -8,7 +8,7 @@ namespace Teleg
         {
             questionForUser = telegram.Question.Language;
             RegisterButton();
-            BaseRealizing();
+            GenButtons();
         }
         private void RegisterButton()
         {
@@ -23,7 +23,7 @@ namespace Teleg
             _telegram.Question = new QuestionENG();
             _telegram.Button  = new ButtonENG();
             RegisterButton();
-            BaseRealizing();
+            GenButtons();
             _telegram.currentQuery = _telegram.ofMenu = new OfMenu(_telegram);
         }
         private void SetLanguageRUS()
@@ -31,7 +31,7 @@ namespace Teleg
             _telegram.Question = new QuestionRUS();
             _telegram.Button = new ButtonRUS();
             RegisterButton();
-            BaseRealizing();
+            GenButtons();
             _telegram.currentQuery = _telegram.ofMenu = new OfMenu(_telegram);
         }
     }

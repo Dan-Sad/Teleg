@@ -128,7 +128,7 @@ namespace Teleg
                     else
                         button.ActionButton();
 
-                    currentQuery.keyboard = currentQuery.GenKeyboardButtons();
+                    currentQuery.GenButtons();
                     EditQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
                     return;
                 }

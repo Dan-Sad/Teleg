@@ -30,7 +30,7 @@ namespace Teleg
 
             CreateButtonResullt();
 
-            BaseRealizing();
+            GenButtons();
         }
     }
 }

@@ -4,21 +4,25 @@ using System.Text;
 
 namespace Teleg
 {
-    class MenuSates : Query
+    class MenuStates : Query
     {
-        public MenuSates(TelegConnect telegram) : base(telegram)
+        public MenuStates(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.States;
             buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.StateNeedOfLubricant] = new ComandChoose() { ActionButton = () => Console.WriteLine(questionForUser) },
-                [telegram.Button.StateWichOfLubricant] = new ComandChoose() { ActionButton = () => Console.WriteLine(questionForUser) },
                 [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu },
+            };
+
+            buttonsURL = new Dictionary<string, string>()
+            {
+                [telegram.Button.StateNeedOfLubricant] = "https://t.me/who_if_not_hand/5",
+                [telegram.Button.StateWichOfLubricant] = "https://t.me/who_if_not_hand/7",
             };
 
             CreateButtonResullt();
 
-            BaseRealizing();
+            GenButtons();
         }
     }
 }
