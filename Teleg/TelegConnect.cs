@@ -95,9 +95,9 @@ namespace Teleg
         public void DelLastSentMes()
             => Teleg.bot.DeleteMessageAsync(_chatID, _lastMesId);
 
-        public List<string> GetDataOfSQL(string sqlExpression)
+        public List<List<string>> GetDataOfSQL(string sqlExpression)
         {
-            List<string> resultData = new List<string>();
+            List<List<string>> resultData = new List<List<string>>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -109,9 +109,18 @@ namespace Teleg
                     {
                         while (reader.Read())
                         {
+                            List<string> currentData = new List<string>();
                             string currentValue;
+
                             if ((currentValue = reader.GetValue(0).ToString()) != string.Empty)
-                                resultData.Add(currentValue);
+                            {
+                                currentData.Add(currentValue);
+
+                                if ((currentValue = reader.GetValue(1).ToString()) != string.Empty)
+                                    currentData.Add(currentValue);
+                            }
+                                
+                            resultData.Add(currentData);
                         }
                     }
                 }
