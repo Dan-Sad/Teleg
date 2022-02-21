@@ -19,6 +19,8 @@ namespace Teleg
         ComandChoose FetishIntel = new ComandChoose() { sqlRequest = "[Intelligent Mode] LIKE '%да%'" };
         public OfFetish(TelegConnect telegram) : base(telegram)
         {
+            sqlSeparator = " OR ";
+
             questionForUser = telegram.Question.Fetish;
 
             buttons = new Dictionary<string, ComandChoose>()
@@ -34,12 +36,10 @@ namespace Teleg
                 [telegram.Button.FetishRealistic] = FetishRealistic,
                 [telegram.Button.FetishSecretGame] = FetishSecretGame,
                 [telegram.Button.FetishIntel] = FetishIntel,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuWishes},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

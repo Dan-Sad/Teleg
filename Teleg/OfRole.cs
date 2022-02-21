@@ -22,12 +22,10 @@ namespace Teleg
                 [telegram.Button.RoleForDistant] = RoleForDistant,
                 [telegram.Button.RoleForSecret] = RoleForSecret,
                 [telegram.Button.RoleForSelf] = RoleForSelf,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuWishes},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

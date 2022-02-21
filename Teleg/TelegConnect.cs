@@ -14,7 +14,7 @@ namespace Teleg
         private MessageEventArgs _messageEvent;
         private CallbackQueryEventArgs _callbackEvent;
         private int _lastMesId;
-        public OfMenu ofMenu;
+        public Menu Menu;
         public bool haveNewMessage { get; set; } = false;
         public bool haveNewCallback { get; set; } = false;
 
@@ -24,12 +24,31 @@ namespace Teleg
         public ILanguageQuestion Question = new QuestionRUS();
         public ILanguageButton Button = new ButtonRUS();
 
+        public Dictionary<string, Query> queries;
+
         public TelegConnect(long chatID, MessageEventArgs eventArg)
         {
             _chatID = chatID;
             _messageEvent = eventArg;
 
-            currentQuery = new OfLanguage(this);
+            currentQuery = new Language(this);
+            queries = new Dictionary<string, Query>()
+            {
+                [Question.Agregate] = new OfAggregate(this),
+                [Question.Allergy] = new OfAllergy(this),
+                [Question.Couple] = new OfCouple(this),
+                [Question.Fetish] = new OfFetish(this),
+                [Question.Location] = new OfLocation(this),
+                [Question.Lubricant] = new OfLubricant(this),
+                [Question.Reusability] = new OfReusability(this),
+                [Question.Role] = new OfRole(this),
+                [Question.Sensation] = new OfSensation(this),
+                [Question.SizeOfHand] = new OfSize(this),
+                [Question.StealthView] = new OfStealthView(this),
+                [Question.TechniqueOfFap] = new OfTechniqueOfFap(this),
+                [Question.Stimulation] = new OfTypeSimulation(this),
+                [Question.Where] = new OfWhere(this),
+            };
             currentQuery.SendQuery(currentQuery);
         }
 
@@ -38,8 +57,8 @@ namespace Teleg
             DelLastSentMes();
             sqlMes = new List<string>();
 
-            ofMenu = new OfMenu(this);
-            currentQuery = ofMenu; // CALL MENU
+            Menu = new Menu(this);
+            currentQuery = Menu; // CALL MENU
         }
 
         public void PushData(long chatID, MessageEventArgs messageEvent)
@@ -124,7 +143,7 @@ namespace Teleg
                     var button = currentQuery.buttons[_callbackEvent.CallbackQuery.Data];
 
                     if (button.sqlRequest != null)
-                        button.SqlPushOrDell(this);
+                        button.SqlPushOrDell(currentQuery.sqlString);
                     else
                         button.ActionButton();
 

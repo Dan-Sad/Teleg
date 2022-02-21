@@ -16,8 +16,10 @@ namespace Teleg
         ComandChoose SensationRelief = new ComandChoose() { sqlRequest = "Relief LIKE '%да%'" };
         public OfSensation(TelegConnect telegram) : base(telegram)
         {
+            sqlSeparator = " OR ";
 
             questionForUser = telegram.Question.Sensation;
+
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.SensationSoft] = SensationSoft,
@@ -28,12 +30,10 @@ namespace Teleg
                 [telegram.Button.SensationVelvety] = SensationVelvety,
                 [telegram.Button.SensationRealistic] = SensationRealistic,
                 [telegram.Button.SensationRelief] = SensationRelief,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuFeeling},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuFeeling},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

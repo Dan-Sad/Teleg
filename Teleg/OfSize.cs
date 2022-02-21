@@ -11,19 +11,19 @@ namespace Teleg
         ComandChoose L = new ComandChoose() { sqlRequest = "([Size of hand] >= 13)" };
         public OfSize(TelegConnect telegram) : base(telegram)
         {
+            sqlSeparator = " OR ";
 
             questionForUser = telegram.Question.SizeOfHand;
+
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.S] = S,
                 [telegram.Button.M] = M,
                 [telegram.Button.L] = L,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuCharacteristic},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

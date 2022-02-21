@@ -10,18 +10,18 @@ namespace Teleg
         ComandChoose AgregateHard = new ComandChoose() { sqlRequest = "Aggregation LIKE '%твердый%'" };
         public OfAggregate(TelegConnect telegram) : base(telegram)
         {
-
             questionForUser = telegram.Question.Agregate;
+
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.AgregateLiquid] = AgregateLiquid,
                 [telegram.Button.AgregateHard] = AgregateHard,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuCharacteristic },
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuCharacteristic },
             };
 
             CreateButtonResullt();
 
-            GenButtons();
+            //GenButtons();
         }
     }
 }

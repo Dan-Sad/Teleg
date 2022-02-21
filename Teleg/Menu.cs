@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Teleg
 {
-    class OfMenu : Query
+    class Menu : Query
     {
         public MenuCharacteristic menuCharacteristic;
         public MenuWishes menuWishes;
@@ -12,7 +12,7 @@ namespace Teleg
         public MenuEcology menuEcology;
         public MenuStels menuStels;
         public MenuStates menuStates;
-        public OfMenu(TelegConnect telegram) : base(telegram)
+        public Menu(TelegConnect telegram) : base(telegram)
         {
             menuCharacteristic = new MenuCharacteristic(telegram);
             menuWishes = new MenuWishes(telegram);

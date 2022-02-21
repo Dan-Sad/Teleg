@@ -15,12 +15,10 @@ namespace Teleg
             {
                 [telegram.Button.StealthViewNoMatters] = StealthViewNoMatters,
                 [telegram.Button.StealthViewMatters] = StealthViewMatters,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuStels},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuStels},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

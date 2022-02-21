@@ -24,12 +24,10 @@ namespace Teleg
                 [telegram.Button.CoupleVagina] = CoupleVagina,
                 [telegram.Button.CoupleAnus] = CoupleAnus,
                 [telegram.Button.CoupleOtherZone] = CoupleOtherZone,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes.ofRole},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.queries[_telegram.Question.Role]},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

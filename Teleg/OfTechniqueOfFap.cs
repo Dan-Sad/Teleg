@@ -16,6 +16,8 @@ namespace Teleg
         ComandChoose TechniqueOfFapRoundVulva = new ComandChoose() { sqlRequest = "[Masturbation technique] LIKE '%круговая%'" };
         public OfTechniqueOfFap(TelegConnect telegram) : base(telegram)
         {
+            sqlSeparator = " OR ";
+
             questionForUser = telegram.Question.TechniqueOfFap;
 
             buttons = new Dictionary<string, ComandChoose>()
@@ -28,12 +30,10 @@ namespace Teleg
                 [telegram.Button.TechniqueOfFapTemp] = TechniqueOfFapTemp,
                 [telegram.Button.TechniqueOfFapHlopClitor] = TechniqueOfFapHlopClitor,
                 [telegram.Button.TechniqueOfFapRoundVulva] = TechniqueOfFapRoundVulva,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuWishes},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }

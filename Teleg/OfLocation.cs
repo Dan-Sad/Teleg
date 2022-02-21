@@ -24,12 +24,10 @@ namespace Teleg
                 [telegram.Button.LocationSea] = LocationSea,
                 [telegram.Button.LocationPool] = LocationPool,
                 [telegram.Button.LocationPublic] = LocationPublic,
-                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.ofMenu.menuWishes},
+                [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuWishes},
             };
 
             CreateButtonResullt();
-
-            GenButtons();
         }
     }
 }
