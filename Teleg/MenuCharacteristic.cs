@@ -7,7 +7,7 @@ namespace Teleg
     internal class MenuCharacteristic : Query
     {
         OfAllergy ofAllergy;
-        OfLubricant ofLubricant;
+        public OfLubricant ofLubricant;
         OfAggregate ofAggregate;
         OfSize ofSize;
         public MenuCharacteristic(TelegConnect telegram) : base(telegram)
@@ -30,7 +30,7 @@ namespace Teleg
 
             CreateButtonResullt();
 
-            BaseRealizing();
+            GenButtons();
         }
     }
 }

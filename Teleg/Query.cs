@@ -12,6 +12,7 @@ namespace Teleg
         public TelegConnect _telegram;
         public string questionForUser { get; set; }
         public Dictionary<string, ComandChoose> buttons;
+        public Dictionary<string, string> buttonsURL;
         public InlineKeyboardMarkup keyboard;
 
         public Query(TelegConnect telegram) => _telegram = telegram;
@@ -60,16 +61,25 @@ namespace Teleg
             return sqlMessange;
         }
 
-        public void BaseRealizing()
+        public void GenButtons()
         {
-            keyboard = GenKeyboardButtons();
+            if (buttonsURL == null)
+                keyboard = new InlineKeyboardMarkup(GenKeyboardButtons().ToArray());
+            else
+            {
+                List<InlineKeyboardButton[]> inlineKeyboardButtons = GenKeyboardButtonsURL();
+                inlineKeyboardButtons.AddRange(GenKeyboardButtons());
+                keyboard = new InlineKeyboardMarkup(inlineKeyboardButtons.ToArray());
+            }
         }
 
-        public virtual InlineKeyboardMarkup GenKeyboardButtons()
+
+        public virtual List<InlineKeyboardButton[]> GenKeyboardButtons()
         {
             var rows = new List<InlineKeyboardButton[]>();
             var cols = new List<InlineKeyboardButton>();
             int countButtonsOnRows = 0;
+            int countButtons = 0;
 
             foreach (KeyValuePair<string, ComandChoose> button in buttons)
             {
@@ -77,53 +87,98 @@ namespace Teleg
                 string textButton = button.Key;
                 string dataButton = button.Key;
 
+                countButtonsOnRows++;
+                countButtons++;
+
                 if (choosen)
                     textButton = textButton.Insert(0, char.ConvertFromUtf32(0x2714));
 
-                if (dataButton == _telegram.Button.Result)
+                //Последнии две кнопки
+                if (countButtons >= buttons.Count-1)
                 {
-                    textButton += " (" + _telegram.GetCountDataSQL(GenerateSqlMessange(forCount: true)) + ")";
-                }
-
-                cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
-                
-                countButtonsOnRows++;
-
-                //Средняя длина тектса кнопки
-                if (textButton.Length > 9 && textButton.Length <= 16) 
-                {
-                    countButtonsOnRows = 0;
-                    if (countButtonsOnRows % 2 == 0)
+                    if (countButtons == buttons.Count-1)
                     {
                         rows.Add(cols.ToArray());
                         cols = new List<InlineKeyboardButton>();
-                    }else if(countButtonsOnRows % 3 == 0)
-                    {
-                        cols = new List<InlineKeyboardButton>();
-                        cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
-                        rows.Add(cols.ToArray());
                     }
-                }
 
-                //Длинный текст кнопки
-                if (textButton.Length > 16) 
-                {
-                    countButtonsOnRows = 0;
-                    rows.Add(cols.ToArray());
-                    cols = new List<InlineKeyboardButton>();
+                    if (dataButton == _telegram.Button.Result)
+                        textButton += " (" + _telegram.GetCountDataSQL(GenerateSqlMessange(forCount: true)) + ")";
+
+                    cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
+                    continue;
                 }
 
                 //Короткий тектс кнопки
-                if (countButtonsOnRows % 3 == 0)
+                if (textButton.Length <= 9)
+                {
+                    cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
+                    if (countButtonsOnRows % 3 == 0)
+                    {
+                        rows.Add(cols.ToArray());
+                        countButtonsOnRows = 0;
+                        cols = new List<InlineKeyboardButton>();
+                    }
+                    continue;
+                }
+
+                //Средняя длина тектса кнопки
+                if (textButton.Length > 9 && textButton.Length <= 16)
+                {
+                    if (countButtonsOnRows % 2 == 0)
+                    {
+                        cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
+                        rows.Add(cols.ToArray());
+                        countButtonsOnRows = 0;
+                        cols = new List<InlineKeyboardButton>();
+                    }
+                    else if (countButtonsOnRows % 3 == 0)
+                    {
+                        rows.Add(cols.ToArray());
+                        countButtonsOnRows = 0;
+                        cols = new List<InlineKeyboardButton>();
+                        cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
+                    }
+                    else
+                    {
+                        cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
+                    }
+                    continue;
+                }
+
+                //Длинный текст кнопки
+                if (textButton.Length > 16)
                 {
                     countButtonsOnRows = 0;
+
                     rows.Add(cols.ToArray());
                     cols = new List<InlineKeyboardButton>();
+
+                    cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
+
+                    rows.Add(cols.ToArray());
+                    cols = new List<InlineKeyboardButton>();
+                    continue;
                 }
             }
 
             rows.Add(cols.ToArray());
-            return new InlineKeyboardMarkup(rows.ToArray());
+            return rows;
+        }
+
+        public virtual List<InlineKeyboardButton[]> GenKeyboardButtonsURL()
+        {
+            var rows = new List<InlineKeyboardButton[]>();
+            var cols = new List<InlineKeyboardButton>();
+
+            foreach (KeyValuePair<string, string> button in buttonsURL)
+            {
+                cols.Add(new InlineKeyboardButton() { Text = button.Key, Url = button.Value });
+                rows.Add(cols.ToArray());
+                cols = new List<InlineKeyboardButton>();
+            }
+
+            return rows;
         }
 
         public async void SendQuery(Query OfQuestion)

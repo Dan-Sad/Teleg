@@ -9,7 +9,7 @@ namespace Teleg
         ComandChoose FetishAnalSex = new ComandChoose() { sqlRequest = "Role LIKE '%анал%'" };
         ComandChoose FetishBukaki = new ComandChoose() { sqlRequest = "signs LIKE '%семяизвержение%'" };
         ComandChoose FetishCuni = new ComandChoose() { sqlRequest = "[Masturbation technique] LIKE '%кунилингус%'" };
-        ComandChoose FetishDoublePenetration = new ComandChoose() { sqlRequest = "(Role LIKE '%пара%' AND [Type of stimulation LIKE '%анус%')" };
+        ComandChoose FetishDoublePenetration = new ComandChoose() { sqlRequest = "(Role LIKE '%пара%' AND [Type of stimulation] LIKE '%анус%')" };
         ComandChoose FetishFeelPlenum = new ComandChoose() { sqlRequest = "Role LIKE '%анал%'" };
         ComandChoose FetishFillPlace = new ComandChoose() { sqlRequest = "Intelligent Mode LIKE '%да%'" };
         ComandChoose FetishPetGame = new ComandChoose() { sqlRequest = "signs LIKE '%PetGame%'" };
@@ -39,7 +39,7 @@ namespace Teleg
 
             CreateButtonResullt();
 
-            BaseRealizing();
+            GenButtons();
         }
     }
 }

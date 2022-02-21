@@ -67,8 +67,9 @@ namespace Teleg
         public string Role { get; }
         public string Sensation { get; }
         public string SizeOfHand { get; }
-        public string StateNeedOfLubricant { get; }// // // // // //
-        public string StateWichOfLubricant { get; }// // // // // //
+        public string State { get; }
+        public string StateNeedOfLubricant { get; }
+        public string StateWichOfLubricant { get; }
         public string StealthView { get; }
         public string Stimulation { get; }
         public string TechniqueOfFap { get; }
@@ -128,12 +129,12 @@ namespace Teleg
         public string LocationPublic { get; }
 
         //Lubricant
-        public string LibricantWater { get; }
-        public string LibricantSilicon { get; }
-        public string LibricantOily { get; }
-        public string LibricantWaterSilicon { get; }
-        public string LibricantWaterOily { get; }
-        public string LibricantNoMatters { get; }
+        public string LubricantWater { get; }
+        public string LubricantSilicon { get; }
+        public string LubricantOily { get; }
+        public string LubricantWaterSilicon { get; }
+        public string LubricantWaterOily { get; }
+        public string LubricantNoMatters { get; }
 
         //Reusability
         public string ReusabilityLot { get; }

@@ -54,12 +54,12 @@ namespace Teleg
         public string AllergyBioSkin { get; }
         public string AllergyTPR { get; }
         public string AllergyABS_plastic { get; }
-        public string LibricantWater { get; }
-        public string LibricantSilicon { get; }
-        public string LibricantOily { get; }
-        public string LibricantWaterSilicon { get; }
-        public string LibricantWaterOily { get; }
-        public string LibricantNoMatters { get; }
+        public string LubricantWater { get; }
+        public string LubricantSilicon { get; }
+        public string LubricantOily { get; }
+        public string LubricantWaterSilicon { get; }
+        public string LubricantWaterOily { get; }
+        public string LubricantNoMatters { get; }
         public string RoleForSelf { get; }
         public string RoleForCouples { get; }
         public string RoleForSecret { get; }
@@ -166,5 +166,7 @@ namespace Teleg
         public string RoleForDistant => throw new NotImplementedException();
 
         public string SensationRelief => throw new NotImplementedException();
+
+        public string State => throw new NotImplementedException();
     }
 }
