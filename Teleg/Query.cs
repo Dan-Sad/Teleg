@@ -40,6 +40,7 @@ namespace Teleg
                     }
 
                     Thread.Sleep(1000);
+
                     _telegram.TelegConnectRestart();
                 }
             });

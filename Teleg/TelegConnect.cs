@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,20 +14,19 @@ namespace Teleg
     class TelegConnect
     {
         private ChatId _chatID;
-        public Query currentQuery { get; set; }
+        private int _lastMesId;
         private MessageEventArgs _messageEvent;
         private CallbackQueryEventArgs _callbackEvent;
-        private int _lastMesId;
-        public Menu Menu;
         public bool haveNewMessage { get; set; } = false;
         public bool haveNewCallback { get; set; } = false;
 
-        public List<string> sqlMes = new List<string>();
         private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         public ILanguageQuestion Question = new QuestionRUS();
         public ILanguageButton Button = new ButtonRUS();
 
+        public Query currentQuery { get; set; }
+        public Menu Menu;
         public Dictionary<string, Query> queries;
 
         public TelegConnect(long chatID, MessageEventArgs eventArg)
@@ -34,34 +34,18 @@ namespace Teleg
             _chatID = chatID;
             _messageEvent = eventArg;
 
+            QuerysInit();
+
             currentQuery = new Language(this);
-            queries = new Dictionary<string, Query>()
-            {
-                [Question.Agregate] = new OfAggregate(this),
-                [Question.Allergy] = new OfAllergy(this),
-                [Question.Couple] = new OfCouple(this),
-                [Question.Fetish] = new OfFetish(this),
-                [Question.Location] = new OfLocation(this),
-                [Question.Lubricant] = new OfLubricant(this),
-                [Question.Reusability] = new OfReusability(this),
-                [Question.Role] = new OfRole(this),
-                [Question.Sensation] = new OfSensation(this),
-                [Question.SizeOfHand] = new OfSize(this),
-                [Question.StealthView] = new OfStealthView(this),
-                [Question.TechniqueOfFap] = new OfTechniqueOfFap(this),
-                [Question.Stimulation] = new OfTypeSimulation(this),
-                [Question.Where] = new OfWhere(this),
-            };
             currentQuery.SendQuery(currentQuery);
         }
 
         public void TelegConnectRestart()
         {
             DelLastSentMes();
-            sqlMes = new List<string>();
-
-            Menu = new Menu(this);
-            currentQuery = Menu; // CALL MENU
+            queries.Clear();
+            QuerysInit();
+            currentQuery = Menu;
         }
 
         public void PushData(long chatID, MessageEventArgs messageEvent)
@@ -70,10 +54,7 @@ namespace Teleg
             _messageEvent = messageEvent;
         }
 
-        public void PushData(CallbackQueryEventArgs callbackEvent)
-        {
-            _callbackEvent = callbackEvent;
-        }
+        public void PushData(CallbackQueryEventArgs callbackEvent) => _callbackEvent = callbackEvent;
 
         public string GetMes()
         {
@@ -129,8 +110,10 @@ namespace Teleg
                                 if ((currentValue = reader.GetValue(1).ToString()) != string.Empty)
                                     currentData.Description = currentValue;
 
-                                if (false)///////////////////////////////////////////////////////////////////////////////////////////////
-                                    currentData.Picture = (byte[])reader.GetValue(2);
+                                var picture = reader.GetValue(2);
+
+                                if (picture != System.DBNull.Value)
+                                    currentData.Picture = (byte[])picture;
 
                                 resultData.Add(currentData);
                             }
@@ -180,6 +163,27 @@ namespace Teleg
         {
             DelLastSentMes();
             SendMes(currentQuery.questionForUser, currentQuery.keyboard);
+        }
+
+        private void QuerysInit()
+        {
+            queries = new Dictionary<string, Query>()
+            {
+                [Question.Agregate] = new OfAggregate(this),
+                [Question.Allergy] = new OfAllergy(this),
+                [Question.Couple] = new OfCouple(this),
+                [Question.Fetish] = new OfFetish(this),
+                [Question.Location] = new OfLocation(this),
+                [Question.Lubricant] = new OfLubricant(this),
+                [Question.Reusability] = new OfReusability(this),
+                [Question.Role] = new OfRole(this),
+                [Question.Sensation] = new OfSensation(this),
+                [Question.SizeOfHand] = new OfSize(this),
+                [Question.StealthView] = new OfStealthView(this),
+                [Question.TechniqueOfFap] = new OfTechniqueOfFap(this),
+                [Question.Stimulation] = new OfTypeSimulation(this),
+                [Question.Where] = new OfWhere(this),
+            };
         }
     }
 }
