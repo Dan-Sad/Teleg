@@ -23,7 +23,6 @@ namespace Teleg
             _telegram.Question = new QuestionENG();
             _telegram.Button  = new ButtonENG();
             RegisterButton();
-            GenButtons();
             _telegram.currentQuery = _telegram.Menu = new Menu(_telegram);
         }
         private void SetLanguageRUS()
@@ -31,7 +30,6 @@ namespace Teleg
             _telegram.Question = new QuestionRUS();
             _telegram.Button = new ButtonRUS();
             RegisterButton();
-            GenButtons();
             _telegram.currentQuery = _telegram.Menu = new Menu(_telegram);
         }
     }
