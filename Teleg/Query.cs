@@ -26,11 +26,16 @@ namespace Teleg
             {
                 ActionButton = () =>
                 {
-                    List<List<string>> resultData = _telegram.GetDataOfSQL(GenerateSqlMessange(forCount: false));
+                    List<DataSQL> resultData = _telegram.GetDataOfSQL(GenerateSqlMessange(forCount: false));
 
-                    foreach (List<string> currentData in resultData)
+                    foreach (DataSQL currentData in resultData)
                     {
-                        _telegram.SendMes("*" + currentData[0] + "*" + $"\n" + currentData[1]);
+                        string textForSend = "*" + currentData.Name + "*" + $"\n" + currentData.Description;
+                        if (currentData.Picture != null)
+                            _telegram.SendPhoto(currentData.Picture, textForSend);
+                        else
+                            _telegram.SendMes(textForSend);
+
                         Thread.Sleep(100);
                     }
 
@@ -47,7 +52,7 @@ namespace Teleg
             if (forCount)
                 sqlMessange = "SELECT COUNT(Name)";
             else
-                sqlMessange = "SELECT Name, Description";
+                sqlMessange = "SELECT Name, Description, Picture";
 
             sqlMessange += " FROM VibroItems";
 

@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Teleg
@@ -89,15 +92,22 @@ namespace Teleg
         public void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
             => _lastMesId = Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard).Result.MessageId;
 
+        public void SendPhoto(byte[] bytesPhoto, string textForSend)
+        {
+            using (var photo = new MemoryStream(bytesPhoto))
+            {
+                Teleg.bot.SendPhotoAsync(_chatID, new InputOnlineFile(photo, "image.png"), caption: textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
+            }
+        }
         public void EditQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
             => Teleg.bot.EditMessageTextAsync(_chatID, _lastMesId, textForSend, replyMarkup: keyboard);
 
         public void DelLastSentMes()
             => Teleg.bot.DeleteMessageAsync(_chatID, _lastMesId);
 
-        public List<List<string>> GetDataOfSQL(string sqlExpression)
+        public List<DataSQL> GetDataOfSQL(string sqlExpression)
         {
-            List<List<string>> resultData = new List<List<string>>();
+            var resultData = new List<DataSQL>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -109,18 +119,21 @@ namespace Teleg
                     {
                         while (reader.Read())
                         {
-                            List<string> currentData = new List<string>();
+                            var currentData = new DataSQL();
                             string currentValue;
 
                             if ((currentValue = reader.GetValue(0).ToString()) != string.Empty)
                             {
-                                currentData.Add(currentValue);
+                                currentData.Name = currentValue;
 
                                 if ((currentValue = reader.GetValue(1).ToString()) != string.Empty)
-                                    currentData.Add(currentValue);
+                                    currentData.Description = currentValue;
+
+                                if (false)///////////////////////////////////////////////////////////////////////////////////////////////
+                                    currentData.Picture = (byte[])reader.GetValue(2);
+
+                                resultData.Add(currentData);
                             }
-                                
-                            resultData.Add(currentData);
                         }
                     }
                 }
