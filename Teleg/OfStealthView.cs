@@ -6,7 +6,7 @@ namespace Teleg
 {
     class OfStealthView : Query
     {
-        ComandChoose StealthViewNoMatters = new ComandChoose() { sqlRequest = "[stealth view] LIKE '%нет%'" };
+        ComandChoose StealthViewNoMatters = new ComandChoose() { sqlRequest = "[stealth view] LIKE '%'" };
         ComandChoose StealthViewMatters = new ComandChoose() { sqlRequest = "[stealth view] LIKE '%да%'" };
         public OfStealthView(TelegConnect telegram) : base(telegram)
         {

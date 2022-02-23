@@ -8,7 +8,7 @@ namespace Teleg
     {
         ComandChoose CoupleStopPenis = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
         ComandChoose CoupleLongSex = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
-        ComandChoose CoupleClitor = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] NOT LIKE '%вагина%' AND [Type of stimulation] NOT LIKE '%анус%')" };
+        ComandChoose CoupleClitor = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%')" };
         ComandChoose CoupleVagina = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
         ComandChoose CoupleAnus = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
         ComandChoose CoupleOtherZone = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%'" };
