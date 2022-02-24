@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.InputFiles;
@@ -68,20 +70,24 @@ namespace Teleg
             return _callbackEvent.CallbackQuery.Data;
         }
 
-        public  void SendMes(string textForSend)
-            =>  Teleg.bot.SendTextMessageAsync(_chatID, textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
-        public void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
-            => _lastMesId = Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard).Result.MessageId;
+        public async void SendMesAsync(string textForSend)
+            =>  await Teleg.bot.SendTextMessageAsync(_chatID, textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
 
-        public void SendPhoto(byte[] bytesPhoto, string textForSend)
+        public async void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
         {
-            using (var photo = new MemoryStream(bytesPhoto))
+            var lastMesId = await Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard);
+            _lastMesId = lastMesId.MessageId;
+        }
+
+        public async void SendPhotoAsync(byte[] bytesPhoto, string textForSend)
+        {
+            await using (var photo = new MemoryStream(bytesPhoto))
             {
-                Teleg.bot.SendPhotoAsync(_chatID, new InputOnlineFile(photo, "image.png"), caption: textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                await Teleg .bot.SendPhotoAsync(_chatID, new InputOnlineFile(photo, "image.png"), caption: textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
             }
         }
         public void EditQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
-            => Teleg.bot.EditMessageTextAsync(_chatID, _lastMesId, textForSend, replyMarkup: keyboard);
+            =>  Teleg.bot.EditMessageTextAsync(_chatID, _lastMesId, textForSend, replyMarkup: keyboard);
 
         public void DelLastSentMes()
             => Teleg.bot.DeleteMessageAsync(_chatID, _lastMesId);
@@ -137,7 +143,7 @@ namespace Teleg
             return resultCount;
         }
 
-        public void CallQuery()
+        public async void CallQuery()
         {
             haveNewCallback = false;
 
@@ -150,7 +156,7 @@ namespace Teleg
                     if (button.sqlRequest != null)
                         button.SqlPushOrDell(currentQuery.sqlString);
                     else
-                        button.ActionButton();
+                        await Task.Run(() => button.ActionButton());
 
                     currentQuery.GenButtons();
                     EditQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
@@ -159,7 +165,7 @@ namespace Teleg
             }
         }
 
-        public void SendQuery()
+        public void DelAndSendQuery()
         {
             DelLastSentMes();
             SendMes(currentQuery.questionForUser, currentQuery.keyboard);

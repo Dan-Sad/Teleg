@@ -9,16 +9,13 @@ namespace Teleg
         ComandChoose RoleForDistant = new ComandChoose() { sqlRequest = "Control LIKE '%app%'" };
         ComandChoose RoleForSecret = new ComandChoose() { sqlRequest = "Role LIKE '%секрет%'" };
         ComandChoose RoleForSelf = new ComandChoose() { sqlRequest = "Role LIKE '%'" };
-
-        OfCouple ofCouple;
         public OfRole(TelegConnect telegram) : base(telegram)
         {
-            ofCouple = new OfCouple(telegram);  
-
             questionForUser = telegram.Question.Role;
+
             buttons = new Dictionary<string, ComandChoose>()
             {
-                [telegram.Button.RoleForCouples] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = ofCouple},
+                [telegram.Button.RoleForCouples] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.queries[_telegram.Question.Couple] },
                 [telegram.Button.RoleForDistant] = RoleForDistant,
                 [telegram.Button.RoleForSecret] = RoleForSecret,
                 [telegram.Button.RoleForSelf] = RoleForSelf,

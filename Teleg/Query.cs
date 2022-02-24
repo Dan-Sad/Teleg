@@ -20,7 +20,7 @@ namespace Teleg
 
         public Query(TelegConnect telegram) => _telegram = telegram;
 
-        public void CreateButtonResullt()
+        public async void CreateButtonResullt()
         {
             buttons.Add(_telegram.Button.Result, new ComandChoose()
             {
@@ -32,14 +32,13 @@ namespace Teleg
                     {
                         string textForSend = "*" + currentData.Name + "*" + $"\n" + currentData.Description;
                         if (currentData.Picture != null)
-                            _telegram.SendPhoto(currentData.Picture, textForSend);
+                            _telegram.SendPhotoAsync(currentData.Picture, textForSend);
                         else
-                            _telegram.SendMes(textForSend);
+                            _telegram.SendMesAsync(textForSend);
 
-                        Thread.Sleep(100);
+                        Thread.Sleep(500); //This is to telegram no ban, when > 30 mes/sec
                     }
 
-                    Thread.Sleep(1000);
 
                     _telegram.TelegConnectRestart();
                 }

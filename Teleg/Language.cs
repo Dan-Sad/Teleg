@@ -15,7 +15,7 @@ namespace Teleg
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [_telegram.Button.LanguageRUS] = new ComandChoose() { ActionButton = () => SetLanguageRUS()},
-                [_telegram.Button.LanguageENG] = new ComandChoose() { ActionButton = () => SetLanguageENG()},
+                [_telegram.Button.LanguageENG] = new ComandChoose() { ActionButton = () => SetLanguageRUS()},//ENG
             };
         }
         private void SetLanguageENG()
