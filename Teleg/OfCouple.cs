@@ -8,10 +8,10 @@ namespace Teleg
     {
         ComandChoose CoupleStopPenis = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
         ComandChoose CoupleLongSex = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
-        ComandChoose CoupleClitor = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%')" };
-        ComandChoose CoupleVagina = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
-        ComandChoose CoupleAnus = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
-        ComandChoose CoupleOtherZone = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%'" };
+        ComandChoose CoupleClitor = new ComandChoose() { sqlRequest = "(Role LIKE '%параклитор%')" };
+        ComandChoose CoupleVagina = new ComandChoose() { sqlRequest = "Role LIKE '%паравагина%'" };
+        ComandChoose CoupleAnus = new ComandChoose() { sqlRequest = "Role LIKE '%параанал%'" };
+        ComandChoose CoupleOtherZone = new ComandChoose() { sqlRequest = "Role LIKE '%'" };
         public OfCouple(TelegConnect telegram) : base(telegram)
         {
             questionForUser = telegram.Question.Couple;

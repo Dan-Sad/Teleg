@@ -90,7 +90,7 @@ namespace Teleg
         public string ControleConsole { get; } = "Игрушку на пульте управления";
         public string CoupleStopPenis { get; } = "Отрегулировать размер пениса";
         public string CoupleLongSex { get; } = "Хочу продлить секс";
-        public string CoupleClitor { get; } = "Дополнительная стимуляциz клитора";
+        public string CoupleClitor { get; } = "Дополнительная стимуляция клитора";
         public string CoupleVagina { get; } = "Стимуляции вагины";
         public string CoupleAnus { get; } = "Анальная пенетрация";
         public string CoupleOtherZone { get; } = "Стимуляции любых зон тела";
