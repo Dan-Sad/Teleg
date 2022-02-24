@@ -16,7 +16,7 @@ namespace Teleg
     class TelegConnect
     {
         private ChatId _chatID;
-        private int _lastMesId;
+        public LastMessange LastMes = new LastMessange();
         private MessageEventArgs _messageEvent;
         private CallbackQueryEventArgs _callbackEvent;
         public bool haveNewMessage { get; set; } = false;
@@ -30,6 +30,7 @@ namespace Teleg
         public Query currentQuery { get; set; }
         public Menu Menu;
         public Dictionary<string, Query> queries;
+        public ResultAction resultAction;
 
         public TelegConnect(long chatID, MessageEventArgs eventArg)
         {
@@ -73,24 +74,27 @@ namespace Teleg
         public async void SendMesAsync(string textForSend)
             =>  await Teleg.bot.SendTextMessageAsync(_chatID, textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
 
-        public async void SendMes(string textForSend, InlineKeyboardMarkup keyboard)
+        public async void SendMesAsync(string textForSend, InlineKeyboardMarkup keyboard)
         {
-            var lastMesId = await Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard);
-            _lastMesId = lastMesId.MessageId;
+            var lastMes = await Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard);
+            LastMes.ID = lastMes.MessageId;
+            LastMes.Type.Text();
         }
 
-        public async void SendPhotoAsync(byte[] bytesPhoto, string textForSend)
+        public async void SendPhotoAsync(byte[] bytesPhoto, string textForSend, InlineKeyboardMarkup keyboard)
         {
             await using (var photo = new MemoryStream(bytesPhoto))
             {
-                await Teleg .bot.SendPhotoAsync(_chatID, new InputOnlineFile(photo, "image.png"), caption: textForSend, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                var lastMes = await Teleg.bot.SendPhotoAsync(_chatID, new InputOnlineFile(photo, "image.png"), caption: textForSend, replyMarkup: keyboard, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                LastMes.ID = lastMes.MessageId;
+                LastMes.Type.Photo();
             }
         }
         public void EditQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
-            =>  Teleg.bot.EditMessageTextAsync(_chatID, _lastMesId, textForSend, replyMarkup: keyboard);
+            =>  Teleg.bot.EditMessageTextAsync(_chatID, LastMes.ID, textForSend, replyMarkup: keyboard);
 
         public void DelLastSentMes()
-            => Teleg.bot.DeleteMessageAsync(_chatID, _lastMesId);
+            => Teleg.bot.DeleteMessageAsync(_chatID, LastMes.ID);
 
         public List<DataSQL> GetDataOfSQL(string sqlExpression)
         {
@@ -168,8 +172,10 @@ namespace Teleg
         public void DelAndSendQuery()
         {
             DelLastSentMes();
-            SendMes(currentQuery.questionForUser, currentQuery.keyboard);
+            SendMesAsync(currentQuery.questionForUser, currentQuery.keyboard);
         }
+
+        public void SendQuery() => SendMesAsync(currentQuery.questionForUser, currentQuery.keyboard);
 
         private void QuerysInit()
         {

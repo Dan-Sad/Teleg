@@ -14,11 +14,14 @@ namespace Teleg
             {
                 teleg.TelegConnectRestart();
                 teleg.currentQuery = new Language(teleg);
-                teleg.DelAndSendQuery();
+                if (teleg.LastMes.Type.Get() == TypeMes.photo)
+                    teleg.SendQuery();
+                else
+                    teleg.DelAndSendQuery();
             }
             else if (messange == "/channel")
                 teleg.SendMesAsync("[Пособие к руке](https://t.me/who_if_not_hand)");
-            else
+            else if (messange == "/continue")
                 teleg.DelAndSendQuery();
         }
     }

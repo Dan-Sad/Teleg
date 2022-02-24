@@ -34,9 +34,16 @@ namespace Teleg
                 if (curChatID == chat.Key)
                 {
                     chat.Value.PushData(callbackEvent);
-                    chat.Value.haveNewCallback = true;
 
-                    await Task.Run(() => chat.Value.CallQuery());
+                    string CallbackData = callbackEvent.CallbackQuery.Data;
+
+                    if (CallbackData != ResultAction.Back && CallbackData != ResultAction.Next)
+                    {
+                        await Task.Run(() => chat.Value.CallQuery());
+                        chat.Value.haveNewCallback = true;
+                    }
+                    else
+                        chat.Value.resultAction.ActionCallback(CallbackData);
 
                     bot.AnswerCallbackQueryAsync(callbackEvent.CallbackQuery.Id);
 

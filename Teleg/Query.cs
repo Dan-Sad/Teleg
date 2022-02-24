@@ -26,26 +26,12 @@ namespace Teleg
             {
                 ActionButton = () =>
                 {
-                    List<DataSQL> resultData = _telegram.GetDataOfSQL(GenerateSqlMessange(forCount: false));
-
-                    foreach (DataSQL currentData in resultData)
-                    {
-                        string textForSend = "*" + currentData.Name + "*" + $"\n" + currentData.Description;
-                        if (currentData.Picture != null)
-                            _telegram.SendPhotoAsync(currentData.Picture, textForSend);
-                        else
-                            _telegram.SendMesAsync(textForSend);
-
-                        Thread.Sleep(500); //This is to telegram no ban, when > 30 mes/sec
-                    }
-
-
-                    _telegram.TelegConnectRestart();
+                    _telegram.resultAction = new ResultAction(_telegram);
                 }
             });
         }
 
-        private string GenerateSqlMessange(bool forCount)
+        public string GenerateSqlMessange(bool forCount)
         {
             string sqlMessange;
 
@@ -107,7 +93,7 @@ namespace Teleg
                 countButtons++;
 
                 if (choosen)
-                    textButton = textButton.Insert(0, char.ConvertFromUtf32(0x2714));
+                    textButton = textButton.Insert(0, char.ConvertFromUtf32(0x1F308));
 
                 //Последнии две кнопки
                 if (countButtons >= buttons.Count-1)
@@ -201,7 +187,7 @@ namespace Teleg
         {
             _telegram.currentQuery = OfQuestion;
 
-            _telegram.SendMes(OfQuestion.questionForUser, OfQuestion.keyboard);
+            _telegram.SendMesAsync(OfQuestion.questionForUser, OfQuestion.keyboard);
 
             await Task.Run(() => { while (!_telegram.haveNewCallback) Thread.Sleep(100); });
 
