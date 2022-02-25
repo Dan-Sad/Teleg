@@ -45,7 +45,6 @@ namespace Teleg
 
         public void TelegConnectRestart()
         {
-            DelLastSentMes();
             queries.Clear();
             QuerysInit();
             currentQuery = Menu;
@@ -76,7 +75,7 @@ namespace Teleg
 
         public async void SendMesAsync(string textForSend, InlineKeyboardMarkup keyboard)
         {
-            var lastMes = await Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard);
+            var lastMes = await Teleg.bot.SendTextMessageAsync(_chatID, textForSend, replyMarkup: keyboard, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
             LastMes.ID = lastMes.MessageId;
             LastMes.Type.Text();
         }
@@ -91,7 +90,7 @@ namespace Teleg
             }
         }
         public void EditQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
-            =>  Teleg.bot.EditMessageTextAsync(_chatID, LastMes.ID, textForSend, replyMarkup: keyboard);
+            =>  Teleg.bot.EditMessageTextAsync(_chatID, LastMes.ID, textForSend, replyMarkup: keyboard, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
 
         public void DelLastSentMes()
             => Teleg.bot.DeleteMessageAsync(_chatID, LastMes.ID);

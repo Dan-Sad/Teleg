@@ -15,7 +15,7 @@ namespace Teleg
                 teleg.TelegConnectRestart();
                 teleg.currentQuery = new Language(teleg);
                 if (teleg.LastMes.Type.Get() == TypeMes.photo)
-                    teleg.SendQuery();
+                    teleg.DelAndSendQuery(); //teleg.SendQuery();// When Edit PhotoMes
                 else
                     teleg.DelAndSendQuery();
             }
