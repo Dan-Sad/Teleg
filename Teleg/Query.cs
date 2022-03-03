@@ -26,7 +26,12 @@ namespace Teleg
             {
                 ActionButton = () =>
                 {
-                    _telegram.resultAction = new ResultAction(_telegram);
+                    if (_telegram.GetCountDataSQL(GenerateSqlMessange(forCount: true)) != 0)
+                        _telegram.resultAction = new ResultAction(_telegram);
+                    else
+                    {
+                        _telegram.SendMesAsync("0 results");
+                    }
                 }
             });
         }

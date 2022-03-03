@@ -13,7 +13,8 @@ namespace Teleg
             if (messange == "/restart")
             {
                 teleg.TelegConnectRestart();
-                teleg.currentQuery = new Language(teleg);
+                teleg.currentQuery = new Menu(teleg);
+                //teleg.currentQuery = new Language(teleg);
                 if (teleg.LastMes.Type.Get() == TypeMes.photo)
                     teleg.DelAndSendQuery(); //teleg.SendQuery();// When Edit PhotoMes
                 else

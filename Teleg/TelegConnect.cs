@@ -39,8 +39,11 @@ namespace Teleg
 
             QuerysInit();
 
-            currentQuery = new Language(this);
-            currentQuery.SendQuery(currentQuery);
+            //currentQuery = new Language(this);
+            //currentQuery.SendQuery(currentQuery);
+
+            currentQuery = Menu = new Menu(this);
+            Menu.SendQuery(Menu);
         }
 
         public void TelegConnectRestart()
@@ -90,7 +93,7 @@ namespace Teleg
             }
         }
         public void EditQueryOfTeleg(string textForSend, InlineKeyboardMarkup keyboard)
-            =>  Teleg.bot.EditMessageTextAsync(_chatID, LastMes.ID, textForSend, replyMarkup: keyboard, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
+            =>  Teleg.bot.EditMessageTextAsync(_chatID, LastMes.ID, textForSend, replyMarkup: keyboard);
 
         public void DelLastSentMes()
             => Teleg.bot.DeleteMessageAsync(_chatID, LastMes.ID);
