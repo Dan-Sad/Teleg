@@ -8,7 +8,7 @@ namespace Teleg
     {
         public MenuCharacteristic(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Characteristic;
+            Question = telegram.Question.Characteristic;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -20,7 +20,7 @@ namespace Teleg
 
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
 
             GenButtons();
         }

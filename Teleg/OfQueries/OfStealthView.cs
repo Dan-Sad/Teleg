@@ -10,7 +10,7 @@ namespace Teleg
         ComandChoose StealthViewMatters = new ComandChoose() { sqlRequest = "[stealth view] LIKE '%да%'" };
         public OfStealthView(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.StealthView;
+            Question = telegram.Question.StealthView;
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.StealthViewNoMatters] = StealthViewNoMatters,
@@ -18,7 +18,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuStels},
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
         }
     }
 }

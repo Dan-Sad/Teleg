@@ -6,7 +6,7 @@ namespace Teleg
     {
         public Language(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Language;
+            Question = telegram.Question.Language;
             RegisterButton();
             GenButtons();
         }

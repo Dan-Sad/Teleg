@@ -8,7 +8,7 @@ namespace Teleg
     {
         public MenuStates(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.States;
+            Question = telegram.Question.States;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -21,7 +21,7 @@ namespace Teleg
                 [telegram.Button.StateWichOfLubricant] = "https://t.me/who_if_not_hand/7",
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
 
             GenButtons();
         }

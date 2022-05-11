@@ -4,20 +4,21 @@ using System.Text;
 
 namespace Teleg
 {
-    class StateWichOfLubricant : Query
+    class StateNeedOfLubricant : Query
     {
-        public StateWichOfLubricant(TelegConnect telegram) : base(telegram)
+        public StateNeedOfLubricant(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.StateWichOfLubricant;
+            Question = telegram.Question.StateNeedOfLubricant;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
+                
                 [telegram.Button.Return] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.queries[_telegram.Question.Lubricant] },
             };
 
             buttonsURL = new Dictionary<string, string>()
             {
-                [telegram.Button.State] = "https://t.me/who_if_not_hand/7",
+                [telegram.Button.State] = "https://t.me/who_if_not_hand/5",
             };
 
             GenButtons();

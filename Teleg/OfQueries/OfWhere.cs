@@ -13,7 +13,7 @@ namespace Teleg
         public OfWhere(TelegConnect telegram) : base(telegram)
         {
 
-            questionForUser = telegram.Question.Where;
+            Question = telegram.Question.Where;
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.WhereClitor] = WhereClitor,
@@ -23,7 +23,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuFeeling},
             };
 
-             CreateButtonResullt();
+             CreateButtonResult();
         }
     }
 }

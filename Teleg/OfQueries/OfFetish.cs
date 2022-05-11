@@ -21,7 +21,7 @@ namespace Teleg
         {
             sqlSeparator = " OR ";
 
-            questionForUser = telegram.Question.Fetish;
+            Question = telegram.Question.Fetish;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -39,7 +39,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuWishes},
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
         }
     }
 }

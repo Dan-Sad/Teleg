@@ -165,7 +165,7 @@ namespace Teleg
                         await Task.Run(() => button.ActionButton());
 
                     currentQuery.GenButtons();
-                    EditQueryOfTeleg(currentQuery.questionForUser, currentQuery.keyboard);
+                    EditQueryOfTeleg(currentQuery.Question, currentQuery.keyboard);
                     return;
                 }
             }
@@ -174,10 +174,10 @@ namespace Teleg
         public void DelAndSendQuery()
         {
             DelLastSentMes();
-            SendMesAsync(currentQuery.questionForUser, currentQuery.keyboard);
+            SendMesAsync(currentQuery.Question, currentQuery.keyboard);
         }
 
-        public void SendQuery() => SendMesAsync(currentQuery.questionForUser, currentQuery.keyboard);
+        public void SendQuery() => SendMesAsync(currentQuery.Question, currentQuery.keyboard);
 
         private void QuerysInit()
         {

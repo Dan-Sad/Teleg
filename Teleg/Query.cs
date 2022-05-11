@@ -10,7 +10,7 @@ namespace Teleg
     abstract class Query
     {
         public TelegConnect _telegram;
-        public string questionForUser { get; set; }
+        public string Question { get; set; }
         public Dictionary<string, ComandChoose> buttons;
         public Dictionary<string, string> buttonsURL;
         public InlineKeyboardMarkup keyboard;
@@ -20,7 +20,7 @@ namespace Teleg
 
         public Query(TelegConnect telegram) => _telegram = telegram;
 
-        public async void CreateButtonResullt()
+        public async void CreateButtonResult()
         {
             buttons.Add(_telegram.Button.Result, new ComandChoose()
             {
@@ -192,7 +192,7 @@ namespace Teleg
         {
             _telegram.currentQuery = OfQuestion;
 
-            _telegram.SendMesAsync(OfQuestion.questionForUser, OfQuestion.keyboard);
+            _telegram.SendMesAsync(OfQuestion.Question, OfQuestion.keyboard);
 
             await Task.Run(() => { while (!_telegram.haveNewCallback) Thread.Sleep(100); });
 
