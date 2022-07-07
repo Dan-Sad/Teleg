@@ -124,22 +124,22 @@ namespace Teleg
         public string TechniqueOfFapHlopClitor { get; }
         public string TechniqueOfFapRoundVulva { get; }
         //For Question (Menu)
-        public string Agregate { get; } = "Вид игрушки";
-        public string Allergy { get; } = "Аллергии";
+        public string Silicon { get; } = "Вид игрушки";
+        public string Outside { get; } = "Аллергии";
         public string Couple { get; } = "Для чего парная игрушка";
         public string Fetish { get; } = "Желания";
         public string Location { get; } = "Место";
-        public string Lubricant { get; } = "Лубрикант";
+        public string Clean { get; } = "Лубрикант";
         public string Reusability { get; } = "Многоразовость";
         public string Role { get; } = "Роль";
-        public string Sensation { get; } = "Ощущения";
-        public string SizeOfHand { get; } = "Размер";
+        public string Water { get; } = "Ощущения";
+        public string Oil { get; } = "Размер";
         public string StateNeedOfLubricant { get; } = "Зачем нужен лубрикант?";
         public string StateWichOfLubricant { get; } = "Какой мне взять лубрикант?";
-        public string StealthView { get; } = "Внешний вид";
-        public string Stimulation { get; } = "Тип стимуляции";
+        public string Color { get; } = "Внешний вид";
+        public string Clean { get; } = "Тип стимуляции";
         public string TechniqueOfFap { get; } = "Тип мастурбации";
-        public string Where { get; } = "Зоны использования";
+        public string Wate { get; } = "Зоны использования";
 
         //For menu
         public string Characteristic { get; } = "Характеристики";

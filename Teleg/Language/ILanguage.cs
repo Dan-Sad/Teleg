@@ -6,34 +6,26 @@ namespace Teleg
 {
     interface ILanguageQuestion
     {
-        public string Agregate { get; }
-        public string Allergy { get; }
-        public string Couple { get; }
-        public string Fetish { get; }
+        public string CurrentZone { get; }
+        public string Color { get; }
+        public string Likeon { get; }
         public string Language { get; }
-        public string Location { get; }
-        public string Lubricant { get; }
-        public string Reusability { get; }
-        public string Role { get; }
-        public string Sensation { get; }
-        public string SizeOfHand { get; }
-        public string StateNeedOfLubricant { get; }
-        public string StateWichOfLubricant { get; }
-        public string StealthView { get; }
-        public string Stimulation { get; }
-        public string TechniqueOfFap { get; }
-        public string Where { get; }
+       
         //For menu
         public string Menu { get; }
-        public string Characteristic { get; }
+        public string Fourty { get; }
+        public string Cover { get; }
         public string Ecology { get; }
-        public string Stels { get; }
-        public string Feeling { get; }
-        public string Wishes { get; }
+        public string Feels { get; }
+        public string Limit { get; }
+        public string Process { get; }
         public string States { get; }
+        public string Stimul { get; }
+        public string Style { get; }
+        public string Zona { get; }
 
-        //For system
-        public string ChooseMore { get; }
+    //For system
+    public string ChooseMore { get; }
     }
 
     interface ILanguageButton
@@ -49,141 +41,121 @@ namespace Teleg
 
 
         //For Menu
-        public string Characteristic { get; }
+        public string Fourty { get; }
+        public string Cover { get; }
         public string Ecology { get; }
-        public string Stels { get; }
-        public string Feeling { get; }
-        public string Wishes { get; }
+        public string Feels { get; }
+        public string Limit { get; }
+        public string Process { get; }
         public string States { get; }
+        public string Stimul { get; }
+        public string Style { get; }
+        public string Zona { get; }
 
-        //Questions
-        public string Agregate { get; } 
-        public string Allergy { get; } 
-        public string Couple { get; }
-        public string Fetish { get; }
-        public string Location { get; }
-        public string Lubricant { get; } 
-        public string Reusability { get; }
-        public string Role { get; }
-        public string Sensation { get; }
-        public string SizeOfHand { get; }
-        public string State { get; }
-        public string StateNeedOfLubricant { get; }
-        public string StateWichOfLubricant { get; }
-        public string StealthView { get; }
-        public string Stimulation { get; }
-        public string TechniqueOfFap { get; }
-        public string Where { get; }
+        //Cover
+        public string Water { get; }
+        public string Clean { get; }
+        public string Silicon { get; }
+        public string Oil { get; }
+
+        //Ecology
+        public string Battery { get; }
+        public string Vegan { get; }
+        public string Factory { get; }
+
+        //Feels
+
+        public string Wight { get; }
+        public string Depth { get; }
+        public string Suction { get; }
+        public string Tingling { get; }
+        public string Pushers { get; }
+        public string Pulsators { get; }
+        public string Smoothness { get; }
+        public string Texture { get; }
+        public string Heating { get; }
+        public string Massage { get; }
+
+        //Fourty
+
+        
+        public string Distant { get; }
+        public string Ergonomic { get; }
+        public string SmallDiametr { get; }
+        public string Bandage { get; }
+        public string Power { get; }
+        public string Vacuum { get; }
 
 
-        //Agregate
-        public string AgregateLiquid { get; }
-        public string AgregateHard { get; }
 
-        //Allergy
-        public string AllergySilikon { get; }
-        public string AllergyLatex { get; }
-        public string AllergyBioSkin { get; }
-        public string AllergyTPR { get; }
-        public string AllergyABS_plastic { get; }
-        public string NotClue { get; }
 
-        //Controle
-        public string ControleManual { get; }
-        public string ControleButton { get; }
-        public string ControleApp { get; }
-        public string ControleConsole { get; }
 
-        //Couple
-        public string CoupleStopPenis { get; }
-        public string CoupleLongSex { get; }
-        public string CoupleClitor { get; }
-        public string CoupleVagina { get; }
-        public string CoupleAnus { get; }
-        public string CoupleOtherZone { get; }
+        //Limit
+        public string WithoutHand { get; }
 
-        //Fetish
-        public string FetishPublicPlace { get; }
-        public string FetishDoublePenetration { get; }
-        public string FetishDistantPartner { get; }
-        public string FetishPetGame { get; }
-        public string FetishAnalSex { get; }
-        public string FetishFeelPlenum { get; }
-        public string FetishSecretGame { get; }
-        public string FetishRealistic { get; }
-        public string FetishBukaki { get; }
-        public string FetishIntel { get; }
-        public string FetishCuni { get; }
-        public string FetishFillPlace { get; }
+        //Process
+
+        public string Search { get; }
+        public string Point { get; }
+        public string MixOrgasm { get; }
+        public string Pillow { get; }
+        public string NewTech { get; }
+        public string Boy { get; }
+        public string Girl { get; }
+        public string Public { get; }
+
+        //Stimul
+        public string Soft { get; }
+        public string Fast { get; }
+        public string Slow { get; }
+
+
+        //Style
+        public string Natural { get; }
+        public string Steal { get; }
+
+        //Zona
+        public string Outside { get; }
+        public string Inside { get; }
+        public string Mix { get; }
+
+        //CurrentZone
+
+        public string Clitor { get; }
+        public string Vagina { get; }
+        public string Anal { get; }
+        public string Combination { get; }
+
+        //Color
+        public string White { get; }
+        public string Black { get; }
+        public string Red { get; }
+        public string Green { get; }
+        public string Blue { get; }
+        public string Yellow { get; }
+        public string Gray { get; }
+        public string Pink { get; }
+        public string Violent { get; }
+        public string Dark { get; }
+        public string Metal { get; }
+        public string Light { get; }
+        public string Gentle { get; }
+        public string Bright { get; }
+
+        //Likeon 
+
+        public string Space { get; }
+        public string Usually { get; }
+        public string Minimalism { get; }
+        public string Animal { get; }
+        public string Child { get; }
+        public string Realistic { get; }
+
 
         //Language
         public string LanguageRUS { get; }
         public string LanguageENG { get; }
 
-        //Location
-        public string LocationBed { get; }
-        public string LocationBath { get; }
-        public string LocationShower { get; }
-        public string LocationSea { get; }
-        public string LocationPool { get; }
-        public string LocationPublic { get; }
-
-        //Lubricant
-        public string LubricantWater { get; }
-        public string LubricantSilicon { get; }
-        public string LubricantOily { get; }
-        public string LubricantWaterSilicon { get; }
-        public string LubricantWaterOily { get; }
-        public string LubricantNoMatters { get; }
-
-        //Reusability
-        public string ReusabilityLot { get; }
-        public string ReusabilityOne { get; }
-
-        //Role
-        public string RoleForSelf { get; }
-        public string RoleForCouples { get; }
-        public string RoleForSecret { get; }
-        public string RoleForDistant { get; }
-
-        //Sensation
-        public string SensationSoft { get; }
-        public string SensationHard { get; }
-        public string SensationCold { get; }
-        public string SensationMyTemperature { get; }
-        public string SensationSmoothness { get; }
-        public string SensationVelvety { get; }
-        public string SensationRealistic { get; }
-        public string SensationRelief { get; }
-
-        //StealthView
-        public string StealthViewNoMatters { get; }
-        public string StealthViewMatters { get; }
-
-        //SizeOfHand
-        public string S { get; }
-        public string M { get; }
-        public string L { get; }
-
-        //Stimulation
-        public string StimulationVacuum { get; }
-        public string StimulationWave { get; }
-        public string StimulationRotation { get; }
-
-        //TechniqueOfFap
-        public string TechniqueOfFapMost { get; }
-        public string TechniqueOfFapRabbimg { get; }
-        public string TechniqueOfFapClitoris { get; }
-        public string TechniqueOfFapAnus { get; }
-        public string TechniqueOfFapVagPenet { get; }
-        public string TechniqueOfFapTemp { get; }
-        public string TechniqueOfFapHlopClitor { get; }
-        public string TechniqueOfFapRoundVulva { get; }
-
-        //Where
-        public string WhereClitor { get; }
-        public string WhereVagina { get; }
-        public string WhereAnus { get; }
-        public string WhereClitorVagina { get; }
+       
     }
 }

@@ -6,19 +6,19 @@ namespace Teleg
 {
     class Menu : Query
     {
-        public MenuCharacteristic menuCharacteristic;
-        public MenuWishes menuWishes;
-        public MenuFeeling menuFeeling;
+        public MenuZona menuCharacteristic;
+        public MenuStimul menuWishes;
+        public MenuCover menuFeeling;
         public MenuEcology menuEcology;
-        public MenuStels menuStels;
+        public MenuStyle menuStels;
         public MenuStates menuStates;
         public Menu(TelegConnect telegram) : base(telegram)
         {
-            menuCharacteristic = new MenuCharacteristic(telegram);
-            menuWishes = new MenuWishes(telegram);
-            menuFeeling = new MenuFeeling(telegram);
+            menuCharacteristic = new MenuZona(telegram);
+            menuWishes = new MenuStimul(telegram);
+            menuFeeling = new MenuCover(telegram);
             menuEcology = new MenuEcology(telegram);
-            menuStels = new MenuStels(telegram);
+            menuStels = new MenuStyle(telegram);
             menuStates = new MenuStates(telegram);
 
             Question = telegram.Question.Menu;
