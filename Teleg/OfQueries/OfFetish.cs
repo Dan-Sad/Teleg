@@ -11,7 +11,7 @@ namespace Teleg
         ComandChoose FetishCuni = new ComandChoose() { sqlRequest = "[Masturbation technique] LIKE '%кунилингус%'" };
         ComandChoose FetishDoublePenetration = new ComandChoose() { sqlRequest = "(Role LIKE '%пара%' AND [Type of stimulation] LIKE '%анус%')" };
         ComandChoose FetishFeelPlenum = new ComandChoose() { sqlRequest = "Role LIKE '%анал%'" };
-        ComandChoose FetishFillPlace = new ComandChoose() { sqlRequest = "Intelligent Mode LIKE '%да%'" };
+        ComandChoose FetishFillPlace = new ComandChoose() { sqlRequest = "[Intelligent Mode] LIKE '%да%'" };
         ComandChoose FetishPetGame = new ComandChoose() { sqlRequest = "signs LIKE '%PetGame%'" };
         ComandChoose FetishPublicPlace = new ComandChoose() { sqlRequest = "Role LIKE '%секрет%'" };
         ComandChoose FetishRealistic = new ComandChoose() { sqlRequest = "signs LIKE '%UR3%'" };
@@ -21,7 +21,7 @@ namespace Teleg
         {
             sqlSeparator = " OR ";
 
-            questionForUser = telegram.Question.Fetish;
+            Question = telegram.Question.Fetish;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -39,7 +39,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuWishes},
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
         }
     }
 }

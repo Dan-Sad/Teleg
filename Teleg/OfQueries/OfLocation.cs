@@ -14,7 +14,7 @@ namespace Teleg
         ComandChoose LocationPublic = new ComandChoose() { sqlRequest = "(Waterproof LIKE '%' AND [Role] LIKE '%секрет%')"  };
         public OfLocation(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Location;
+            Question = telegram.Question.Location;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -27,7 +27,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuWishes},
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
         }
     }
 }

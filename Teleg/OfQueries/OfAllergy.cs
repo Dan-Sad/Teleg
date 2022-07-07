@@ -12,7 +12,7 @@ namespace Teleg
         ComandChoose AllergyABS_plastic = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
         public OfAllergy(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Allergy;
+            Question = telegram.Question.Allergy;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -24,7 +24,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuCharacteristic },
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
         }
     }
 }

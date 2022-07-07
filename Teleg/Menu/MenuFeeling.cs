@@ -8,7 +8,7 @@ namespace Teleg
     {
         public MenuFeeling(TelegConnect telegram) : base(telegram)
         {
-            questionForUser = telegram.Question.Feeling;
+            Question = telegram.Question.Feeling;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -18,7 +18,7 @@ namespace Teleg
                 [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu},
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
 
             GenButtons();
         }

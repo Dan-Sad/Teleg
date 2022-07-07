@@ -11,7 +11,7 @@ namespace Teleg
         public OfReusability(TelegConnect telegram) : base(telegram)
         {
 
-            questionForUser = telegram.Question.Reusability;
+            Question = telegram.Question.Reusability;
             buttons = new Dictionary<string, ComandChoose>()
             {
                 [telegram.Button.ReusabilityLot] = ReusabilityLot,
@@ -19,7 +19,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuEcology},
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
         }
     }
 }

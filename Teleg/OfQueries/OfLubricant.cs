@@ -21,7 +21,7 @@ namespace Teleg
             stateNeedOfLubricant = new StateNeedOfLubricant(_telegram);
             stateWichOfLubricant = new StateWichOfLubricant(_telegram);
 
-            questionForUser = telegram.Question.Lubricant;
+            Question = telegram.Question.Lubricant;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
@@ -35,7 +35,7 @@ namespace Teleg
                 [telegram.Button.Ready] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu.menuCharacteristic},
             };
 
-            CreateButtonResullt();
+            CreateButtonResult();
         }
     }
 }

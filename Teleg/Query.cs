@@ -10,7 +10,7 @@ namespace Teleg
     abstract class Query
     {
         public TelegConnect _telegram;
-        public string questionForUser { get; set; }
+        public string Question { get; set; }
         public Dictionary<string, ComandChoose> buttons;
         public Dictionary<string, string> buttonsURL;
         public InlineKeyboardMarkup keyboard;
@@ -20,34 +20,30 @@ namespace Teleg
 
         public Query(TelegConnect telegram) => _telegram = telegram;
 
-        public void CreateButtonResullt()
+        public async void CreateButtonResult()
         {
             buttons.Add(_telegram.Button.Result, new ComandChoose()
             {
                 ActionButton = () =>
                 {
-                    List<string> resultData = _telegram.GetDataOfSQL(GenerateSqlMessange(forCount: false));
-
-                    foreach (string currentData in resultData)
+                    if (_telegram.GetCountDataSQL(GenerateSqlMessange(forCount: true)) != 0)
+                        _telegram.resultAction = new ResultAction(_telegram);
+                    else
                     {
-                        _telegram.SendMes("*" + currentData + "*");
-                        Thread.Sleep(100);
+                        _telegram.SendMesAsync("0 results");
                     }
-
-                    Thread.Sleep(1000);
-                    _telegram.TelegConnectRestart();
                 }
             });
         }
 
-        private string GenerateSqlMessange(bool forCount)
+        public string GenerateSqlMessange(bool forCount)
         {
             string sqlMessange;
 
             if (forCount)
-                sqlMessange = "SELECT COUNT(name)";
+                sqlMessange = "SELECT COUNT(Name)";
             else
-                sqlMessange = "SELECT name";
+                sqlMessange = "SELECT Name, Description, Picture";
 
             sqlMessange += " FROM VibroItems";
 
@@ -102,7 +98,7 @@ namespace Teleg
                 countButtons++;
 
                 if (choosen)
-                    textButton = textButton.Insert(0, char.ConvertFromUtf32(0x2714));
+                    textButton = textButton.Insert(0, char.ConvertFromUtf32(0x1F308));
 
                 //Последнии две кнопки
                 if (countButtons >= buttons.Count-1)
@@ -196,7 +192,7 @@ namespace Teleg
         {
             _telegram.currentQuery = OfQuestion;
 
-            _telegram.SendMes(OfQuestion.questionForUser, OfQuestion.keyboard);
+            _telegram.SendMesAsync(OfQuestion.Question, OfQuestion.keyboard);
 
             await Task.Run(() => { while (!_telegram.haveNewCallback) Thread.Sleep(100); });
 

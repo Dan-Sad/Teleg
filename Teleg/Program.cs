@@ -14,13 +14,14 @@ namespace Teleg
         static Dictionary<long, TelegConnect> chats = new Dictionary<long, TelegConnect>();
         static void Main(string[] args)
         {
-            string token = "5161443212:AAEv9OdF14ysgm4C1dAkM8cN0pwBuSdo6IE";
+            string token = "5272306545:AAHa0Ul9vPeUu8wPMeKA4Ed0djhKwOxxG8g";
             bot = new TelegramBotClient(token);
             bot.OnMessage += Bot_OnMessage;
             bot.OnCallbackQuery += Bot_OnCallbackQuery;
             bot.StartReceiving();
 
-            Task task = new Task(() => { while (true) Thread.Sleep(10000); });
+
+            Task task = new Task(() => { while (true) { Thread.Sleep(30000); Console.WriteLine($"{DateTime.Now} : {chats.Count}"); } });
             task.Start();
             task.Wait();
         }
@@ -33,9 +34,16 @@ namespace Teleg
                 if (curChatID == chat.Key)
                 {
                     chat.Value.PushData(callbackEvent);
-                    chat.Value.haveNewCallback = true;
 
-                    chat.Value.CallQuery();
+                    string CallbackData = callbackEvent.CallbackQuery.Data;
+
+                    if (CallbackData != ResultAction.Back && CallbackData != ResultAction.Next)
+                    {
+                        await Task.Run(() => chat.Value.CallQuery());
+                        chat.Value.haveNewCallback = true;
+                    }
+                    else
+                        chat.Value.resultAction.ActionCallback(CallbackData);
 
                     bot.AnswerCallbackQueryAsync(callbackEvent.CallbackQuery.Id);
 
@@ -54,7 +62,9 @@ namespace Teleg
                 {
                     chat.Value.PushData(mesEvent.Message.Chat.Id, mesEvent);
                     chat.Value.haveNewMessage = true;
-                    chat.Value.SendQuery();
+
+                    MiniMenu.ProccesingUserMes(chat.Value, mesEvent.Message.Text);
+
                     return;
                 }
             }
