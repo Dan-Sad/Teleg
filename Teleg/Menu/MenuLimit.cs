@@ -6,11 +6,11 @@ namespace Teleg.Menu
 {
     class MenuLimit : Query
     {
-        ComandChoose Distant = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose WithoutHand = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Ergonomic = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose SmallDiametr = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Bandage = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
+        ComandChoose Distant = new MenuLimit() { sqlRequest = "(signs LIKE '%пульт%' OR signs LIKE '%приложение%')"  };
+        ComandChoose WithoutHand = new MenuLimit() { sqlRequest = "Control LIKE '%да%'" };
+        ComandChoose Ergonomic = new MenuLimit() { sqlRequest = "Ergonomic LIKE '%да%'"};
+        ComandChoose SmallDiametr = new MenuLimit() { sqlRequest = "(Langht LIKE '%да%' OR Langht LIKE '%маленький%')"};
+        
         
         public MenuLimit(TelegConnect telegram) : base(telegram)
         {
@@ -22,7 +22,7 @@ namespace Teleg.Menu
                 [telegram.Button.WithoutHand] = WithoutHand,
                 [telegram.Button.Ergonomic] = Ergonomic,
                 [telegram.Button.SmallDiametr] = SmallDiametr,
-                [telegram.Button.Bandage] = Bandage,
+                
 
                 [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu },
             };

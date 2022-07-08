@@ -6,10 +6,10 @@ namespace Teleg
 {
     class MenuCover : Query
     {
-        ComandChoose Water = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Clean = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
-        ComandChoose Silicon = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
-        ComandChoose Oil = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] LIKE '%вагина%')" };
+        ComandChoose Water = new ComandChoose() { sqlRequest = "Waterproof LIKE '%да%'" };
+        ComandChoose Clean = new ComandChoose() { sqlRequest = "(Material LIKE '%Cиликон%' OR Material LIKE '%Cтекло%' OR Material LIKE '%Нержавейка%' OR Material LIKE '%АБС%'AND Material LIKE '%Керамика%' OR Material LIKE '%Лакдерево%')"};
+        ComandChoose Silicon = new ComandChoose() { sqlRequest = "(Material NOT LIKE '%Cиликон%' OR Material NOT LIKE '%Киберкожа%' OR Material NOT LIKE '%Дерево%' OR Material NOT LIKE '%Лакдерево%'OR Material NOT LIKE '%ТПЭ%')" };
+        ComandChoose Oil = new ComandChoose() { sqlRequest = "(Material NOT LIKE '%Cиликон%' OR Material NOT LIKE '%Акрил%' OR Material NOT LIKE '%Дерево%' OR Material NOT LIKE '%Cиликон%' OR Material NOT LIKE '%Лакдерево%' OR Material NOT LIKE '%Латекс%' OR Material NOT LIKE '%Киберкожа%' OR Material NOT LIKE '%ПП%' OR Material NOT LIKE '%ТПЭ%')" };
 
         public MenuCover(TelegConnect telegram) : base(telegram)
         {

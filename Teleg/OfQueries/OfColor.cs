@@ -5,20 +5,20 @@ namespace Teleg
 {
     class OfColor : Query
     {
-        ComandChoose White = new ComandChoose() { sqlRequest = "Material NOT LIKE '%силикон%'" };
-        ComandChoose Green = new ComandChoose() { sqlRequest = "Material NOT LIKE '%латекс%'" };
-        ComandChoose Black = new ComandChoose() { sqlRequest = "Material NOT LIKE '%Bioskin%'" };
-        ComandChoose Red = new ComandChoose() { sqlRequest = "Material NOT LIKE '%TPR%'" };
-        ComandChoose Blue = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-        ComandChoose Yellow = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Gray = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Pink  = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Violent = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Dark = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Metal = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Light = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Gentle = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
-         ComandChoose Bright = new ComandChoose() { sqlRequest = "Material NOT LIKE '%ABS%'" };
+        ComandChoose White = new ComandChoose() { sqlRequest = "Color NOT LIKE '%белый%'" };
+        ComandChoose Green = new ComandChoose() { sqlRequest = "Color NOT LIKE '%зеленый%'" };
+        ComandChoose Black = new ComandChoose() { sqlRequest = "Color NOT LIKE '%черный%'" };
+        ComandChoose Red = new ComandChoose() { sqlRequest = "Color NOT LIKE '%красный%'" };
+        ComandChoose Blue = new ComandChoose() { sqlRequest = "Color NOT LIKE '%голубой%'" };
+        ComandChoose Yellow = new ComandChoose() { sqlRequest = "Color NOT LIKE '%желтый%'"  };
+         ComandChoose Gray = new ComandChoose() { sqlRequest = "Color NOT LIKE '%серый%'" };
+         ComandChoose Pink  = new ComandChoose() { sqlRequest = "Color NOT LIKE '%розовый%'" };
+         ComandChoose Violent = new ComandChoose() { sqlRequest = "Color NOT LIKE '%фиолетовый%'" };
+         ComandChoose Dark = new ComandChoose() { sqlRequest = "Color NOT LIKE '%темный%'" };
+         ComandChoose Metal = new ComandChoose() { sqlRequest = "Color NOT LIKE '%металл%'" };
+         ComandChoose Light = new ComandChoose() { sqlRequest = "Color NOT LIKE '%светлый%'" };
+         ComandChoose Gentle = new ComandChoose() { sqlRequest = "Color NOT LIKE '%нежный%'" };
+         ComandChoose Bright = new ComandChoose() { sqlRequest = "Color NOT LIKE '%яркий%'" };
         public OfColor(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Color;

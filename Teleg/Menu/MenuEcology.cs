@@ -6,9 +6,9 @@ namespace Teleg
 {
     internal class MenuEcology : Query
     {
-        ComandChoose Battery = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Vegan = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
-        ComandChoose Factory = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
+        ComandChoose Battery = new ComandChoose() { sqlRequest = "Accumul LIKE '%да%'" };
+        ComandChoose Vegan = new ComandChoose() { sqlRequest = "Vegan LIKE '%да%'" };
+        ComandChoose Factory = new ComandChoose() { sqlRequest = "[Care factory] LIKE '%да%'" };
        
         public MenuEcology(TelegConnect telegram) : base(telegram)
         {

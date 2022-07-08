@@ -6,10 +6,10 @@ namespace Teleg
 {
     class OfCurrentZone : Query
     {
-        ComandChoose Clitor = new ComandChoose() { sqlRequest = "Aggregation LIKE '%жидкий%'" };
-        ComandChoose Vagina = new ComandChoose() { sqlRequest = "Aggregation LIKE '%твердый%'" };
-        ComandChoose Anal = new ComandChoose() { sqlRequest = "Aggregation LIKE '%жидкий%'" };
-        ComandChoose Combination = new ComandChoose() { sqlRequest = "Aggregation LIKE '%твердый%'" };
+        ComandChoose Clitor = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
+        ComandChoose Vagina = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
+        ComandChoose Anal = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анал%'" };
+        ComandChoose Combination = new ComandChoose() { sqlRequest = "Process LIKE '%смешанный%'" };
         public OfCurrentZone(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.CurrentZone;

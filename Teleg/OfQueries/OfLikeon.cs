@@ -6,13 +6,13 @@ namespace Teleg
 {
     class OfLikeon : Query
     {
-        ComandChoose Space = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
-        ComandChoose Usually = new ComandChoose() { sqlRequest = "Role LIKE '%кольцо%'" };
-        ComandChoose Minimalism = new ComandChoose() { sqlRequest = "(Role LIKE '%параклитор%')" };
-        ComandChoose Animal = new ComandChoose() { sqlRequest = "Role LIKE '%паравагина%'" };
-        ComandChoose Stimpank = new ComandChoose() { sqlRequest = "Role LIKE '%параанал%'" };
-        ComandChoose Child = new ComandChoose() { sqlRequest = "Role LIKE '%'" };
-        ComandChoose Realistic = new ComandChoose() { sqlRequest = "Role LIKE '%'" };
+        ComandChoose Space = new ComandChoose() { sqlRequest = "Style LIKE '%космос%'" };
+        ComandChoose Usually = new ComandChoose() { sqlRequest = "Style LIKE '%обычный%'" };
+        ComandChoose Minimalism = new ComandChoose() { sqlRequest = "Style LIKE '%минимализм%'" };
+        ComandChoose Animal = new ComandChoose() { sqlRequest = "Style LIKE '%животное%'" };
+        ComandChoose Stimpank = new ComandChoose() { sqlRequest = "Style LIKE '%стимпанк%'" };
+        ComandChoose Child = new ComandChoose() { sqlRequest = "Style LIKE '%детское%'" };
+        ComandChoose Realistic = new ComandChoose() { sqlRequest = "Style LIKE '%реалистик%'" };
         public OfLikeon(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Likeon;

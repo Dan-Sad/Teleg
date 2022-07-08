@@ -6,14 +6,14 @@ namespace Teleg.Menu
 {
      class MenuProcess : Query
     {
-        ComandChoose Search = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Point = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose MixOrgasm = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Pillow = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose NewTech = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Boy = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Girl = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Public = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
+        ComandChoose Search = new ComandChoose() { sqlRequest = "Process LIKE '%поиск%'" };
+        ComandChoose Point = new ComandChoose() { sqlRequest = "Process LIKE '%точечная%'" };
+        ComandChoose MixOrgasm = new ComandChoose() { sqlRequest = "Process LIKE '%смешанный%'" };
+        ComandChoose Pillow = new ComandChoose() { sqlRequest = "Process LIKE '%подушки%'" };
+        ComandChoose NewTech = new ComandChoose() { sqlRequest = "signs LIKE '%приложение%'"   };
+        ComandChoose Boy = new ComandChoose() { sqlRequest = "Process LIKE '%партнер%'"};
+        ComandChoose Girl = new ComandChoose() { sqlRequest = "Process LIKE '%партнерка%'" };
+        ComandChoose Public = new ComandChoose() { sqlRequest = "signs LIKE '%скрытое%'" };
 
         public MenuProcess(TelegConnect telegram) : base(telegram)
         {

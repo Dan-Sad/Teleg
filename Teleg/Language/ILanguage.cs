@@ -24,8 +24,8 @@ namespace Teleg
         public string Style { get; }
         public string Zona { get; }
 
-    //For system
-    public string ChooseMore { get; }
+        //For system
+        public string ChooseMore { get; }
     }
 
     interface ILanguageButton
@@ -75,6 +75,8 @@ namespace Teleg
         public string Texture { get; }
         public string Heating { get; }
         public string Massage { get; }
+        public string Wave { get; }
+        public string Vibration { get; }
 
         //Fourty
 

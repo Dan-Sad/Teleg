@@ -6,14 +6,15 @@ namespace Teleg.Menu
 {
     class MenuFourty : Query
     {
-        ComandChoose Vacuum = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Smoothness = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose SmallDiametr = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Distant = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Ergonomic = new MenuLimit() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Power = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] LIKE '%вагина%')" };
-        ComandChoose Silicon = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
-        ComandChoose Oil = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] LIKE '%вагина%')" };
+        ComandChoose Vacuum = new ComandChoose() { sqlRequest = sqlRequest = "signs LIKE '%всасывание%'"  };
+        ComandChoose Smoothness = new ComandChoose() { sqlRequest = "Relief LIKE '%нет%'" };
+        ComandChoose SmallDiametr = new MenuLimit() { sqlRequest = "(Langht LIKE '%да%' OR Langht LIKE '%маленький%')" };
+        ComandChoose Distant = new MenuLimit() { sqlRequest = "(signs LIKE '%пульт%' OR signs LIKE '%приложение%')"};
+        ComandChoose WithoutHand = new MenuLimit() { sqlRequest = "Control LIKE '%да%'" };
+        ComandChoose Ergonomic = new MenuLimit() { sqlRequest = "Ergonomic LIKE '%да%'" };
+        ComandChoose Power = new ComandChoose() { sqlRequest = "[Form of stimulation] LIKE '%мощная%'" };
+        ComandChoose Silicon = new ComandChoose() { sqlRequest = "(Material NOT LIKE '%Cиликон%' OR Material NOT LIKE '%Киберкожа%' OR Material NOT LIKE '%Дерево%' OR Material NOT LIKE '%Лакдерево%'OR Material NOT LIKE '%ТПЭ%')" };
+        ComandChoose Oil = new ComandChoose() { sqlRequest = "(Material NOT LIKE '%Cиликон%' OR Material NOT LIKE '%Акрил%' OR Material NOT LIKE '%Дерево%' OR Material NOT LIKE '%Cиликон%' OR Material NOT LIKE '%Лакдерево%' OR Material NOT LIKE '%Латекс%' OR Material NOT LIKE '%Киберкожа%' OR Material NOT LIKE '%ПП%' OR Material NOT LIKE '%ТПЭ%')" };
 
         public MenuFourty(TelegConnect telegram) : base(telegram)
         {
@@ -26,6 +27,7 @@ namespace Teleg.Menu
                 [telegram.Button.Ergonomic] = Ergonomic,
                 [telegram.Button.SmallDiametr] = SmallDiametr,
                 [telegram.Button.Bandage] = Bandage,
+                [telegram.Button.WithoutHand] = WithoutHand,
                 [telegram.Button.Power] = Power,
                 [telegram.Button.Vacuum] = Vacuum,
                 [telegram.Button.Silicon] = Silicon,

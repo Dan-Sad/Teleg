@@ -7,10 +7,10 @@ namespace Teleg
     class MenuStimul : Query
     {
 
-        ComandChoose Soft = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Fast = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
-        ComandChoose Slow = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
-        ComandChoose Power = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] LIKE '%вагина%')" };
+        ComandChoose Soft = new ComandChoose() {  sqlRequest = "[Form of stimulation] LIKE '%мягкая%'" };
+        ComandChoose Fast = new ComandChoose() {  sqlRequest = "[Form of stimulation] LIKE '%быстрая%'"  };
+        ComandChoose Slow = new ComandChoose() {  sqlRequest = "[Form of stimulation] LIKE '%медленная%'"  };
+        ComandChoose Power = new ComandChoose() {  sqlRequest = "[Form of stimulation] LIKE '%мощная%'"  };
 
         public MenuStimul(TelegConnect telegram) : base(telegram)
         {

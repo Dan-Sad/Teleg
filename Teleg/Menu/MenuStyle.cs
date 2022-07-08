@@ -6,8 +6,8 @@ namespace Teleg
 {
     class MenuStyle : Query
     {
-        ComandChoose Natural = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Steal = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
+        ComandChoose Natural = new ComandChoose() { sqlRequest = "( Material LIKE '%Cтекло%' OR Material LIKE '%Нержавейка%' OR Material LIKE '%Сталь%'AND Material LIKE '%Керамика%' OR Material LIKE '%Лакдерево%' OR Material LIKE '%Дерево%') };
+        ComandChoose Steal = new ComandChoose() { sqlRequest = "Style LIKE '%скрытый%'" };
 
         public MenuStyle(TelegConnect telegram) : base(telegram)
         {

@@ -7,9 +7,9 @@ namespace Teleg
     internal class MenuZona : Query
     {
 
-        ComandChoose Outside = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Inside = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
-        ComandChoose Mix = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
+        ComandChoose Outside = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' OR [Type of stimulation] LIKE '%анал%')" };
+        ComandChoose Inside = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%вагина%' OR [Type of stimulation] LIKE '%G%')" };
+        ComandChoose Mix = new ComandChoose() { sqlRequest = "Process LIKE '%смешанный%'" };
 
         public MenuZona(TelegConnect telegram) : base(telegram)
         {

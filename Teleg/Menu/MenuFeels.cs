@@ -7,16 +7,18 @@ namespace Teleg.Menu
     class MenuFeels : Query
     {
 
-        ComandChoose Wight = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Depth = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%вагина%'" };
-        ComandChoose Suction = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%анус%'" };
-        ComandChoose Tingling = new ComandChoose() { sqlRequest = "([Type of stimulation] LIKE '%клитор%' AND [Type of stimulation] LIKE '%вагина%')" };
-        ComandChoose Pushers = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Pulsators = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Smoothness = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Texture = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Heating = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
-        ComandChoose Massage = new ComandChoose() { sqlRequest = "[Type of stimulation] LIKE '%клитор%'" };
+        ComandChoose Wight = new ComandChoose() { sqlRequest = "signs LIKE '%широкий%'" };
+        ComandChoose Depth = new ComandChoose() { sqlRequest = "signs LIKE '%глубокие%'"  };
+        ComandChoose Suction = new ComandChoose() { sqlRequest = "signs LIKE '%всасывание%'"  };
+        ComandChoose Tingling = new ComandChoose() { sqlRequest = "signs LIKE '%покалывающие%'" };
+        ComandChoose Pushers = new ComandChoose() { sqlRequest = "signs LIKE '%толкающие%'"  };
+        ComandChoose Pulsators = new ComandChoose() { sqlRequest = "signs LIKE '%пульсации%'"  };
+        ComandChoose Smoothness = new ComandChoose() { sqlRequest = "Relief LIKE '%нет%'" };
+        ComandChoose Texture = new ComandChoose() { sqlRequest = "Relief LIKE '%да%'" };
+        ComandChoose Heating = new ComandChoose() { sqlRequest = "Heat LIKE '%да%'" };
+        ComandChoose Massage = new ComandChoose() { sqlRequest = "signs LIKE '%массаж%'"  };
+        ComandChoose Wave = new ComandChoose() { sqlRequest = "signs LIKE '%волновые%'"  };
+        ComandChoose Vibration = new ComandChoose() { sqlRequest = "signs LIKE '%вибрации%'"  };
              public MenuFeels(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Wishes;
@@ -33,6 +35,8 @@ namespace Teleg.Menu
                 [telegram.Button.Texture] = Texture,
                 [telegram.Button.Heating] = Heating,
                 [telegram.Button.Massage] = Massage,
+                [telegram.Button.Wave] = Wave,
+                [telegram.Button.Vibration] = Vibration,
                 [telegram.Button.Apply] = new ComandChoose() { ActionButton = () => _telegram.currentQuery = _telegram.Menu },
             };
 
