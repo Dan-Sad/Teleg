@@ -183,20 +183,10 @@ namespace Teleg
         {
             queries = new Dictionary<string, Query>()
             {
-                [Question.Agregate] = new OfAggregate(this),
-                [Question.Allergy] = new OfAllergy(this),
-                [Question.Couple] = new OfCouple(this),
-                [Question.Fetish] = new OfFetish(this),
-                [Question.Location] = new OfLocation(this),
-                [Question.Lubricant] = new OfLubricant(this),
-                [Question.Reusability] = new OfReusability(this),
-                [Question.Role] = new OfRole(this),
-                [Question.Sensation] = new OfSensation(this),
-                [Question.SizeOfHand] = new OfSize(this),
-                [Question.StealthView] = new OfStealthView(this),
-                [Question.TechniqueOfFap] = new OfTechniqueOfFap(this),
-                [Question.Stimulation] = new OfTypeSimulation(this),
-                [Question.Where] = new OfWhere(this),
+                [Question.Color] = new OfColor(this),
+                [Question.CurrentZone] = new OfCurrentZone(this),
+                [Question.Likeon] = new OfLikeon(this),
+                
             };
         }
     }

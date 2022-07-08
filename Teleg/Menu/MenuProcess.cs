@@ -17,7 +17,7 @@ namespace Teleg.Menu
 
         public MenuProcess(TelegConnect telegram) : base(telegram)
         {
-            Question = telegram.Question.Wishes;
+            Question = telegram.Question.Process;
 
             buttons = new Dictionary<string, ComandChoose>()
             {

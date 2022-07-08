@@ -14,7 +14,7 @@ namespace Teleg
 
         public MenuStimul(TelegConnect telegram) : base(telegram)
         {
-            Question = telegram.Question.Wishes;
+            Question = telegram.Question.Stimul;
 
             buttons = new Dictionary<string, ComandChoose>()
             {

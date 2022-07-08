@@ -26,7 +26,9 @@ namespace Teleg
         //For system
         public string ChooseMore { get; } = "Можешь выбрать больше";
         public string Language { get; } = "Иногда без языка не обойтись";
-                       
+      
+
+
     }
 
     class ButtonRUS : ILanguageButton
@@ -43,6 +45,11 @@ namespace Teleg
         public string ChoseOfRecomennd { get; } = "Используй кнопки";
         public string LanguageRUS { get; } = "RUS";
         public string LanguageENG { get; } = "ENG";
+        public string CurrentZone { get; } = "Конкретная зона";
+        public string Color { get; } = "Цвет";
+        public string Likeon { get; } = "Стиль";
+        public string StateNeedOfLubricant { get; } = "Зачем лубриканты";
+        public string StateWichOfLubricant { get; } = "Выбрать лубрикант";
 
 
         //For Menu

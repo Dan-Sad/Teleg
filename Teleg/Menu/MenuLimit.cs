@@ -6,15 +6,15 @@ namespace Teleg.Menu
 {
     class MenuLimit : Query
     {
-        ComandChoose Distant = new MenuLimit() { sqlRequest = "(signs LIKE '%пульт%' OR signs LIKE '%приложение%')"  };
-        ComandChoose WithoutHand = new MenuLimit() { sqlRequest = "Control LIKE '%да%'" };
-        ComandChoose Ergonomic = new MenuLimit() { sqlRequest = "Ergonomic LIKE '%да%'"};
-        ComandChoose SmallDiametr = new MenuLimit() { sqlRequest = "(Langht LIKE '%да%' OR Langht LIKE '%маленький%')"};
+        ComandChoose Distant = new ComandChoose() { sqlRequest = "(signs LIKE '%пульт%' OR signs LIKE '%приложение%')"  };
+        ComandChoose WithoutHand = new ComandChoose() { sqlRequest = "Control LIKE '%да%'" };
+        ComandChoose Ergonomic = new ComandChoose() { sqlRequest = "Ergonomic LIKE '%да%'"};
+        ComandChoose SmallDiametr = new ComandChoose() { sqlRequest = "(Langht LIKE '%да%' OR Langht LIKE '%маленький%')"};
         
         
         public MenuLimit(TelegConnect telegram) : base(telegram)
         {
-            Question = telegram.Question.Wishes;
+            Question = telegram.Question.Limit;
 
             buttons = new Dictionary<string, ComandChoose>()
             {

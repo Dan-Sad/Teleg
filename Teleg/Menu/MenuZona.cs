@@ -13,7 +13,7 @@ namespace Teleg
 
         public MenuZona(TelegConnect telegram) : base(telegram)
         {
-            Question = telegram.Question.Characteristic;
+            Question = telegram.Question.Zona;
 
             buttons = new Dictionary<string, ComandChoose>()
             {

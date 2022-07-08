@@ -6,12 +6,12 @@ namespace Teleg
 {
     class MenuStyle : Query
     {
-        ComandChoose Natural = new ComandChoose() { sqlRequest = "( Material LIKE '%Cтекло%' OR Material LIKE '%Нержавейка%' OR Material LIKE '%Сталь%'AND Material LIKE '%Керамика%' OR Material LIKE '%Лакдерево%' OR Material LIKE '%Дерево%') };
+        ComandChoose Natural = new ComandChoose() { sqlRequest = "(Material LIKE '%Дерево%' OR Material LIKE '%Cтекло%' OR Material LIKE '%Нержавейка%' OR Material LIKE '%Сталь%'AND Material LIKE '%Керамика%' OR Material LIKE '%Лакдерево%')" };
         ComandChoose Steal = new ComandChoose() { sqlRequest = "Style LIKE '%скрытый%'" };
 
         public MenuStyle(TelegConnect telegram) : base(telegram)
         {
-            Question = telegram.Question.Stels;
+            Question = telegram.Question.Style;
 
             buttons = new Dictionary<string, ComandChoose>()
             {

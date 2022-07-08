@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Teleg.Menu
 {
-    class MenuFeels : Query
+    internal class MenuFeels : Query
     {
 
         ComandChoose Wight = new ComandChoose() { sqlRequest = "signs LIKE '%широкий%'" };
@@ -21,7 +21,7 @@ namespace Teleg.Menu
         ComandChoose Vibration = new ComandChoose() { sqlRequest = "signs LIKE '%вибрации%'"  };
              public MenuFeels(TelegConnect telegram) : base(telegram)
         {
-            Question = telegram.Question.Wishes;
+            Question = telegram.Question.Feels;
 
             buttons = new Dictionary<string, ComandChoose>()
             {

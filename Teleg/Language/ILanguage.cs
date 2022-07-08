@@ -10,7 +10,9 @@ namespace Teleg
         public string Color { get; }
         public string Likeon { get; }
         public string Language { get; }
+
        
+
         //For menu
         public string Menu { get; }
         public string Fourty { get; }
@@ -38,6 +40,8 @@ namespace Teleg
         public string Result { get; }
         public string Apply { get; }
         public string Ready { get; }
+        public string StateNeedOfLubricant { get; }
+        public string StateWichOfLubricant { get; }
 
 
         //For Menu
@@ -51,6 +55,9 @@ namespace Teleg
         public string Stimul { get; }
         public string Style { get; }
         public string Zona { get; }
+        public string CurrentZone { get; }
+        public string Color { get; }
+        public string Likeon { get; }
 
         //Cover
         public string Water { get; }

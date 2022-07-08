@@ -13,7 +13,7 @@ namespace Teleg
 
         public MenuCover(TelegConnect telegram) : base(telegram)
         {
-            Question = telegram.Question.Feeling;
+            Question = telegram.Question.Cover;
 
             buttons = new Dictionary<string, ComandChoose>()
             {
