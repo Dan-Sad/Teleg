@@ -150,6 +150,7 @@ namespace Teleg
         public string Animal { get; }
         public string Child { get; }
         public string Realistic { get; }
+        public string Stimpank { get; }
 
 
         //Language
