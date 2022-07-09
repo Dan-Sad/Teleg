@@ -26,7 +26,10 @@ namespace Teleg
         //For system
         public string ChooseMore { get; } = "Можешь выбрать больше";
         public string Language { get; } = "Иногда без языка не обойтись";
-      
+
+        public string StateNeedOfLubricant { get; } = "Зачем";
+        public string StateWichOfLubricant { get; } = "Какой";
+
 
 
     }

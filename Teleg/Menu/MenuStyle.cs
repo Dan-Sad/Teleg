@@ -12,6 +12,7 @@ namespace Teleg
         public MenuStyle(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Style;
+            sqlSeparator = " OR ";
 
             buttons = new Dictionary<string, ComandChoose>()
             {

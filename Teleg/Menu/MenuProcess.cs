@@ -18,6 +18,7 @@ namespace Teleg.Menu
         public MenuProcess(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Process;
+            sqlSeparator = " OR ";
 
             buttons = new Dictionary<string, ComandChoose>()
             {

@@ -156,15 +156,17 @@ namespace Teleg
                 //Длинный текст кнопки
                 if (textButton.Length > 16)
                 {
-                    countButtonsOnRows = 0;
-
-                    rows.Add(cols.ToArray());
-                    cols = new List<InlineKeyboardButton>();
+                    if (countButtonsOnRows > 1)
+                    {
+                        rows.Add(cols.ToArray());
+                        cols = new List<InlineKeyboardButton>();
+                    }
 
                     cols.Add(new InlineKeyboardButton() { CallbackData = dataButton, Text = textButton });
 
                     rows.Add(cols.ToArray());
                     cols = new List<InlineKeyboardButton>();
+                    countButtonsOnRows = 0;
                     continue;
                 }
             }

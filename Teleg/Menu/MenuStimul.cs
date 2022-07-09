@@ -15,6 +15,7 @@ namespace Teleg
         public MenuStimul(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Stimul;
+            sqlSeparator = " OR ";
 
             buttons = new Dictionary<string, ComandChoose>()
             {

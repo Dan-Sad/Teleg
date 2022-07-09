@@ -28,6 +28,9 @@ namespace Teleg
 
         //For system
         public string ChooseMore { get; }
+
+        public string StateNeedOfLubricant { get; }
+        public string StateWichOfLubricant { get; }
     }
 
     interface ILanguageButton
@@ -42,6 +45,7 @@ namespace Teleg
         public string Ready { get; }
         public string StateNeedOfLubricant { get; }
         public string StateWichOfLubricant { get; }
+        public string State { get; }
 
 
         //For Menu

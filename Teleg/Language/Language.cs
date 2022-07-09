@@ -23,14 +23,14 @@ namespace Teleg
             _telegram.Question = new QuestionENG();
             _telegram.Button  = new ButtonENG();
             RegisterButton();
-            _telegram.currentQuery = _telegram.Menu = new Menu(_telegram);
+            _telegram.currentQuery = _telegram.Menu = new MainMenu(_telegram);
         }
         private void SetLanguageRUS()
         {
             _telegram.Question = new QuestionRUS();
             _telegram.Button = new ButtonRUS();
             RegisterButton();
-            _telegram.currentQuery = _telegram.Menu = new Menu(_telegram);
+            _telegram.currentQuery = _telegram.Menu = new MainMenu(_telegram);
         }
     }
 }

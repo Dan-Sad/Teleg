@@ -28,7 +28,7 @@ namespace Teleg
         public ILanguageButton Button = new ButtonRUS();
 
         public Query currentQuery { get; set; }
-        public Menu Menu;
+        public MainMenu Menu;
         public Dictionary<string, Query> queries;
         public ResultAction resultAction;
 
@@ -42,7 +42,7 @@ namespace Teleg
             //currentQuery = new Language(this);
             //currentQuery.SendQuery(currentQuery);
 
-            currentQuery = Menu = new Menu(this);
+            currentQuery = Menu = new MainMenu(this);
             Menu.SendQuery(Menu);
         }
 

@@ -22,6 +22,7 @@ namespace Teleg.Menu
              public MenuFeels(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Feels;
+            sqlSeparator = " OR ";
 
             buttons = new Dictionary<string, ComandChoose>()
             {

@@ -14,6 +14,7 @@ namespace Teleg
         public MenuCover(TelegConnect telegram) : base(telegram)
         {
             Question = telegram.Question.Cover;
+            sqlSeparator = " OR ";
 
             buttons = new Dictionary<string, ComandChoose>()
             {
